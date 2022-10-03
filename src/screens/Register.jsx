@@ -26,14 +26,14 @@ const Register = () => {
                   for="email"
                   className="block mb-2 text-sm font-medium text-primary "
                 >
-                  Your email
+                  Username
                 </label>
                 <input
-                  type="email"
-                  name="email"
-                  id="email"
+                  type="username"
+                  name="username"
+                  id="username"
                   className="input-form"
-                  placeholder="name@company.com"
+                  placeholder="craZyChineseMan31"
                   required=""
                 />
               </div>
@@ -42,29 +42,29 @@ const Register = () => {
                   for="password"
                   className="block mb-2 text-sm font-medium text-primary"
                 >
-                  Password
+                  Email
                 </label>
                 <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="••••••••"
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="bingchilling@sheesh.com"
                   className="input-form"
                   required=""
                 />
               </div>
               <div>
                 <label
-                  for="confirm-password"
+                  for="password"
                   className="block mb-2 text-sm font-medium  text-primary"
                 >
-                  Confirm password
+                  Password
                 </label>
                 <input
-                  type="confirm-password"
-                  name="confirm-password"
-                  id="confirm-password"
-                  placeholder="••••••••"
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="********"
                   className="input-form"
                   required=""
                 />
