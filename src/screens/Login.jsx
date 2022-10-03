@@ -9,17 +9,16 @@ const Login = () => {
           href="#"
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          <img
-            className="w-56 h-56 mr-2"
-            src={kazik}
-            alt="logo"
-          />
-          DropShipHub
+          <img className="w-56 h-56 mr-2" src={kazik} alt="logo" />
+          DropShitting
         </a>
         <div className="w-full bg-secondary rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 border border-primary">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
-              Sign in to <span className ="text-black bg-primary p-2 rounded-3xl :">your account</span>
+              Sign in to{" "}
+              <span className="text-black bg-primary p-2 rounded-3xl :">
+                your account
+              </span>
             </h1>
             <form className="space-y-4 md:space-y-6" action="#">
               <div>
@@ -66,10 +65,7 @@ const Login = () => {
                     />
                   </div>
                   <div className="ml-3 text-sm">
-                    <label
-                      for="remember"
-                      className="text-primary font-medium"
-                    >
+                    <label for="remember" className="text-primary font-medium">
                       Remember me
                     </label>
                   </div>
@@ -84,19 +80,19 @@ const Login = () => {
               <Link to="/home">
                 <button
                   type="submit"
-                  className="w-full text-white bg-lightSecond hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-3xl text-sm px-5 py-2.5 text-center"
+                  className="w-full text-black mt-5 bg-primary hover:bg-primary/90 transition-duration-75 ease-in-out focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center"
                 >
                   Sign in
                 </button>
               </Link>
-              <p className="text-sm font-light text-primary">
+              <p className="text-sm font-light text-white">
                 Don’t have an account yet?{" "}
-                <a
-                  href="/register"
-                  className="font-medium text-primary-600 hover:underline "
+                <Link
+                  to="/register"
+                  className="font-medium text-primary hover:underline "
                 >
                   Sign up
-                </a>
+                </Link>
               </p>
             </form>
           </div>
