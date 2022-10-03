@@ -123,12 +123,14 @@ const Navbar = () => {
             duration-500 `}
                 >
                   <NavLink
-                    className=" hamburger:text-2xl text-base"
+                    className=" hamburger:text-2xl flex text-base"
                     to="/"
                     style={{ color: "inherit", backgroundColor: "inherit" }}
                   >
-                    <span className=" text-white">drop</span>
-                    <span className=" text-orange-500">SHIT</span>
+                    <span className=" text-white ">Drop</span>
+                    <span className=" text-black border border-orange-600 ml-1 rounded-md  bg-orange-500">
+                      Hub
+                    </span>
                   </NavLink>
                 </h1>
               </div>
