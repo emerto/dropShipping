@@ -9,11 +9,11 @@ import NotFound from "./screens/NotFound";
 
 const router = createBrowserRouter([
   {
-    path: "/home",
+    path: "/",
     element: <Home />,
   },
   {
-    path: "/",
+    path: "/login",
     element: <Login />,
   },
   {
