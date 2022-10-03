@@ -35,7 +35,7 @@ const Register = () => {
                   type="email"
                   name="email"
                   id="email"
-                  className="border border-primary text-white sm:text-sm rounded-lg  block w-full p-2.5 bg-lightSecond  placeholder-gray-400 "
+                  className="border focus:border-white ring-1 focus:ring-2 focus:ring-primary ring-red-200 border-white text-white sm:text-sm rounded-lg  block w-full p-2.5 bg-lightSecond  placeholder-gray-400 "
                   placeholder="name@company.com"
                   required=""
                 />
