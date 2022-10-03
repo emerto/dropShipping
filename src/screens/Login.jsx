@@ -5,13 +5,13 @@ const Login = () => {
   return (
     <section className="bg-black">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <a
-          href="#"
+        <Link
+          to="/"
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
           <img className="w-[350x] h-[350px] mr-2" src={kazik} alt="logo" />
           
-        </a>
+        </Link>
         <div className="w-full bg-secondary rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 border border-primary">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
