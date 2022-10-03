@@ -33,7 +33,7 @@ const Login = () => {
                   type="email"
                   name="email"
                   id="email"
-                  className="bg-lightSecond border border-primary text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400  "
+                  className="input-form "
                   placeholder="name@company.com"
                   required=""
                 />
@@ -50,7 +50,7 @@ const Login = () => {
                   name="password"
                   id="password"
                   placeholder="••••••••"
-                  className="bg-lightSecond border border-primary text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400"
+                  className="input-form "
                   required=""
                 />
               </div>
@@ -76,7 +76,7 @@ const Login = () => {
                 </div>
                 <a
                   href="#"
-                  className="text-sm font-medium text-primary-600 hover:underline "
+                  className="text-sm font-medium text-primary hover:underline "
                 >
                   Forgot password?
                 </a>
