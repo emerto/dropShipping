@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { Cross as Hamburger } from "hamburger-react";
 
 import { Link } from "react-scroll";
+import Logo from "../assets/kazik.png";
 
 import lottie from "lottie-web";
 // import Home from "../animations/home.json";
@@ -127,10 +128,10 @@ const Navbar = () => {
                     to="/"
                     style={{ color: "inherit", backgroundColor: "inherit" }}
                   >
-                    <span className=" text-white ">Drop</span>
-                    <span className=" text-black border border-orange-600 ml-1 rounded-md  bg-orange-500">
-                      Hub
-                    </span>
+                    <img
+                      src={Logo}
+                      className="w-[125px] h[125px] object-cover"
+                    />
                   </NavLink>
                 </h1>
               </div>
