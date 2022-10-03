@@ -9,8 +9,8 @@ const Login = () => {
           href="#"
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          <img className="w-56 h-56 mr-2" src={kazik} alt="logo" />
-          DropShitting
+          <img className="w-[350x] h-[350px] mr-2" src={kazik} alt="logo" />
+          
         </a>
         <div className="w-full bg-secondary rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 border border-primary">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
