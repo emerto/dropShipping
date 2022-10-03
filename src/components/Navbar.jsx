@@ -136,7 +136,7 @@ const Navbar = () => {
           </div>
           <div
             onClick={() => setOpen(!open)}
-            className="absolute  right-8 top-6 md:top-8 cursor-pointer hamburger:hidden "
+            className="absolute  right-8 top-6 md:top-8 cursor-pointer text-white hamburger:hidden "
           >
             <Hamburger size={30} className={`${open ? "close" : "menu"} `} />
           </div>
@@ -144,7 +144,7 @@ const Navbar = () => {
             className={`hamburger:flex text-orange-400 mr-8 hamburger:items-center hamburger:pb-0 pb-12 absolute hamburger:static 
            hamburger:z-auto z-[-1] left-0 w-full hamburger:w-auto hamburger:pl-0 pl-9 transition-all 
           duration-500 ease-linear ${
-            open ? "left-0 bg-white top-[100px]" : "left-[-750px] top-[100px]"
+            open ? "left-0  top-[100px]" : "left-[-750px] top-[100px]"
           } ${isSticky ? "bg-opacity-80 " : "bg-opacity-100"} `}
           >
             <li
