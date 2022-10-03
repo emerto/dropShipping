@@ -7,10 +7,10 @@ import { Cross as Hamburger } from "hamburger-react";
 import { Link } from "react-scroll";
 
 import lottie from "lottie-web";
-import Home from "../animations/home.json";
-import Info from "../animations/info.json";
-import Gear from "../animations/gears.json";
-import Contact from "../animations/contact.json";
+// import Home from "../animations/home.json";
+// import Info from "../animations/info.json";
+// import Gear from "../animations/gears.json";
+// import Contact from "../animations/contact.json";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -29,83 +29,83 @@ const Navbar = () => {
   };
   window.addEventListener("scroll", changeSticky);
 
-  useEffect(() => {
-    lottie.loadAnimation({
-      name: "home",
-      container: homeRef.current, // the dom element that will contain the animation
-      renderer: "svg",
-      loop: false,
-      autoplay: false,
-      animationData: Home,
-      rendererSettings: {
-        preserveAspectRatio: "xMidYMid slice",
-      },
-    });
+  // useEffect(() => {
+  //   lottie.loadAnimation({
+  //     name: "home",
+  //     container: homeRef.current, // the dom element that will contain the animation
+  //     renderer: "svg",
+  //     loop: false,
+  //     autoplay: false,
+  //     animationData: Home,
+  //     rendererSettings: {
+  //       preserveAspectRatio: "xMidYMid slice",
+  //     },
+  //   });
 
-    return () => {
-      lottie.destroy();
-    };
-  }, []);
+  //   return () => {
+  //     lottie.destroy();
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    lottie.loadAnimation({
-      name: "info",
-      container: infoRef.current, // the dom element that will contain the animation
-      renderer: "svg",
-      loop: false,
-      autoplay: false,
-      animationData: Info,
-      rendererSettings: {
-        preserveAspectRatio: "xMidYMid slice",
-      },
-    });
+  // useEffect(() => {
+  //   lottie.loadAnimation({
+  //     name: "info",
+  //     container: infoRef.current, // the dom element that will contain the animation
+  //     renderer: "svg",
+  //     loop: false,
+  //     autoplay: false,
+  //     animationData: Info,
+  //     rendererSettings: {
+  //       preserveAspectRatio: "xMidYMid slice",
+  //     },
+  //   });
 
-    return () => {
-      lottie.destroy();
-    };
-  }, []);
+  //   return () => {
+  //     lottie.destroy();
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    lottie.loadAnimation({
-      name: "services",
-      container: serviceRef.current, // the dom element that will contain the animation: ;
-      renderer: "svg",
-      loop: false,
-      autoplay: false,
-      animationData: Gear,
-      rendererSettings: {
-        preserveAspectRatio: "xMidYMid slice",
-      },
-    });
+  // useEffect(() => {
+  //   lottie.loadAnimation({
+  //     name: "services",
+  //     container: serviceRef.current, // the dom element that will contain the animation: ;
+  //     renderer: "svg",
+  //     loop: false,
+  //     autoplay: false,
+  //     animationData: Gear,
+  //     rendererSettings: {
+  //       preserveAspectRatio: "xMidYMid slice",
+  //     },
+  //   });
 
-    return () => {
-      lottie.destroy();
-    };
-  }, []);
+  //   return () => {
+  //     lottie.destroy();
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    lottie.loadAnimation({
-      name: "contact",
-      container: contactRef.current, // the dom element that will contain the animation: ;
-      renderer: "svg",
-      loop: false,
-      autoplay: false,
-      animationData: Contact,
-      rendererSettings: {
-        preserveAspectRatio: "xMidYMid slice",
-      },
-    });
+  // useEffect(() => {
+  //   lottie.loadAnimation({
+  //     name: "contact",
+  //     container: contactRef.current, // the dom element that will contain the animation: ;
+  //     renderer: "svg",
+  //     loop: false,
+  //     autoplay: false,
+  //     animationData: Contact,
+  //     rendererSettings: {
+  //       preserveAspectRatio: "xMidYMid slice",
+  //     },
+  //   });
 
-    return () => {
-      lottie.destroy();
-    };
-  }, []);
+  //   return () => {
+  //     lottie.destroy();
+  //   };
+  // }, []);
 
   return (
     <>
       <div className={`shadow-md z-20 w-full fixed top-0 left-0 active `}>
         <div
-          className={`md:flex items-center justify-between h-24 bg-white py-4 duration-500 ${
+          className={`md:flex items-center justify-between h-24 bg-black py-4 duration-500 ${
             isSticky ? "bg-opacity-80" : "opacity-100"
           }`}
         >
@@ -127,7 +127,8 @@ const Navbar = () => {
                     to="/"
                     style={{ color: "inherit", backgroundColor: "inherit" }}
                   >
-                    <span>dropSHIT</span>
+                    <span className=" text-white">drop</span>
+                    <span className=" text-orange-500">SHIT</span>
                   </NavLink>
                 </h1>
               </div>
@@ -140,7 +141,7 @@ const Navbar = () => {
             <Hamburger size={30} className={`${open ? "close" : "menu"} `} />
           </div>
           <ul
-            className={`hamburger:flex mr-8 hamburger:items-center hamburger:pb-0 pb-12 absolute hamburger:static 
+            className={`hamburger:flex text-orange-400 mr-8 hamburger:items-center hamburger:pb-0 pb-12 absolute hamburger:static 
            hamburger:z-auto z-[-1] left-0 w-full hamburger:w-auto hamburger:pl-0 pl-9 transition-all 
           duration-500 ease-linear ${
             open ? "left-0 bg-white top-[100px]" : "left-[-750px] top-[100px]"
