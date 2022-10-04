@@ -44,7 +44,7 @@ const Navbar = () => {
                   }`}
                 ></NavLink>
                 <h1
-                  className={` text-black mt-5 ml-3 origin-left font-bold md:text-x1 text-2xl
+                  className={` text-black mt-4 ml-3 origin-left font-bold md:text-x1 text-2xl
             duration-500 `}
                 >
                   <NavLink
