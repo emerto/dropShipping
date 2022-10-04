@@ -44,7 +44,7 @@ const Navbar = () => {
                   }`}
                 ></NavLink>
                 <h1
-                  className={` text-black ml-3 origin-left font-bold mt-0 md:text-x1 text-2xl
+                  className={` text-black mt-5 ml-3 origin-left font-bold md:text-x1 text-2xl
             duration-500 `}
                 >
                   <NavLink
@@ -63,7 +63,7 @@ const Navbar = () => {
           </div>
           <div
             onClick={() => setOpen(!open)}
-            className="absolute  right-8 top-6 md:top-8 cursor-pointer text-white hamburger:hidden "
+            className="absolute  right-8 top-7 md:top-8 cursor-pointer text-white hamburger:hidden "
           >
             <Hamburger size={30} className={`${open ? "close" : "menu"} `} />
           </div>
@@ -77,7 +77,7 @@ const Navbar = () => {
           } ${isSticky ? "bg-opacity-80 " : "bg-opacity-100"} `}
           >
             {" "}
-            <div className="flex hamburger:ml-12 hamburger:mt-1 mt-[40px] items-start justify-start content-start space-x-2 bg-gray-300 p-2 rounded-xl ">
+            <div className="flex hamburger:mr-10 hamburger:mb-0 mb-5 hamburger:mt-1 mt-[40px] items-start justify-start content-start space-x-2 bg-gray-300 p-2 rounded-xl ">
               <MagnifyingGlassIcon className="w-[24px] h-[24px]" />
               <input
                 type="search"
@@ -113,7 +113,7 @@ const Navbar = () => {
               </NavLink> */}
             </li>
             <li
-              className="flex mr-16 hamburger:mt-2 mt-10"
+              className="flex hamburger:mr-16 hamburger:mt-2 mt-2"
               onMouseEnter={() => {
                 lottie.setDirection(1);
                 lottie.play("info");
@@ -152,7 +152,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li
-              className="flex mr-16 hamburger:mt-2 mt-10"
+              className="flex hamburger:mr-16 hamburger:mt-2 mt-10"
               onMouseEnter={() => {
                 lottie.play("services");
               }}
@@ -163,7 +163,7 @@ const Navbar = () => {
               <NavLink
                 className="italic hamburger:not-italic text-lg flex items-center gap-x-4
                 cursor-pointer "
-                to="/hizmetlerimiz"
+                to="/StoreForm"
                 style={{ color: "inherit", backgroundColor: "inherit" }}
               >
                 <div
@@ -189,7 +189,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li
-              className="flex mr-16 hamburger:mt-2 mt-10"
+              className="flex hamburger:mr-16 hamburger:mt-2 mt-10"
               onMouseEnter={() => {
                 lottie.setDirection(1);
                 lottie.play("contact");
