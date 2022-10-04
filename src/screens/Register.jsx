@@ -27,7 +27,7 @@ const Register = () => {
             <form className="space-y-4 md:space-y-6" action="#">
               <div>
                 <label
-                  for="email"
+                  htmlFor="username"
                   className="block mb-2 text-sm font-medium text-primary "
                 >
                   Username
@@ -43,7 +43,7 @@ const Register = () => {
               </div>
               <div>
                 <label
-                  for="password"
+                  htmlFor="email"
                   className="block mb-2 text-sm font-medium text-primary"
                 >
                   Email
@@ -59,7 +59,7 @@ const Register = () => {
               </div>
               <div>
                 <label
-                  for="password"
+                  htmlFor="password"
                   className="block mb-2 text-sm font-medium  text-primary"
                 >
                   Password
