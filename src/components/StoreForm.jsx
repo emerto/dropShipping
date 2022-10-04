@@ -23,7 +23,7 @@ const StoreForm = () => {
               </span>
             </h1>
             <form className="space-y-4 md:space-y-6" action="#">
-              <div className="flex items-stretch justify-between">
+              <div className="flex items-stretch item cen">
                 <div>
                   <label
                     for="text"
