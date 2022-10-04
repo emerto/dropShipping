@@ -77,7 +77,7 @@ const Navbar = () => {
           } ${isSticky ? "bg-opacity-80 " : "bg-opacity-100"} `}
           >
             {" "}
-            <div className="flex hamburger:mr-10 hamburger:mb-0 mb-5 hamburger:mt-1 mt-[40px] items-start justify-start content-start space-x-2 bg-gray-300 p-2 rounded-xl ">
+            <div className="flex hamburger:mr-24 hamburger:mb-0 mb-5 hamburger:mt-1 mt-[40px] space-x-2 bg-gray-300 p-2 rounded-xl ">
               <MagnifyingGlassIcon className="w-[24px] h-[24px]" />
               <input
                 type="search"
@@ -189,7 +189,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li
-              className="flex hamburger:mr-16 hamburger:mt-2 mt-10"
+              className="flex hamburger:mr-[100px] hamburger:mt-2 mt-10"
               onMouseEnter={() => {
                 lottie.setDirection(1);
                 lottie.play("contact");
