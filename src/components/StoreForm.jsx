@@ -16,7 +16,7 @@ const StoreForm = () => {
         </a>
         <div className="w-1/2 bg-secondary rounded-lg shadow md:mt-0 xl:p-0 border border-primary">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8 ">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
+            <h1 className="text-xl flex flex-col font-bold leading-tight tracking-tight text-white md:text-2xl">
               Create{" "}
               <span className="text-black bg-primary p-2 rounded-3xl ">
                 Your Store
@@ -107,13 +107,14 @@ const StoreForm = () => {
                   required=""
                 />
               </div>
-
-              <button
-                type="submit"
-                className="w-1/4 text-black mt-5 bg-primary hover:bg-primary/90 transition-duration-75 ease-in-out focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center"
-              >
-                Create Store
-              </button>
+              <div className="max-w-[250px]">
+                <button
+                  type="submit"
+                  className="w-full  text-black mt-5 bg-primary hover:bg-primary/90 transition-duration-75 ease-in-out focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center"
+                >
+                  Create Store
+                </button>
+              </div>
             </form>
           </div>
         </div>
