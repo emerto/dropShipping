@@ -163,7 +163,7 @@ const Navbar = () => {
               <NavLink
                 className="italic hamburger:not-italic text-lg flex items-center gap-x-4
                 cursor-pointer "
-                to="/hizmetlerimiz"
+                to="/StoreForm"
                 style={{ color: "inherit", backgroundColor: "inherit" }}
               >
                 <div
