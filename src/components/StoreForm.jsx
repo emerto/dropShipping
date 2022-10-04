@@ -23,7 +23,7 @@ const StoreForm = () => {
               </span>
             </h1>
             <form className="space-y-4 md:space-y-6" action="#">
-              <div className="items-stretch flex-row flex">
+              <div className="items-stretch md:flex-row flex-col flex">
                 <div className="w-full mr-5">
                   <label
                     for="text"
@@ -44,7 +44,7 @@ const StoreForm = () => {
                 <div className="w-full mr-5">
                   <label
                     for="telno"
-                    className="block mb-2 text-sm font-medium text-primary car:mt-3 "
+                    className="block mb-2 md:mt-0 mt-4 text-sm font-medium text-primary  "
                   >
                     Telephone Number
                   </label>
@@ -53,7 +53,7 @@ const StoreForm = () => {
                     name="number"
                     id="phone-number"
                     placeholder="+90 531 31 31"
-                    className="input-form w-full car:ml-0 ml-2 "
+                    className="input-form w-full  "
                     required=""
                   />
                 </div>
