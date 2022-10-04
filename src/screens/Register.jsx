@@ -84,10 +84,7 @@ const Register = () => {
                   />
                 </div>
                 <div className="ml-3 text-sm">
-                  <label
-                    for="terms"
-                    className="font-light text-gray-500 dark:text-gray-300"
-                  >
+                  <label for="terms" className="font-light text-white">
                     I accept the{" "}
                     <a
                       className="font-medium text-primary-600 hover:underline text-primary"
@@ -101,7 +98,7 @@ const Register = () => {
               <button type="submit" className="btn-primary">
                 Create an account
               </button>
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+              <p className="text-sm font-light text-white ">
                 Already have an account?{" "}
                 <Link
                   to="/login"
