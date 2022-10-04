@@ -2,7 +2,7 @@ import React from "react";
 import kazik from "../assets/kazik.png";
 const StoreForm = () => {
   return (
-    <section id="StoreForm" className="bg-black ">
+    <section id="StoreForm" className="bg-black mt-24">
       <div className="flex flex-col  items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
           href="#"
@@ -23,7 +23,7 @@ const StoreForm = () => {
               </span>
             </h1>
             <form className="space-y-4 md:space-y-6" action="#">
-              <div className="flex items-stretch item cen">
+              <div className="items-stretch car:flex-row flex-col">
                 <div>
                   <label
                     for="text"
@@ -35,7 +35,7 @@ const StoreForm = () => {
                     type="text"
                     name="text"
                     id="text"
-                    className="input-form car:w-[420px] "
+                    className="input-form w-full"
                     placeholder="Erol's Store"
                     required=""
                   />
@@ -44,7 +44,7 @@ const StoreForm = () => {
                 <div>
                   <label
                     for="telno"
-                    className="block mb-2 text-sm font-medium text-primary car:ml-7 "
+                    className="block mb-2 text-sm font-medium text-primary mt-3 "
                   >
                     Telephone Number
                   </label>
@@ -53,7 +53,7 @@ const StoreForm = () => {
                     name="number"
                     id="phone-number"
                     placeholder="+90 531 31 31"
-                    className="input-form car:w-[420px]  car:ml-7"
+                    className="input-form w-full"
                     required=""
                   />
                 </div>
