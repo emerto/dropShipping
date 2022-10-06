@@ -27,7 +27,7 @@ const Navbar = () => {
   window.addEventListener("scroll", changeSticky);
 
   return (
-    <div className="bg-black">
+    <>
       <div className={`shadow-md z-20 w-full fixed top-0 left-0 active `}>
         <div
           className={`md:flex items-center justify-between h-24 bg-black py-4 duration-500 ${
@@ -210,7 +210,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
