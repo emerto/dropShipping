@@ -6,6 +6,7 @@ import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import NotFound from "./screens/NotFound";
+import FirstAcc from "./screens/FirstAcc";
 import StoreForm1 from "./screens/StoreForm1";
 
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/first",
+    element: <FirstAcc />,
   },
   {
     path: "/StoreForm",
