@@ -1,5 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import kazik from "../assets/kazik.png";
 import { Autoplay, Pagination, Navigation } from "swiper";
 // Import Swiper styles
 import "swiper/css";
@@ -8,7 +9,7 @@ import "swiper/css/navigation";
 
 const Slider = () => {
   return (
-    <div className="w-full h-[70vh] md:h-[98vh] ">
+    <div className="w-full h-[vh] md:h-[98vh] ">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -21,17 +22,13 @@ const Slider = () => {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="w-full h-full"
+        className="w-full h-[50%]"
       >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        <SwiperSlide>
+          <div>
+            <img src={kazik} className="w-full h-full" />
+          </div>
+        </SwiperSlide>
       </Swiper>
     </div>
   );
