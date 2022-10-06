@@ -41,7 +41,7 @@ const StoreForm = () => {
                   />
                 </div>
 
-                <div className="w-full mr-5">
+                <div className="w-full mr-0">
                   <label
                     for="telno"
                     className="block mb-2 md:mt-0 mt-4 text-sm font-medium text-primary  "
