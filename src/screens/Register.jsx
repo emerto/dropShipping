@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 import kazik from "../assets/kazik.png";
+
+import supabase from "../config/supaBaseClient";
+
 const Register = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+  };
+
   return (
     <section className="bg-black">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -27,22 +38,6 @@ const Register = () => {
             <form className="space-y-4 md:space-y-6" action="#">
               <div>
                 <label
-                  htmlFor="username"
-                  className="block mb-2 text-sm font-medium text-primary "
-                >
-                  Username
-                </label>
-                <input
-                  type="username"
-                  name="username"
-                  id="username"
-                  className="input-form"
-                  placeholder="craZyChineseMan31"
-                  required=""
-                />
-              </div>
-              <div>
-                <label
                   htmlFor="email"
                   className="block mb-2 text-sm font-medium text-primary"
                 >
@@ -55,6 +50,7 @@ const Register = () => {
                   placeholder="bingchilling@sheesh.com"
                   className="input-form"
                   required=""
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div>
@@ -71,6 +67,7 @@ const Register = () => {
                   placeholder="********"
                   className="input-form"
                   required=""
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="flex items-start">
@@ -95,7 +92,11 @@ const Register = () => {
                   </label>
                 </div>
               </div>
-              <button type="submit" className="btn-primary">
+              <button
+                type="submit"
+                className="btn-primary"
+                onSubmit={handleSubmit}
+              >
                 Create an account
               </button>
               <p className="text-sm font-light text-white ">
