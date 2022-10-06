@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import kazik from "../assets/kazik.png";
 
 import supabase from "../config/supaBaseClient";
@@ -8,6 +8,7 @@ import supabase from "../config/supaBaseClient";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,11 +18,13 @@ const Register = () => {
         email,
         password,
       });
+
+      if (session) {
+        navigate("/first");
+      }
     } catch (err) {
       alert(err);
     }
-
-    // console.log(user, session, error);
   };
 
   return (
@@ -95,7 +98,7 @@ const Register = () => {
                   />
                 </div>
                 <div className="ml-3 text-sm">
-                  <label for="terms" className="font-light text-white">
+                  <label htmlFor="terms" className="font-light text-white">
                     I accept the{" "}
                     <a
                       className="font-medium text-primary-600 hover:underline text-primary"
