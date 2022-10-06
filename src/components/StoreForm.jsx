@@ -24,7 +24,7 @@ const StoreForm = () => {
             </h1>
             <form className="space-y-4 md:space-y-6" action="#">
               <div className="items-stretch md:flex-row flex-col flex">
-                <div className="w-1/2 mr-2">
+                <div className="mr-2 w-full">
                   <label
                     for="text"
                     className="block mb-2 md:mt-0 mt-4 text-sm font-medium text-primary"
@@ -41,7 +41,7 @@ const StoreForm = () => {
                   />
                 </div>
 
-                <div className="w-1/2">
+                <div className="w-full">
                   <label
                     for="telno"
                     className="block mb-2 md:mt-0 mt-4 text-sm font-medium text-primary  "
