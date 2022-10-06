@@ -20,7 +20,7 @@ const Register = () => {
       });
 
       if (session) {
-        navigate("/first");
+        navigate("/profile");
       }
     } catch (err) {
       alert(err);
