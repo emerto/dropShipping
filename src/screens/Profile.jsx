@@ -1,6 +1,8 @@
 import React from "react";
 import supabase from "../config/supaBaseClient";
 
+import UserInfo from "../components/UserInfo";
+
 const FirstAcc = () => {
   const updateProfile = async (e) => {
     try {
@@ -26,7 +28,11 @@ const FirstAcc = () => {
     }
   };
 
-  return <button onClick={updateProfile}>Update</button>;
+  return (
+    <button onClick={updateProfile}>
+      <UserInfo />
+    </button>
+  );
 };
 
 export default FirstAcc;

@@ -6,7 +6,7 @@ import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import NotFound from "./screens/NotFound";
-import FirstAcc from "./screens/FirstAcc";
+import Profile from "./screens/Profile";
 import StoreForm1 from "./screens/StoreForm1";
 
 const router = createBrowserRouter([
@@ -23,8 +23,8 @@ const router = createBrowserRouter([
     element: <Register />,
   },
   {
-    path: "/first",
-    element: <FirstAcc />,
+    path: "/profile",
+    element: <Profile />,
   },
   {
     path: "/StoreForm",
