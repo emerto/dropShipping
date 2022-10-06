@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import kazik from "../assets/kazik.png";
 const Login = () => {
   return (
-    <section className="bg-black">
+    <section className="">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <Link
           to="/"
