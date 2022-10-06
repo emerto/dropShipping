@@ -1,10 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import supabase from "../config/supaBaseClient";
 
 const Profile = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
+  const [address, setAddress] = useState("");
+
+  const updateProfile = async (e) => {
+    e.preventDefault();
+
+    try {
+      const user = supabase.auth.user();
+
+      const updates = {
+        id: user.id,
+        email: user.email,
+        first_name: firstName,
+        last_name: lastName,
+        username: username,
+        address: address,
+        avatar_url: "https://kazik.com",
+        updated_at: new Date(),
+      };
+
+      let { error } = await supabase
+        .from("profiles")
+        .upsert(updates, { returning: "minimal" });
+
+      if (error) {
+        throw error;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="flex justify-center">
       <div className="mt-[100px] w-[85vw] flex justify-center  bg-slate-500">
-        <form>
+        <form onSubmit={updateProfile}>
           <div className="flex flex-col">
             <div className="flex flex-row">
               <div className="relative z-0 justify-center flex mb-6 ml-5 group">
@@ -15,6 +50,7 @@ const Profile = () => {
                   className="block py-2.5 px-0 w-[350px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   required
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
                 <label
                   for="floating_first_name"
@@ -33,6 +69,7 @@ const Profile = () => {
                   className="block py-2.5 px-0 w-[350px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   required
+                  onChange={(e) => setLastName(e.target.value)}
                 />
                 <label
                   for="floating_last_name"
@@ -49,6 +86,7 @@ const Profile = () => {
                   className="block py-2.5 px-0 w-[350px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   required
+                  onChange={(e) => setUsername(e.target.value)}
                 />
                 <label
                   for="floating_user_name"
@@ -65,6 +103,7 @@ const Profile = () => {
                   className="block py-2.5 px-0 w-[350px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   required
+                  onChange={(e) => setAddress(e.target.value)}
                 />
                 <label
                   for="floating_address"
