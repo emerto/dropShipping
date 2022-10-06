@@ -11,7 +11,17 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+
+    try {
+      const { user, session, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+    } catch (err) {
+      alert(err);
+    }
+
+    // console.log(user, session, error);
   };
 
   return (
@@ -35,7 +45,11 @@ const Register = () => {
                 an account
               </span>
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form
+              className="space-y-4 md:space-y-6"
+              action="submit"
+              onSubmit={handleSubmit}
+            >
               <div>
                 <label
                   htmlFor="email"
@@ -92,11 +106,7 @@ const Register = () => {
                   </label>
                 </div>
               </div>
-              <button
-                type="submit"
-                className="btn-primary"
-                onSubmit={handleSubmit}
-              >
+              <button type="submit" className="btn-primary">
                 Create an account
               </button>
               <p className="text-sm font-light text-white ">
