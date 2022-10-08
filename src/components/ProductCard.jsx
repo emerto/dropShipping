@@ -2,7 +2,7 @@ import React from "react";
 import kazik from "../assets/kazik.png";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
-const Stores = () => {
+const ProductCard = () => {
   return (
     <section className="bg-gray-900 flex justify-center">
       <div className="flex flex-row mt-[150px] w-[250px]">
@@ -34,4 +34,4 @@ const Stores = () => {
   );
 };
 
-export default Stores;
+export default ProductCard;
