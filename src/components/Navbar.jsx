@@ -96,10 +96,10 @@ const Navbar = () => {
                 lottie.stop("info");
               }}
             >
-              <Link
+              <NavLink
                 className="italic hamburger:not-italic text-lg flex items-center gap-x-4
                   cursor-pointer "
-                to="about"
+                to="/profile"
                 smooth={true}
                 style={{ color: "inherit", backgroundColor: "inherit" }}
               >
@@ -123,7 +123,7 @@ const Navbar = () => {
                     />
                   </svg>
                 </div>
-              </Link>
+              </NavLink>
             </li>
             <li
               className="flex hamburger:mr-16 hamburger:mt-2 mt-10"
