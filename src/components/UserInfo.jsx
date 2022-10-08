@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import supabase from "../config/supaBaseClient";
 
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,6 +16,7 @@ const Profile = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const auth = useAuth();
+  const navigate = useNavigate();
 
   const getProfile = async () => {
     const { data, error } = await supabase
@@ -78,6 +80,12 @@ const Profile = () => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    if (!auth.user) {
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <section>
@@ -192,7 +200,21 @@ const Profile = () => {
                         disabled
                       />
                     </div>
-                    <div>
+                    <div className="w-full">
+                      <label
+                        className="block mb-2 text-start text-sm font-medium text-gray-300"
+                        for="user_avatar"
+                      >
+                        Upload an image
+                      </label>
+                      <input
+                        className="block  w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-primary cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-secondary dark:border-primary dark:placeholder-gray-400"
+                        aria-describedby="user_avatar_help"
+                        id="user_avatar"
+                        type="file"
+                      />
+                    </div>
+                    {/* <div>
                       <label
                         htmlFor="address"
                         className="block mb-2 text-start text-sm font-medium text-gray-300"
@@ -207,9 +229,25 @@ const Profile = () => {
                         className="input-form p-7 bg-secondary focus:bg-neutral-700"
                         onChange={(e) => setAddress(e.target.value)}
                       />
-                    </div>
+                    </div> */}
                   </div>
                   <div className="w-full">
+                    <label
+                      htmlFor="address"
+                      className="block mb-2 text-sm font-medium text-gray-300"
+                    >
+                      Address
+                    </label>
+                    <textarea
+                      type="address"
+                      name="floating_address"
+                      id="floating_address"
+                      placeholder={address}
+                      className="input-form p-4 h-[115px] bg-secondary focus:bg-neutral-700"
+                      onChange={(e) => setAddress(e.target.value)}
+                    />
+                  </div>
+                  {/* <div className="w-full">
                     <label
                       className="block mb-2 text-start text-sm font-medium text-gray-300"
                       for="user_avatar"
@@ -222,7 +260,7 @@ const Profile = () => {
                       id="user_avatar"
                       type="file"
                     />
-                  </div>
+                  </div> */}
                 </div>
                 <div className="flex items-start"></div>
                 <div className="flex justify-end">

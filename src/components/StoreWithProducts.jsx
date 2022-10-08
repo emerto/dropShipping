@@ -7,21 +7,22 @@ const StoreWithProducts = () => {
     <div>
       <section className="bg-gray-900 flex justify-center">
         <div className="flex flex-row mt-[150px] w-fill">
-          <div className="border-2 flex flex-col gap-5 py-1 px-4 mx-auto w-auto   ">
-            <div className="flex-row flex">
-              <div className="flex-col border-r-2 flex w-[200px] ">
-                <h1 className="text-2xl font-bold py-2 text-white">Kazik</h1>
-                <div>
+          <div className="border-2 border-mx flex flex-col gap-5 py-1  mx-auto w-auto   ">
+            <div className="flex-row flex ">
+              <div className="flex-col border-r-2 flex w-[230px] px-2">
+                {/* <h1 className="text-2xl font-bold py-2 text-white">Kazik</h1> */}
+
+                <div className=" bg-gray-800 my-3 rounded-2xl flex justify-center mx-6 py-3 h-fill w-[150px] ">
+                  <p className="text-primary  text-sm font-bold mx-4 ">
+                    StoreName
+                  </p>
+                </div>
+                <div className="max-w-[230px] h-[280px] flex  ">
                   <img
-                    className="w-max max-h-[200px] rounded-lg mb-2 flex flex-col"
-                    src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png"
+                    className="rounded-xl mb-2 object-cover px-2 "
+                    src="https://cdn.yenicaggazetesi.com.tr/news/2021/02/190220211531532978750.jpg"
                     alt="office content 1"
                   />
-                  <button className=" bg-gray-800 mt-3 rounded-2xl flex justify-center py-3 h-fill w-fill hover:bg-gray-700">
-                    <p className="text-primary  text-sm font-bold mx-4 ">
-                      StoreName
-                    </p>
-                  </button>
                 </div>
               </div>
               <ProductCard />
