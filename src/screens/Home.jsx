@@ -9,7 +9,7 @@ const Home = () => {
       <div className=" bg-gray-900 h-[100vh]">
         <Navbar />
         <StoreWithProducts />
-        {/* <ProductCard /> */}
+        <StoreWithProducts />
       </div>
     </>
   );
