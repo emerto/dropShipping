@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+
 import Logo from "../assets/kazik.png";
 import {
   ArrowPathIcon,
@@ -7,55 +8,14 @@ import {
   ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/solid";
 
-import React, { useEffect, useState } from "react";
-import supabase from "../config/supaBaseClient";
+import React from "react";
 
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const UserSideBar = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [username, setUsername] = useState("");
-  const [address, setAddress] = useState("");
-
   const auth = useAuth();
   const navigate = useNavigate();
-
-  const updateProfile = async (e) => {
-    e.preventDefault();
-
-    try {
-      const user = supabase.auth.user();
-
-      const updates = {
-        id: user.id,
-        email: user.email,
-        first_name: firstName,
-        last_name: lastName,
-        username: username,
-        address: address,
-        avatar_url: "https://kazik.com",
-        updated_at: new Date(),
-      };
-
-      let { error } = await supabase
-        .from("profiles")
-        .upsert(updates, { returning: "minimal" });
-
-      if (error) {
-        throw error;
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    if (!auth.user) {
-      navigate("/login");
-    }
-  }, []);
 
   const handleLogout = () => {
     auth.logout();
@@ -63,9 +23,9 @@ const UserSideBar = () => {
   };
 
   return (
-    <div>
+    <div className="h-screen flex fixed">
       <aside className="w-64" aria-label="Sidebar">
-        <div className="overflow-y-auto py-4 px-3 h-[100vh] w-[23vw]  justify-center flex-col flex bg-gray-50 rounded dark:bg-gray-800">
+        <div className="overflow-y-auto py-4 px-3 h-screen w-[23vw]  justify-center flex-col flex bg-gray-50 rounded dark:bg-gray-800">
           <div className="flex items-center pl-2.5 mb-5">
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               <NavLink
@@ -127,7 +87,9 @@ const UserSideBar = () => {
                 <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
                   <ArrowRightOnRectangleIcon className="w-10 h-10" />
                 </span>
-                <span className="ml-3">Sign In</span>
+                <NavLink to="/login">
+                  <span className="ml-3">Sign In</span>
+                </NavLink>
               </a>
             </li>
             <li>
@@ -138,7 +100,9 @@ const UserSideBar = () => {
                 <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
                   <ArrowLeftOnRectangleIcon className="w-10 h-10" />
                 </span>
-                <span className="ml-3">Sign Out</span>
+                <span onClick={handleLogout} className="ml-3">
+                  Sign Out
+                </span>
               </a>
             </li>
           </ul>
