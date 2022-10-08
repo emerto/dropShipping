@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import UserInfo from "../components/UserInfo";
 import SideBar from "../components/SideBar";
 
-const FirstAcc = () => {
+const Profile = () => {
   return (
     <div className="flex flex-row">
       <div className=" h-[100vh]">
@@ -16,4 +16,4 @@ const FirstAcc = () => {
   );
 };
 
-export default FirstAcc;
+export default Profile;

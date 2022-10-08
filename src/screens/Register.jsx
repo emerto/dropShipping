@@ -17,17 +17,17 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const { user, session, error } = await supabase.auth.signUp({
-        email,
-        password,
-      });
+    const { user, session, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
 
-      if (session) {
-        navigate("/profile");
-      }
-    } catch (err) {
-      alert(err);
+    if (session) {
+      navigate("/profile");
+    }
+
+    if (error) {
+      alert(error.message);
     }
   };
 
