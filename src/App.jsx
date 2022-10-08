@@ -9,6 +9,7 @@ import NotFound from "./screens/NotFound";
 import Profile from "./screens/Profile";
 import StoreForm1 from "./screens/StoreForm1";
 import Store from "./screens/Store";
+import Cart from "./screens/Cart";
 
 const router = createBrowserRouter([
   {

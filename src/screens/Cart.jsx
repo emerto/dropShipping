@@ -1,7 +1,7 @@
 import ProductCard from "../components/ProductCard";
 
 const Cart = () => {
-  const isEmpty = true;
+  const isEmpty = false;
   return (
     <div>
       {isEmpty ? (
