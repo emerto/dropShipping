@@ -9,8 +9,8 @@ const ProductCard = () => {
         <div className="border-2 flex flex-col gap-1 py-3 px-4 mx-auto w-[800px] border-gray-900 ">
           <div className="gap-2 mt-8 flex justify-center ">
             <img
-              className="object-cover w-max max-h-[200px] rounded-lg hover:transform  hover:scale-125 hover:-translate-y-5 transition duration-500 ease-in-out"
-              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png"
+              className="object-cover w-max max-h-[200px] rounded-lg hover:transform  hover:scale-125 hover:-translate-y-5 transition duration-200 ease-in-out"
+              src="https://cdn.britannica.com/60/222660-050-064DBA89/Dwayne-Johnson-AKA-The-Rock-2019.jpg"
               alt="office content 1"
             />
           </div>
