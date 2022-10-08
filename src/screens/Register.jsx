@@ -22,10 +22,12 @@ const Register = () => {
       password,
     });
 
+    if (session) {
+      navigate("/profile");
+    }
+
     if (error) {
       alert(error.message);
-    } else {
-      navigate("/profile");
     }
   };
 
