@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import supabase from "../config/supaBaseClient";
 
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [firstName, setFirstName] = useState("");
@@ -10,6 +11,7 @@ const Profile = () => {
   const [address, setAddress] = useState("");
 
   const auth = useAuth();
+  const navigate = useNavigate();
 
   const updateProfile = async (e) => {
     e.preventDefault();
@@ -40,6 +42,16 @@ const Profile = () => {
     }
   };
 
+  useEffect(() => {
+    if (!auth.user) {
+      navigate("/login");
+    }
+  }, []);
+
+  const handleLogout = () => {
+    auth.logout();
+    navigate("/");
+  };
   return (
     <section className="">
       <div className="flex flex-col items-end mr-[100px] justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -172,7 +184,7 @@ const Profile = () => {
               </div>
             </form>
             <button
-              onClick={auth.logout}
+              onClick={handleLogout}
               className="py-4 px-10 bg-black text-white rounded-lg"
             >
               logout
