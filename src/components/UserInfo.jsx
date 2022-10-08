@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import supabase from "../config/supaBaseClient";
 
+import { useAuth } from "../context/AuthContext";
+
 const Profile = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [address, setAddress] = useState("");
+
+  const auth = useAuth();
 
   const updateProfile = async (e) => {
     e.preventDefault();
@@ -37,95 +41,146 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex justify-center">
-      <div className="mt-[100px] w-[85vw] flex justify-center  bg-slate-500">
-        <form onSubmit={updateProfile}>
-          <div className="flex flex-col">
-            <div className="flex flex-row">
-              <div className="relative z-0 justify-center flex mb-6 ml-5 group">
-                <input
-                  type="first_name"
-                  name="floating_first_name"
-                  id="floating_first_name"
-                  className="block py-2.5 px-0 w-[350px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  required
-                  onChange={(e) => setFirstName(e.target.value)}
-                />
-                <label
-                  for="floating_first_name"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  First Name
-                </label>
-              </div>
-            </div>
-            <div className="flex flex-row">
-              <div className="relative z-0 justify-center flex mb-6 mr-5">
-                <input
-                  type="last_name"
-                  name="floating_last_name"
-                  id="floating_last_name"
-                  className="block py-2.5 px-0 w-[350px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  required
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-                <label
-                  for="floating_last_name"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Last Name
-                </label>
-              </div>
-              <div className="relative z-0 justify-center flex mb-6 ml-5 ">
-                <input
-                  type="user_name"
-                  name="floating_user_name"
-                  id="floating_user_name"
-                  className="block py-2.5 px-0 w-[350px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  required
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-                <label
-                  for="floating_user_name"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  User Name
-                </label>
-              </div>
-              <div className="relative z-0 justify-center flex mb-6 ml-5 ">
-                <input
-                  type="address"
-                  name="floating_address"
-                  id="floating_address"
-                  className="block py-2.5 px-0 w-[350px] text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  required
-                  onChange={(e) => setAddress(e.target.value)}
-                />
-                <label
-                  for="floating_address"
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Address
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex justify-start">
-            <button
-              type="submit"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    <section className="">
+      <div className="flex flex-col items-end mr-[150px] justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div className="w-full rounded-lg shadow dark:border md:mt-0 max-w-[50vw] xl:p-0 bg-green-300 border-green-400">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-100 md:text-2xl dark:text-white">
+              USER PROFILE
+            </h1>
+            <form
+              className="space-y-4 md:space-y-6"
+              action="submit"
+              onSubmit={updateProfile}
             >
-              Submit
+              <div className="flex flex-row">
+                <div className="mr-5 w-full">
+                  <label
+                    htmlFor="firstName"
+                    className="block mb-2 text-start w-auto text-sm font-medium text-black"
+                  >
+                    First Name
+                  </label>
+                  <input
+                    type="first_name"
+                    name="floating_first_name"
+                    id="floating_first_name"
+                    placeholder="First Name"
+                    className="input-form bg-white"
+                    required
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                </div>
+                <div className="w-full">
+                  <label
+                    htmlFor="lastName"
+                    className="block mb-2 text-start w-auto text-sm font-medium text-black"
+                  >
+                    Last Name
+                  </label>
+                  <input
+                    type="last_name"
+                    name="floating_last_name"
+                    id="floating_last_name"
+                    placeholder="Last Name"
+                    className="input-form bg-white"
+                    required
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-row">
+                <div className="mr-5 w-full">
+                  <label
+                    htmlFor="username"
+                    className="block mb-2 text-start text-sm font-medium text-black"
+                  >
+                    Username
+                  </label>
+                  <input
+                    type="username"
+                    name="floating_username"
+                    id="floating_username"
+                    placeholder="Username"
+                    className="input-form bg-white"
+                    required
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </div>
+                <div className=" w-full">
+                  <label
+                    htmlFor="telephone"
+                    className="block mb-2 text-start text-sm font-medium text-black"
+                  >
+                    Telephone
+                  </label>
+                  <input
+                    type="telephone"
+                    name="floating_telephone"
+                    id="floating_telephone"
+                    placeholder="Telephone"
+                    className="input-form bg-white"
+                    required
+                    onChange={(e) => setAddress(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-start text-sm font-medium text-black"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="floating_email"
+                  id="floating_email"
+                  placeholder="Email"
+                  className="input-form bg-white"
+                  disabled
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block mb-2 text-start text-sm font-medium text-black"
+                >
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="floating_password"
+                  id="floating_password"
+                  placeholder="********"
+                  className="input-form bg-white"
+                  disabled
+                />
+              </div>
+
+              <div className="flex items-start">
+                <div className="flex items-center h-5"></div>
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  className="py-4 px-10 bg-black text-white rounded-lg"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+            <button
+              onClick={auth.logout}
+              className="py-4 px-10 bg-black text-white rounded-lg"
+            >
+              logout
             </button>
           </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
