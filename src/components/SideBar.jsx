@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+
 import Logo from "../assets/kazik.png";
 import {
   ArrowPathIcon,
@@ -7,8 +8,7 @@ import {
   ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/solid";
 
-import React, { useEffect, useState } from "react";
-import supabase from "../config/supaBaseClient";
+import React from "react";
 
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -87,7 +87,9 @@ const UserSideBar = () => {
                 <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
                   <ArrowRightOnRectangleIcon className="w-10 h-10" />
                 </span>
-                <span className="ml-3">Sign In</span>
+                <NavLink to="/login">
+                  <span className="ml-3">Sign In</span>
+                </NavLink>
               </a>
             </li>
             <li>
