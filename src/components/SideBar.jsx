@@ -4,7 +4,6 @@ import Logo from "../assets/kazik.png";
 import {
   ArrowPathIcon,
   ShoppingCartIcon,
-  ArrowRightOnRectangleIcon,
   ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/solid";
 
@@ -70,17 +69,6 @@ const UserSideBar = () => {
               </div>
             </li>
 
-            <li>
-              <NavLink to="/login">
-                <div className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                  <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
-                    <ArrowRightOnRectangleIcon className="w-10 h-10" />
-                  </span>
-
-                  <span className="ml-3">Sign In</span>
-                </div>
-              </NavLink>
-            </li>
             <li>
               <div
                 onClick={handleLogout}
