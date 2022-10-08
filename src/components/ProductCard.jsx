@@ -5,9 +5,9 @@ import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 const ProductCard = () => {
   return (
     <section className="bg-gray-900 flex justify-center">
-      <div className="flex flex-row mt-[150px] w-[250px]">
-        <div className="border-2 flex flex-col gap-5 py-3 px-4 mx-auto w-[800px]  ">
-          <div className="gap-4 mt-8 flex justify-center ">
+      <div className="flex flex-row ml-5 w-[250px]">
+        <div className="border-2 flex flex-col gap-1 py-3 px-4 mx-auto w-[800px] border-gray-900 ">
+          <div className="gap-2 mt-8 flex justify-center ">
             <img
               className="w-max max-h-[200px] rounded-lg "
               src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png"
