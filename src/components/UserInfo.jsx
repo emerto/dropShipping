@@ -9,6 +9,7 @@ const Profile = () => {
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [address, setAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const auth = useAuth();
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const Profile = () => {
         last_name: lastName,
         username: username,
         address: address,
+        phone_number: phoneNumber,
         avatar_url: "https://kazik.com",
         updated_at: new Date(),
       };
@@ -131,7 +133,7 @@ const Profile = () => {
                       placeholder="Telephone"
                       className="input-form bg-secondary focus:bg-neutral-700"
                       required
-                      onChange={(e) => setAddress(e.target.value)}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
                     />
                   </div>
                 </div>
@@ -182,7 +184,7 @@ const Profile = () => {
                     placeholder="Address"
                     className="input-form p-7 bg-secondary focus:bg-neutral-700"
                     required
-                    onChange={(e) => setFirstName(e.target.value)}
+                    onChange={(e) => setAddress(e.target.value)}
                   />
                 </div>
                 <div className="flex items-start"></div>
