@@ -20,7 +20,7 @@ const StoreForm1 = () => {
               className="w-[400px] h-[400px] rounded-lg"
             />
             <p className="text-white">
-              Seems like you are not logged in.
+              Seems like you are not logged in.{" "}
               <span className="font-medium text-primary-600 hover:underline text-primary cursor-pointer">
                 <Link to="/login"> Please login to continue!</Link>
               </span>
