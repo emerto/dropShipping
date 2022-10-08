@@ -4,7 +4,7 @@ const UserSideBar = () => {
   return (
     <div>
       <aside class="w-64" aria-label="Sidebar">
-        <div class="overflow-y-auto py-4 px-3 h-[100vh] bg-gray-50 rounded dark:bg-gray-800">
+        <div class="overflow-y-auto py-4 px-3 h-[100vh] w-[30vw] bg-gray-50 rounded dark:bg-gray-800">
           <a href="https://flowbite.com/" class="flex items-center pl-2.5 mb-5">
             <img
               src="https://flowbite.com/docs/images/logo.svg"
