@@ -53,11 +53,11 @@ const Profile = () => {
     navigate("/");
   };
   return (
-    <section className="">
+    <section className="bg-black">
       <div className="flex flex-col items-end mr-[100px] justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full rounded-lg shadow dark:border md:mt-0 max-w-[50vw] xl:p-0 bg-green-300 border-green-400">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-100 md:text-2xl dark:text-white">
+        <div className="w-full rounded-lg shadow dark:border md:mt-0 max-w-[50vw] xl:p-0 bg-secondary border-primary">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8 bg-secondary border-primary">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               USER PROFILE
             </h1>
             <form
@@ -69,7 +69,7 @@ const Profile = () => {
                 <div className="mr-5 w-full">
                   <label
                     htmlFor="firstName"
-                    className="block mb-2 text-start w-auto text-sm font-medium text-black"
+                    className="block mb-2 text-start w-auto text-sm font-medium text-gray-300"
                   >
                     First Name
                   </label>
@@ -78,7 +78,7 @@ const Profile = () => {
                     name="floating_first_name"
                     id="floating_first_name"
                     placeholder="First Name"
-                    className="input-form bg-white"
+                    className="input-form bg-secondary focus:bg-neutral-700"
                     required
                     onChange={(e) => setFirstName(e.target.value)}
                   />
@@ -86,7 +86,7 @@ const Profile = () => {
                 <div className="w-full">
                   <label
                     htmlFor="lastName"
-                    className="block mb-2 text-start w-auto text-sm font-medium text-black"
+                    className="block mb-2 text-start w-auto text-sm font-medium text-gray-300"
                   >
                     Last Name
                   </label>
@@ -95,7 +95,7 @@ const Profile = () => {
                     name="floating_last_name"
                     id="floating_last_name"
                     placeholder="Last Name"
-                    className="input-form bg-white"
+                    className="input-form bg-secondary focus:bg-neutral-700"
                     required
                     onChange={(e) => setLastName(e.target.value)}
                   />
@@ -106,7 +106,7 @@ const Profile = () => {
                 <div className="mr-5 w-full">
                   <label
                     htmlFor="username"
-                    className="block mb-2 text-start text-sm font-medium text-black"
+                    className="block mb-2 text-start text-sm font-medium text-gray-300"
                   >
                     Username
                   </label>
@@ -115,7 +115,7 @@ const Profile = () => {
                     name="floating_username"
                     id="floating_username"
                     placeholder="Username"
-                    className="input-form bg-white"
+                    className="input-form bg-secondary focus:bg-neutral-700"
                     required
                     onChange={(e) => setUsername(e.target.value)}
                   />
@@ -123,7 +123,7 @@ const Profile = () => {
                 <div className=" w-full">
                   <label
                     htmlFor="telephone"
-                    className="block mb-2 text-start text-sm font-medium text-black"
+                    className="block mb-2 text-start text-sm font-medium text-gray-300"
                   >
                     Telephone
                   </label>
@@ -132,7 +132,7 @@ const Profile = () => {
                     name="floating_telephone"
                     id="floating_telephone"
                     placeholder="Telephone"
-                    className="input-form bg-white"
+                    className="input-form bg-secondary focus:bg-neutral-700"
                     required
                     onChange={(e) => setAddress(e.target.value)}
                   />
@@ -141,7 +141,7 @@ const Profile = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-start text-sm font-medium text-black"
+                  className="block mb-2 text-start text-sm font-medium text-gray-300"
                 >
                   Email
                 </label>
@@ -150,14 +150,14 @@ const Profile = () => {
                   name="floating_email"
                   id="floating_email"
                   placeholder="Email"
-                  className="input-form bg-white"
+                  className="input-form bg-secondary focus:bg-neutral-700"
                   disabled
                 />
               </div>
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-start text-sm font-medium text-black"
+                  className="block mb-2 text-start text-sm font-medium text-gray-300"
                 >
                   Password
                 </label>
@@ -166,18 +166,17 @@ const Profile = () => {
                   name="floating_password"
                   id="floating_password"
                   placeholder="********"
-                  className="input-form bg-white"
+                  className="input-form bg-secondary focus:bg-neutral-700"
                   disabled
                 />
               </div>
 
-              <div className="flex items-start">
-                <div className="flex items-center h-5"></div>
-              </div>
+              <div className="flex items-start"></div>
               <div className="flex justify-end">
                 <button
+                  onClick={handleLogout}
                   type="submit"
-                  className="py-4 px-10 bg-black text-white rounded-lg"
+                  className="btn-secondary"
                 >
                   Submit
                 </button>
@@ -185,7 +184,7 @@ const Profile = () => {
             </form>
             <button
               onClick={handleLogout}
-              className="py-4 px-10 bg-black text-white rounded-lg"
+              className="py-4 px-10 bg-black  text-white rounded-lg"
             >
               logout
             </button>
