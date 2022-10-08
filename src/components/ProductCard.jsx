@@ -29,20 +29,6 @@ const ProductCard = () => {
             <ShoppingCartIcon className="h-[25px] end w-[50px]  text-primary" />
           </button>
         </div>
-        <div className=" sm:text-lg  ">
-          <h2 className="mb-2 flex text-xl tracking-tight font-normal text-white  ">
-            Erol's Kayganlastirici
-          </h2>
-        </div>
-
-        <div className="flex justify-end">
-          <div className="border-1 flex  bg-primary rounded-2xl w-[50px] h-max justify-center ">
-            <p className="text-black  text-sm font-bold ">12$</p>
-          </div>
-        </div>
-        <button className=" bg-gray-800  rounded-2xl flex justify-center py-3 h-fill w-fill hover:bg-gray-700">
-          <ShoppingCartIcon className="h-[25px] end w-[50px]  text-primary" />
-        </button>
       </div>
     </section>
   );
