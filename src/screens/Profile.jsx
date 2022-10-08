@@ -9,7 +9,7 @@ const FirstAcc = () => {
       <div className="relative h-[100vh]">
         <SideBar />
       </div>
-      <div className="w-full relativea">
+      <div className="w-full ">
         <UserInfo />
       </div>
     </div>

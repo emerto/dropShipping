@@ -14,48 +14,8 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const UserSideBar = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [username, setUsername] = useState("");
-  const [address, setAddress] = useState("");
-
   const auth = useAuth();
   const navigate = useNavigate();
-
-  const updateProfile = async (e) => {
-    e.preventDefault();
-
-    try {
-      const user = supabase.auth.user();
-
-      const updates = {
-        id: user.id,
-        email: user.email,
-        first_name: firstName,
-        last_name: lastName,
-        username: username,
-        address: address,
-        avatar_url: "https://kazik.com",
-        updated_at: new Date(),
-      };
-
-      let { error } = await supabase
-        .from("profiles")
-        .upsert(updates, { returning: "minimal" });
-
-      if (error) {
-        throw error;
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    if (!auth.user) {
-      navigate("/login");
-    }
-  }, []);
 
   const handleLogout = () => {
     auth.logout();
@@ -138,7 +98,9 @@ const UserSideBar = () => {
                 <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
                   <ArrowLeftOnRectangleIcon className="w-10 h-10" />
                 </span>
-                <span className="ml-3">Sign Out</span>
+                <span onClick={handleLogout} className="ml-3">
+                  Sign Out
+                </span>
               </a>
             </li>
           </ul>
