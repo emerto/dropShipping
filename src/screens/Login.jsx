@@ -27,7 +27,7 @@ const Login = () => {
 
     if (signIn.error) {
       setMessage(signIn.error.message);
-      toast.error(`Hatalı mail yada şifre!`, {
+      toast.error(`Hatalı mail ya da şifre!`, {
         position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
