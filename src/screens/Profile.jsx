@@ -5,11 +5,11 @@ import SideBar from "../components/SideBar";
 
 const FirstAcc = () => {
   return (
-    <div className="flex relative flex-row">
-      <div className="relative h-[100vh]">
+    <div className="flex flex-row">
+      <div className=" h-[100vh]">
         <SideBar />
       </div>
-      <div className="w-full ">
+      <div className="flex bg-black w-full items-center justify-center">
         <UserInfo />
       </div>
     </div>

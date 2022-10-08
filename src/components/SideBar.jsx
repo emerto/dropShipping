@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+
 import Logo from "../assets/kazik.png";
 import {
   ArrowPathIcon,
@@ -7,8 +8,7 @@ import {
   ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/solid";
 
-import React, { useEffect, useState } from "react";
-import supabase from "../config/supaBaseClient";
+import React from "react";
 
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -23,9 +23,9 @@ const UserSideBar = () => {
   };
 
   return (
-    <div>
+    <div className="h-screen flex fixed">
       <aside className="w-64" aria-label="Sidebar">
-        <div className="overflow-y-auto py-4 px-3 h-[100vh] w-[23vw]  justify-center flex-col flex bg-gray-50 rounded dark:bg-gray-800">
+        <div className="overflow-y-auto py-4 px-3 h-screen w-[23vw]  justify-center flex-col flex bg-gray-50 rounded dark:bg-gray-800">
           <div className="flex items-center pl-2.5 mb-5">
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               <NavLink
@@ -87,7 +87,9 @@ const UserSideBar = () => {
                 <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
                   <ArrowRightOnRectangleIcon className="w-10 h-10" />
                 </span>
-                <span className="ml-3">Sign In</span>
+                <NavLink to="/login">
+                  <span className="ml-3">Sign In</span>
+                </NavLink>
               </a>
             </li>
             <li>
