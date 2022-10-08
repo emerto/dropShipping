@@ -54,7 +54,7 @@ const Profile = () => {
   };
   return (
     <section>
-      <div className="align-middle justify-end flex content-end items-end">
+      <div className=" ">
         <div className="flex flex-col items-end w-[80vw] mt-0 px-6 py-8 mx-auto lg:py-0">
           <div className="w-full rounded-lg shadow dark:border md:mt-0 max-w-[50vw] xl:p-0 bg-secondary border-primary">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8 bg-secondary border-primary">

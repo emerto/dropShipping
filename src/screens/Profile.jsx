@@ -9,7 +9,7 @@ const FirstAcc = () => {
       <div className=" h-[100vh]">
         <SideBar />
       </div>
-      <div className="flex ml-36 items-center justify-center">
+      <div className="flex bg-black w-full items-center justify-center">
         <UserInfo />
       </div>
     </div>
