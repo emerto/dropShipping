@@ -23,9 +23,9 @@ const UserSideBar = () => {
   };
 
   return (
-    <div>
+    <div className="h-screen flex fixed">
       <aside className="w-64" aria-label="Sidebar">
-        <div className="overflow-y-auto py-4 px-3 h-[100vh] w-[23vw]  justify-center flex-col flex bg-gray-50 rounded dark:bg-gray-800">
+        <div className="overflow-y-auto py-4 px-3 h-screen w-[23vw]  justify-center flex-col flex bg-gray-50 rounded dark:bg-gray-800">
           <div className="flex items-center pl-2.5 mb-5">
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               <NavLink
