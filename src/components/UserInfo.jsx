@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import supabase from "../config/supaBaseClient";
 
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,7 +15,6 @@ const Profile = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const auth = useAuth();
-  const navigate = useNavigate();
 
   const getProfile = async () => {
     const { data, error } = await supabase
@@ -80,12 +78,6 @@ const Profile = () => {
       console.log(err);
     }
   };
-
-  useEffect(() => {
-    if (!auth.user) {
-      navigate("/login");
-    }
-  }, []);
 
   return (
     <section>
