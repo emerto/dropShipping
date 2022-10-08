@@ -44,7 +44,7 @@ const ProductCard = () => {
           <ShoppingCartIcon className="h-[25px] end w-[50px]  text-primary" />
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 
