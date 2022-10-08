@@ -6,7 +6,7 @@ const Cart = () => {
     <div>
       {isEmpty ? (
         <div>
-          <h1>Empty</h1>
+          <h1>Emptydas</h1>
         </div>
       ) : (
         <div>
