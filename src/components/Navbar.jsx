@@ -7,6 +7,8 @@ import { Cross as Hamburger } from "hamburger-react";
 import { Link } from "react-scroll";
 import Logo from "../assets/kazik.png";
 
+import { useAuth } from "../context/AuthContext";
+
 import lottie from "lottie-web";
 
 const Navbar = () => {
@@ -25,6 +27,8 @@ const Navbar = () => {
     }
   };
   window.addEventListener("scroll", changeSticky);
+
+  const auth = useAuth();
 
   return (
     <>
@@ -99,8 +103,7 @@ const Navbar = () => {
               <NavLink
                 className="italic hamburger:not-italic text-lg flex items-center gap-x-4
                   cursor-pointer "
-                to="/profile"
-                smooth={true}
+                to={auth.user ? "/profile" : "/login"}
                 style={{ color: "inherit", backgroundColor: "inherit" }}
               >
                 <div

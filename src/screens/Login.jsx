@@ -14,6 +14,8 @@ const Login = () => {
   const auth = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -22,9 +24,10 @@ const Login = () => {
     const signIn = await auth.login(email, password);
 
     if (signIn.error) {
-      toast.error("🦄 Wow so easy!", {
+      setMessage(signIn.error.message);
+      toast.error(`Hatalı mail yada şifre!`, {
         position: "bottom-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -33,17 +36,6 @@ const Login = () => {
         theme: "dark",
       });
     } else {
-      //Navigate to home with toast
-      toast.success("🦄 Wow so easy!", {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
       navigate("/");
     }
   };
