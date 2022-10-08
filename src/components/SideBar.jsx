@@ -43,7 +43,7 @@ const UserSideBar = () => {
             <ul className="space-y-2">
               <li>
                 <div className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                  <span classNameName="ml-3">
+                  <span className="ml-3">
                     <img
                       className="p-1 w-10 h-10 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
                       src={Logo}
