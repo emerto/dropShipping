@@ -72,8 +72,8 @@ const Navbar = () => {
            hamburger:z-auto z-[-1] left-0 hamburger:pl-0 pl-0 transition-all 
           duration-500 ease-linear ${
             open
-              ? "left-0  top-[100px] items-center flex flex-col w-full"
-              : "left-[-1250px] top-[100px]"
+              ? "left-0  top-[100px] items-center bg-gray-600 bg-opacity-70 flex flex-col w-full"
+              : "left-[-1250px] top-[100px] "
           } ${isSticky ? "bg-opacity-80 " : "bg-opacity-100"} `}
           >
             {" "}
