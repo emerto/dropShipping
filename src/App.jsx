@@ -8,11 +8,16 @@ import Register from "./screens/Register";
 import NotFound from "./screens/NotFound";
 import Profile from "./screens/Profile";
 import StoreForm1 from "./screens/StoreForm1";
+import Store from "./screens/Store";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/store",
+    element: <Store />,
   },
   {
     path: "/login",
