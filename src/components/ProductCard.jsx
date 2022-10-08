@@ -25,8 +25,8 @@ const ProductCard = () => {
               <p className="text-black  text-sm font-bold ">12$</p>
             </div>
           </div>
-          <button className=" bg-gray-800  rounded-2xl flex justify-center py-3 h-fill w-fill hover:bg-gray-700">
-            <ShoppingCartIcon className="h-[25px] end w-[50px]  text-primary" />
+          <button className=" bg-gray-800  rounded-2xl flex justify-center py-3 h-fill w-fill hover:bg-gray-700  ">
+            <ShoppingCartIcon className="h-[25px] end w-[50px]  text-primary " />
           </button>
         </div>
       </div>
