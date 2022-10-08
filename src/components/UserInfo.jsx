@@ -138,6 +138,7 @@ const Profile = () => {
                   />
                 </div>
               </div>
+
               <div>
                 <label
                   htmlFor="email"
@@ -170,7 +171,22 @@ const Profile = () => {
                   disabled
                 />
               </div>
-
+              <div>
+                <label
+                  htmlFor="address"
+                  className="block mb-2 text-start text-sm font-medium text-gray-300"
+                >
+                  Address
+                </label>
+                <input
+                  type="address"
+                  name="floating_address"
+                  id="floating_address"
+                  placeholder="Address"
+                  className="input-form p-7 bg-secondary focus:bg-neutral-700"
+                  disabled
+                />
+              </div>
               <div className="flex items-start"></div>
               <div className="flex justify-end">
                 <button
