@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import supabase from "../config/supaBaseClient";
 
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,7 +15,6 @@ const Profile = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const auth = useAuth();
-  const navigate = useNavigate();
 
   const getProfile = async () => {
     const { data, error } = await supabase
@@ -80,12 +78,6 @@ const Profile = () => {
       console.log(err);
     }
   };
-
-  useEffect(() => {
-    if (!auth.user) {
-      navigate("/login");
-    }
-  }, []);
 
   return (
     <section>
@@ -182,37 +174,55 @@ const Profile = () => {
                   </div>
                 </div>
 
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-start text-sm font-medium text-gray-300"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="floating_email"
-                    id="floating_email"
-                    placeholder={email}
-                    className="input-form bg-secondary focus:bg-neutral-700"
-                    disabled
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="address"
-                    className="block mb-2 text-start text-sm font-medium text-gray-300"
-                  >
-                    Address
-                  </label>
-                  <input
-                    type="address"
-                    name="floating_address"
-                    id="floating_address"
-                    placeholder={address}
-                    className="input-form p-7 bg-secondary focus:bg-neutral-700"
-                    onChange={(e) => setAddress(e.target.value)}
-                  />
+                <div className="flex flex-row w-full">
+                  <div className="flex mr-5 flex-col w-full">
+                    <div className="mb-5">
+                      <label
+                        htmlFor="email"
+                        className="block mb-2 text-start text-sm font-medium text-gray-300"
+                      >
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        name="floating_email"
+                        id="floating_email"
+                        placeholder={email}
+                        className="input-form bg-secondary focus:bg-neutral-700"
+                        disabled
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="address"
+                        className="block mb-2 text-start text-sm font-medium text-gray-300"
+                      >
+                        Address
+                      </label>
+                      <input
+                        type="address"
+                        name="floating_address"
+                        id="floating_address"
+                        placeholder={address}
+                        className="input-form p-7 bg-secondary focus:bg-neutral-700"
+                        onChange={(e) => setAddress(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="w-full">
+                    <label
+                      className="block mb-2 text-start text-sm font-medium text-gray-300"
+                      for="user_avatar"
+                    >
+                      Upload an image
+                    </label>
+                    <input
+                      className="block h-[165px] w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-primary cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-secondary dark:border-primary dark:placeholder-gray-400"
+                      aria-describedby="user_avatar_help"
+                      id="user_avatar"
+                      type="file"
+                    />
+                  </div>
                 </div>
                 <div className="flex items-start"></div>
                 <div className="flex justify-end">
