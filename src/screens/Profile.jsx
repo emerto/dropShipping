@@ -10,12 +10,6 @@ const Profile = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!auth.user) {
-      navigate("/login");
-    }
-  }, []);
-
   return (
     <div className="flex flex-row">
       <div className=" h-[100vh]">
