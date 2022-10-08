@@ -238,12 +238,12 @@ const Profile = () => {
                     >
                       Address
                     </label>
-                    <input
+                    <textarea
                       type="address"
                       name="floating_address"
                       id="floating_address"
                       placeholder={address}
-                      className="input-form p-4 flex h-[115px] bg-secondary focus:bg-neutral-700"
+                      className="input-form p-4 h-[115px] bg-secondary focus:bg-neutral-700"
                       onChange={(e) => setAddress(e.target.value)}
                     />
                   </div>
