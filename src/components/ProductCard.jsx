@@ -9,19 +9,19 @@ const ProductCard = () => {
         <div className="border-2 flex flex-col gap-1 py-3 px-4 mx-auto w-[800px] border-gray-900 ">
           <div className="gap-2 mt-8 flex justify-center ">
             <img
-              className="w-max max-h-[200px] rounded-lg "
+              className="object-cover w-max max-h-[200px] rounded-lg hover:transform  hover:scale-125 hover:-translate-y-5 transition duration-500 ease-in-out"
               src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png"
               alt="office content 1"
             />
           </div>
-          <div className=" sm:text-lg  ">
-            <h2 className="mb-2 flex text-xl tracking-tight font-normal text-white  ">
+          <div className=" sm:text-lg justify-center flex  ">
+            <h2 className="mb-2 flex text-xl tracking-tight  font-normal text-white  ">
               Erol's Kayganlastirici
             </h2>
           </div>
 
-          <div className="flex justify-end">
-            <div className="border-1 flex  bg-primary rounded-2xl w-[50px] h-max justify-center ">
+          <div className="flex justify-center">
+            <div className="border-1 flex  bg-primary rounded-2xl w-[200px] h-max justify-center ">
               <p className="text-black  text-sm font-bold ">12$</p>
             </div>
           </div>
