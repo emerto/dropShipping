@@ -184,7 +184,8 @@ const Profile = () => {
                   id="floating_address"
                   placeholder="Address"
                   className="input-form p-7 bg-secondary focus:bg-neutral-700"
-                  disabled
+                  required
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
               <div className="flex items-start"></div>
