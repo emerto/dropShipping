@@ -48,10 +48,6 @@ const Profile = () => {
     }
   }, []);
 
-  const handleLogout = () => {
-    auth.logout();
-    navigate("/");
-  };
   return (
     <section>
       <div className=" ">
@@ -191,11 +187,7 @@ const Profile = () => {
                 </div>
                 <div className="flex items-start"></div>
                 <div className="flex justify-end">
-                  <button
-                    onClick={handleLogout}
-                    type="submit"
-                    className="btn-secondary"
-                  >
+                  <button type="submit" className="btn-secondary">
                     Submit
                   </button>
                 </div>
