@@ -42,10 +42,7 @@ const UserSideBar = () => {
           </div>
           <ul className="space-y-2">
             <li>
-              <a
-                href="#"
-                className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
+              <div className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <span classNameName="ml-3">
                   <img
                     className="p-1 w-10 h-10 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
@@ -53,57 +50,47 @@ const UserSideBar = () => {
                   />
                 </span>
                 <span className="ml-3">Profile</span>
-              </a>
+              </div>
             </li>
             <li>
-              <a
-                href="#"
-                className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
+              <div className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
                   <ArrowPathIcon className="w-10 h-10" />
                 </span>
                 <span className="ml-3">Orders</span>
-              </a>
+              </div>
             </li>
 
             <li>
-              <a
-                href="#"
-                className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
+              <div className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
                   <ShoppingCartIcon className="w-10 h-10" />
                 </span>
                 <span className="ml-3">Orders</span>
-              </a>
+              </div>
             </li>
 
             <li>
-              <a
-                href="#"
-                className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
-                  <ArrowRightOnRectangleIcon className="w-10 h-10" />
-                </span>
-                <NavLink to="/login">
+              <NavLink to="/login">
+                <div className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
+                    <ArrowRightOnRectangleIcon className="w-10 h-10" />
+                  </span>
+
                   <span className="ml-3">Sign In</span>
-                </NavLink>
-              </a>
+                </div>
+              </NavLink>
             </li>
             <li>
-              <a
-                href="#"
-                className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+              <div
+                onClick={handleLogout}
+                className="flex cursor-pointer items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
                   <ArrowLeftOnRectangleIcon className="w-10 h-10" />
                 </span>
-                <span onClick={handleLogout} className="ml-3">
-                  Sign Out
-                </span>
-              </a>
+                <span className="ml-3">Sign Out</span>
+              </div>
             </li>
           </ul>
         </div>
