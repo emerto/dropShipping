@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
 import kazik from "../assets/kazik.png";
+import { useAuth } from "../context/AuthContext";
+
 const Login = () => {
+  const auth = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const signIn = await auth.login(email, password);
+
+    if (signIn.error) {
+      console.log(signIn.error.messsage);
+    }
+  };
+
   return (
     <section className="">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -23,7 +40,11 @@ const Login = () => {
                 your account
               </span>
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form
+              className="space-y-4 md:space-y-6"
+              action="submit"
+              onSubmit={handleSubmit}
+            >
               <div>
                 <label
                   for="email"
@@ -38,6 +59,7 @@ const Login = () => {
                   className="input-form "
                   placeholder="name@company.com"
                   required=""
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div>
@@ -54,6 +76,7 @@ const Login = () => {
                   placeholder="••••••••"
                   className="input-form "
                   required=""
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="flex items-center justify-between">
