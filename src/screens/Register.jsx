@@ -5,9 +5,13 @@ import kazik from "../assets/kazik.png";
 
 import supabase from "../config/supaBaseClient";
 
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -25,6 +29,10 @@ const Register = () => {
     } catch (err) {
       alert(err);
     }
+  };
+
+  const togglePasswordVisiblity = () => {
+    setShowPassword((prev) => !prev);
   };
 
   return (
@@ -78,7 +86,7 @@ const Register = () => {
                   Password
                 </label>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   id="password"
                   placeholder="********"
@@ -86,6 +94,13 @@ const Register = () => {
                   required=""
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                <div className="mt-1" onClick={togglePasswordVisiblity}>
+                  {showPassword ? (
+                    <EyeIcon className="w-[24px] h-[24px] text-primary " />
+                  ) : (
+                    <EyeSlashIcon className="w-[24px] h-[24px] text-primary" />
+                  )}
+                </div>
               </div>
               <div className="flex items-start">
                 <div className="flex items-center h-5">

@@ -7,14 +7,16 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 import { ToastContainer, toast } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
+
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 const Login = () => {
   const auth = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -38,6 +40,10 @@ const Login = () => {
     } else {
       navigate("/");
     }
+  };
+
+  const togglePasswordVisiblity = () => {
+    setShowPassword((prev) => !prev);
   };
 
   return (
@@ -103,7 +109,7 @@ const Login = () => {
                     Password
                   </label>
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     name="password"
                     id="password"
                     placeholder="••••••••"
@@ -111,6 +117,13 @@ const Login = () => {
                     required=""
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                  <div className="mt-1" onClick={togglePasswordVisiblity}>
+                    {showPassword ? (
+                      <EyeIcon className="w-[24px] h-[24px] text-primary " />
+                    ) : (
+                      <EyeSlashIcon className="w-[24px] h-[24px] text-primary" />
+                    )}
+                  </div>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-start">
