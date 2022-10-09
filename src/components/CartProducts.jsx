@@ -1,38 +1,99 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
 const CartProducts = () => {
-  const number = 0;
-  return (
-    <section className="bg-gray-900 flex justify-center">
-      <div className="flex flex-row ml-5 w-[250px]">
-        <div className="border-2 flex flex-col gap-1 py-3 px-4 mx-auto w-[800px] border-gray-900 ">
-          <div className="gap-2 mt-8 flex justify-center ">
-            <img
-              className="w-max max-h-[200px] rounded-lg "
-              src="http://www.fatih.gov.tr/kurumlar/fatih.gov.tr/icerik_resim/fatih-cami-resimleri9.jpg"
-            />
-          </div>
-          <div className=" sm:text-lg  ">
-            <h2 className="mb-2 flex text-xl tracking-tight font-normal text-white  ">
-              Cami
-            </h2>
-          </div>
+  const price = 599;
+  const [number, setNumber] = useState(0);
 
-          <div className="flex">
-            <div className="w-full bg-slate-100 flex">
-              <div className="border-1 flex flex-[1] bg-primary rounded-2xl w-[50px] h-max justify-center ">
-                <p className="text-black  text-sm font-bold ">12$</p>
-              </div>
-              <div className="flex flex-[2] bg-red-800 justify-end mr-4 ">
-                <button className="p-3 bg-green-600 rounded-lg">-</button>
-                <h3 className="p-3 bg-blue-400">{number}</h3>
-                <button className="p-3 bg-green-600 rounded-lg">+</button>
-              </div>
-            </div>
+  return (
+    <div className="w-full max-w-xs h-full max-h-xs bg-gray-900">
+      <img
+        className="p-2 object-cover h-48 w-full border border-gray-900 rounded-2xl"
+        src="https://i.pinimg.com/originals/35/cb/31/35cb31391be518a21d604ca028db5f04.jpg"
+        alt="product image"
+      />
+
+      <div className="px-5 pb-5">
+        <h5 className="text-xl font-semibold tracking-tight text-white">
+          Cami
+        </h5>
+        <div className="flex items-center mt-2.5 mb-5">
+          <svg
+            aria-hidden="true"
+            className="w-5 h-5 text-yellow-300"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>First star</title>
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+          </svg>
+          <svg
+            aria-hidden="true"
+            className="w-5 h-5 text-yellow-300"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Second star</title>
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+          </svg>
+          <svg
+            aria-hidden="true"
+            className="w-5 h-5 text-yellow-300"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Third star</title>
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+          </svg>
+          <svg
+            aria-hidden="true"
+            className="w-5 h-5 text-yellow-300"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Fourth star</title>
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+          </svg>
+          <svg
+            aria-hidden="true"
+            className="w-5 h-5 text-yellow-300"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Fifth star</title>
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+          </svg>
+          <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
+            5.0
+          </span>
+        </div>
+        <div className="flex justify-between items-center">
+          <span className="text-3xl font-bold text-white">
+            ${number * price}
+          </span>
+          <div className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 border border-blue-200">
+            <button onClick={() => setNumber((prevNumber) => prevNumber + 1)}>
+              +
+            </button>
+            <h1>{number}</h1>
+            <button
+              onClick={() =>
+                number > 0
+                  ? setNumber((prevNumber) => prevNumber - 1)
+                  : setNumber(0)
+              }
+            >
+              -
+            </button>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
