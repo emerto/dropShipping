@@ -43,17 +43,6 @@ const UserSideBar = () => {
             <ul className="space-y-2">
               <li>
                 <div className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                  <span className="ml-3">
-                    <img
-                      className="p-1 w-10 h-10 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
-                      src={Logo}
-                    />
-                  </span>
-                  <span className="ml-3">Profile</span>
-                </div>
-              </li>
-              <li>
-                <div className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                   <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
                     <ArrowPathIcon className="w-10 h-10" />
                   </span>
@@ -65,7 +54,7 @@ const UserSideBar = () => {
                   <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
                     <ShoppingCartIcon className="w-10 h-10" />
                   </span>
-                  <span className="ml-3">Orders</span>
+                  <span className="ml-3">Store</span>
                 </div>
               </li>
               <li>
