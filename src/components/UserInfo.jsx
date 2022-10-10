@@ -18,57 +18,9 @@ const Profile = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   //! Avatar
-  const [avatar, setAvatar] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState(null);
+  const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
-
-  useEffect(() => {
-    if (avatar) downloadAvatar(avatar);
-  }, [avatar]);
-
-  const uploadAvatar = async (e) => {
-    try {
-      setUploading(true);
-
-      if (!e.target.files || e.target.files.length === 0) {
-        throw new Error("No file selected");
-      }
-
-      const file = e.target.files[0];
-      const fileExt = file.name.split(".").pop();
-      const fileName = `${auth.user.id}.${fileExt}`;
-      const filePath = `${fileName}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from("avatars")
-        .upload(filePath, file);
-
-      if (uploadError) {
-        throw uploadError;
-      }
-
-      setAvatar(filePath);
-    } catch (error) {
-      alert(error.message);
-    } finally {
-      setUploading(false);
-    }
-  };
-
-  const downloadAvatar = async (avatarUrl) => {
-    try {
-      const { data, error } = await supabase.storage
-        .from("avatars")
-        .download(avatarUrl);
-      if (error) {
-        throw error;
-      }
-      const url = URL.createObjectURL(data);
-      setAvatarUrl(url);
-    } catch (error) {
-      console.log("Error downloading image: ", error.message);
-    }
-  };
 
   const auth = useAuth();
   const navigate = useNavigate();
@@ -80,18 +32,38 @@ const Profile = () => {
       .eq("id", auth.user.id)
       .single();
 
+    setAvatarUrl(data.avatar_url);
     setFirstName(data.first_name);
     setLastName(data.last_name);
     setUsername(data.username);
     setAddress(data.address);
     setPhoneNumber(data.phone_number);
     setEmail(data.email);
-    setAvatarUrl(data.avatar_url);
   };
 
   useEffect(() => {
     getProfile();
   }, []);
+
+  const uploadAvatar = async (e) => {
+    e.preventDefault();
+
+    const file = e.target.files[0];
+
+    if (file) {
+      const { data, error } = await supabase.storage
+        .from("avatars")
+        .upload(`${Date.now()}_${file.name}`, file);
+
+      if (error) {
+        console.log(error);
+      }
+
+      if (data) {
+        setAvatarUrl(data.Key);
+      }
+    }
+  };
 
   const updateProfile = async (e) => {
     e.preventDefault();
@@ -163,10 +135,17 @@ const Profile = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 USER PROFILE
               </h1>
-              <img
-                src={avatarUrl ? avatarUrl : Test}
-                className="w-[50px] h-[50px] object-cover rounded-full"
-              />
+              {avatarUrl ? (
+                <img
+                  src={`https://tcvbahslxgfxsxqidkyy.supabase.co/storage/v1/object/public/${avatarUrl}`}
+                  className="w-[50px] h-[50px] object-cover rounded-full"
+                />
+              ) : (
+                <img
+                  src={Test}
+                  className="w-[50px] h-[50px] object-cover rounded-full"
+                />
+              )}
               <form
                 className="space-y-4 md:space-y-6"
                 action="submit"
@@ -272,7 +251,8 @@ const Profile = () => {
                         aria-describedby="user_avatar_help"
                         id="user_avatar"
                         type="file"
-                        onChange={uploadAvatar}
+                        accept={"image/jpeg image/png"}
+                        onChange={(e) => uploadAvatar(e)}
                         disabled={uploading}
                       />
                     </div>
