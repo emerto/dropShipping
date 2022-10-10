@@ -9,12 +9,17 @@ const Cart = () => {
       <div>
         <Navbar />
       </div>
-      <div className="text-primary ml-8 text-4xl font-semibold">
+      <div className="text-primary ml-8 text-4xl font-semibold flex">
         <h1>Your Products</h1>
+        {isEmpty ? null : (
+          <button className="text-black bg-primary hover:bg-orange-500 focus:ring-4 focus:outline-none font-medium rounded-3xl text-sm px-5 py-2.5 text-center border border-white">
+            Buy
+          </button>
+        )}
       </div>
+      <br />
       {isEmpty ? (
         <div>
-          <br />
           <div className="flex">
             <h1 className="text-primary ml-12 text-4xl font-semibold">
               You don't have any product
