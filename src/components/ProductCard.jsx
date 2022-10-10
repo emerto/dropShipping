@@ -20,14 +20,25 @@ const ProductCard = () => {
             </h2>
           </div>
 
-          <div className="flex justify-center">
-            <div className="border-1 flex  bg-primary rounded-2xl w-[200px] h-max justify-center ">
-              <p className="text-black  text-sm font-bold ">12$</p>
-            </div>
+          <div>
+            <a
+              href="#_"
+              class="relative flex items-center justify-center  p-4 px-6 py-3 overflow-hidden font-medium text-primary transition duration-300 ease-out border-2 border-primary rounded-full shadow-md group"
+            >
+              <span class="absolute inset-0 flex items-center justify-center w-full h-full text-primary duration-300 -translate-x-full bg-gray-900 group-hover:translate-x-0 ease">
+                <p>12$</p> {/*BURAYA FİYATI KOYMAK LAZIM*/}
+              </span>
+              <span class="absolute flex flex-row items-center justify-center w-full h-full  transition-all duration-300 transform group-hover:translate-x-full ease">
+                <ShoppingCartIcon className="h-[25px] end w-[50px]  text-primary " />
+                <p>Add To Cart</p>
+              </span>
+              <span class="relative invisible">Add To Card</span>
+            </a>
+
+            {/* <button className=" bg-gray-800  rounded-2xl flex justify-center py-3 h-fill w-fill hover:bg-gray-700  ">
+              <ShoppingCartIcon className="h-[25px] end w-[50px]  text-primary " />
+            </button> */}
           </div>
-          <button className=" bg-gray-800  rounded-2xl flex justify-center py-3 h-fill w-fill hover:bg-gray-700  ">
-            <ShoppingCartIcon className="h-[25px] end w-[50px]  text-primary " />
-          </button>
         </div>
       </div>
     </section>

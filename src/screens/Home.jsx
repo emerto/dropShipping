@@ -10,6 +10,7 @@ const Home = () => {
         <Navbar />
         <StoreWithProducts />
         <StoreWithProducts />
+        <StoreWithProducts />
       </div>
     </>
   );
