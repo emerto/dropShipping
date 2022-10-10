@@ -19,7 +19,6 @@ const Profile = () => {
 
   //! Avatar
   const [avatarUrl, setAvatarUrl] = useState(null);
-  const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
 
   const auth = useAuth();
