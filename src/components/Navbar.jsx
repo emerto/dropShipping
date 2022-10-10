@@ -35,7 +35,7 @@ const Navbar = () => {
       <div className={`shadow-md z-20 w-full fixed top-0 left-0 active `}>
         <div
           className={`md:flex items-center justify-between h-24 bg-black py-4 duration-500 ${
-            isSticky ? "bg-opacity-80" : "opacity-100 "
+            isSticky ? "bg-opacity-100" : "opacity-100 "
           }`}
         >
           <div className="font-bold text-2x1 cursor-pointer flex item-center font-[Poppins] text-gray-800">
@@ -73,12 +73,12 @@ const Navbar = () => {
           </div>
           <ul
             className={`hamburger:flex text-orange-400 mr-0 hamburger:items-center hamburger:pb-0 pb-12 absolute hamburger:static 
-           hamburger:z-auto z-[-1] left-0 hamburger:pl-0 pl-0 transition-all 
-          duration-500 ease-linear ${
-            open
-              ? "left-0  top-[100px] items-center bg-gray-600 bg-opacity-70 flex flex-col w-full"
-              : "left-[-1250px] top-[100px] "
-          } ${isSticky ? "bg-opacity-80 " : "bg-opacity-100"} `}
+           hamburger:z-auto z-[-1] left-0 hamburger:pl-0 pl-0 transition-all flex flex-col hamburger:flex-row
+           duration-500 ease-linear items-center ${
+             open
+               ? "left-0  top-[100px] flex flex-col w-full "
+               : "left-[-1250px] top-[100px] "
+           } ${isSticky ? "bg-opacity-80 " : "bg-opacity-100"} `}
           >
             {" "}
             <div className="flex hamburger:mr-16 hamburger:mb-0 mb-5 hamburger:mt-1 mt-[40px] space-x-2 bg-gray-300 p-2 rounded-xl ">
