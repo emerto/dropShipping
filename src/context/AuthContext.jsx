@@ -14,6 +14,7 @@ export const useAuth = () => {
 
 function useProvideAuth() {
   const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   const login = async (email, password) => {
     const { error, user } = await supabase.auth.signIn({ email, password });
@@ -39,13 +40,33 @@ function useProvideAuth() {
     const user = supabase.auth.user();
     setUser(user);
 
+    const getUserProfile = async () => {
+      if (user) {
+        const { data, error } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", user.id)
+          .single();
+
+        if (error) {
+          console.log(error);
+        }
+
+        setUserData(data);
+      }
+    };
+
+    getUserProfile();
+
     const auth = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN") {
         setUser(session.user);
+        getUserProfile();
       }
 
       if (event === "SIGNED_OUT") {
         setUser(null);
+        setUserData(null);
       }
     });
 
@@ -54,6 +75,7 @@ function useProvideAuth() {
 
   return {
     user,
+    userData,
     login,
     logout,
   };
