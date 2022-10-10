@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import Test from "../assets/kazik.png";
+
 const Profile = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -14,6 +16,59 @@ const Profile = () => {
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  //! Avatar
+  const [avatar, setAvatar] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState(null);
+  const [uploading, setUploading] = useState(false);
+
+  useEffect(() => {
+    if (avatar) downloadAvatar(avatar);
+  }, [avatar]);
+
+  const uploadAvatar = async (e) => {
+    try {
+      setUploading(true);
+
+      if (!e.target.files || e.target.files.length === 0) {
+        throw new Error("No file selected");
+      }
+
+      const file = e.target.files[0];
+      const fileExt = file.name.split(".").pop();
+      const fileName = `${auth.user.id}.${fileExt}`;
+      const filePath = `${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("avatars")
+        .upload(filePath, file);
+
+      if (uploadError) {
+        throw uploadError;
+      }
+
+      setAvatar(filePath);
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const downloadAvatar = async (avatarUrl) => {
+    try {
+      const { data, error } = await supabase.storage
+        .from("avatars")
+        .download(avatarUrl);
+      if (error) {
+        throw error;
+      }
+      const url = URL.createObjectURL(data);
+      setAvatarUrl(url);
+    } catch (error) {
+      console.log("Error downloading image: ", error.message);
+    }
+  };
 
   const auth = useAuth();
   const navigate = useNavigate();
@@ -31,6 +86,7 @@ const Profile = () => {
     setAddress(data.address);
     setPhoneNumber(data.phone_number);
     setEmail(data.email);
+    setAvatarUrl(data.avatar_url);
   };
 
   useEffect(() => {
@@ -65,7 +121,7 @@ const Profile = () => {
         username: username,
         address: address,
         phone_number: phoneNumber,
-        avatar_url: "https://kazik.com",
+        avatar_url: avatarUrl,
         updated_at: new Date(),
       };
 
@@ -107,6 +163,10 @@ const Profile = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 USER PROFILE
               </h1>
+              <img
+                src={avatarUrl ? avatarUrl : Test}
+                className="w-[50px] h-[50px] object-cover rounded-full"
+              />
               <form
                 className="space-y-4 md:space-y-6"
                 action="submit"
@@ -212,6 +272,8 @@ const Profile = () => {
                         aria-describedby="user_avatar_help"
                         id="user_avatar"
                         type="file"
+                        onChange={uploadAvatar}
+                        disabled={uploading}
                       />
                     </div>
                     {/* <div>
