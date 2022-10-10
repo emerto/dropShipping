@@ -26,11 +26,11 @@ const ProductCard = () => {
               class="relative flex items-center justify-center  p-4 px-6 py-3 overflow-hidden font-medium text-primary transition duration-300 ease-out border-2 border-primary rounded-full shadow-md group"
             >
               <span class="absolute inset-0 flex items-center justify-center w-full h-full text-primary duration-300 -translate-x-full bg-gray-900 group-hover:translate-x-0 ease">
-                <p>12$</p> {/*BURAYA FİYATI KOYMAK LAZIM*/}
+                <ShoppingCartIcon className="h-[25px] end w-[50px]  text-primary " />
+                <p>Add To Cart</p> {/*BURAYA FİYATI KOYMAK LAZIM*/}
               </span>
               <span class="absolute flex flex-row items-center justify-center w-full h-full  transition-all duration-300 transform group-hover:translate-x-full ease">
-                <ShoppingCartIcon className="h-[25px] end w-[50px]  text-primary " />
-                <p>Add To Cart</p>
+                <p>12$</p>
               </span>
               <span class="relative invisible">Add To Card</span>
             </a>
