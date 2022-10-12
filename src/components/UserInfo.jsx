@@ -132,7 +132,10 @@ const Profile = () => {
           <div className="w-full rounded-lg shadow dark:border md:mt-0 max-w-[50vw] xl:p-0 bg-secondary border-primary">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8 bg-secondary border-primary">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                USER PROFILE
+                USER
+                <span className="text-black bg-primary ml-1 p-2 py-[2px] rounded-3xl :">
+                  PROFILE
+                </span>
               </h1>
               {avatarUrl ? (
                 <img
