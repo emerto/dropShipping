@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import ReactModal from "react-modal";
+import { Dropdown } from "flowbite-react";
 
 const ModalPopup = () => {
   const [showModal, setShowModal] = useState(false);
@@ -33,6 +34,12 @@ const ModalPopup = () => {
           <label className="block mb-2 text-start w-auto text-sm font-medium text-gray-300">
             Product
           </label>
+          <Dropdown label="Dropdown button">
+            <Dropdown.Item>Dashboard</Dropdown.Item>
+            <Dropdown.Item>Settings</Dropdown.Item>
+            <Dropdown.Item>Earnings</Dropdown.Item>
+            <Dropdown.Item>Sign out</Dropdown.Item>
+          </Dropdown>
         </form>
         <button className="bg-orange-400" onClick={closeModal}>
           Close
