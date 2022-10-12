@@ -51,7 +51,7 @@ const StoreForm1 = () => {
   return (
     <div>
       <Navbar />
-      <StoreForm />
+      {auth.user && auth.userData.has_store ? null : <StoreForm />}
     </div>
   );
 };
