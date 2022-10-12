@@ -3,6 +3,7 @@ import kazik from "../assets/kazik.png";
 
 import supabase from "../config/supaBaseClient";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,6 +14,7 @@ const StoreForm = () => {
   const [storephone, setStorephone] = useState("");
 
   const auth = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,7 +66,14 @@ const StoreForm = () => {
         progress: undefined,
         theme: "dark",
       });
+
+      const { data, error } = await supabase
+        .from("profiles")
+        .update({ has_store: true })
+        .eq("id", auth.user.id);
     }
+
+    navigate("/");
   };
 
   return (
