@@ -5,8 +5,6 @@ import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import EditProductPop from "./EditProductPop";
 
 const ProductCard = () => {
-  const auth = useAuth();
-  console.log(auth);
   return (
     <section className="bg-gray-900 flex justify-center">
       <div className="flex flex-row ml-5 w-[250px]">
