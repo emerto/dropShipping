@@ -14,7 +14,7 @@ const ModalPopup = () => {
   }
 
   return (
-    <div className="bg-red-600">
+    <div className="bg-red-600 flex rounded-2xl flex-cs px-2 h-[50px] my-4 ">
       <button onClick={openModal}>Click Me</button>
       <ReactModal
         isOpen={showModal}

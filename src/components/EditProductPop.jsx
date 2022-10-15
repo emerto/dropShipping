@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import ReactModal from "react-modal";
-import { Dropdown } from "flowbite-react";
 
 const EditProductPop = () => {
   const [showModal, setShowModal] = useState(false);

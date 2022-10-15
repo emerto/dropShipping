@@ -1,16 +1,20 @@
 import React from "react";
-
+import { useAuth } from "../context/AuthContext";
 import { NavLink } from "react-router-dom";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import EditProductPop from "./EditProductPop";
 
 const ProductCard = () => {
+  const auth = useAuth();
+  console.log(auth);
   return (
     <section className="bg-gray-900 flex justify-center">
       <div className="flex flex-row ml-5 w-[250px]">
         <div className="border-2 flex flex-col gap-1 py-3 px-4 mx-auto w-[800px] border-gray-900 ">
           <div className="flex justify-end">
-            <EditProductPop />
+            {/* {auth.userData.has_store ? (
+              <EditProductPop />
+            ) : null} */}
           </div>
           <div className="gap-2 mt-8 flex justify-center ">
             <img
@@ -21,7 +25,7 @@ const ProductCard = () => {
           </div>
           <div className=" sm:text-lg justify-center flex  ">
             <h2 className="mb-2 flex text-xl tracking-tight  font-normal text-white  ">
-              Erol's Kayganlastirici
+              Demir & Kazik
             </h2>
           </div>
 
