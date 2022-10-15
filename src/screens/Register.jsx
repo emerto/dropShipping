@@ -40,7 +40,7 @@ const Register = () => {
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <Link
           to="/"
-          className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+          className="flex items-center mb-6 text-2xl font-semibold  text-white"
         >
           <img
             className="w-[400px] h-[100px] object-cover "
@@ -48,9 +48,9 @@ const Register = () => {
             alt="logo"
           />
         </Link>
-        <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-secondary border-primary">
+        <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-secondary border-primary">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl text-white">
               Create{" "}
               <span className="text-black bg-primary p-2 rounded-3xl">
                 an account
@@ -73,7 +73,7 @@ const Register = () => {
                   name="email"
                   id="email"
                   placeholder="bingchilling@sheesh.com"
-                  className="input-form"
+                  className="input-form border-none focus:ring-0"
                   required=""
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -90,7 +90,7 @@ const Register = () => {
                   name="password"
                   id="password"
                   placeholder="********"
-                  className="input-form"
+                  className="input-form border-none focus:ring-0"
                   required=""
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -108,7 +108,7 @@ const Register = () => {
                     id="terms"
                     aria-describedby="terms"
                     type="checkbox"
-                    className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                    className="w-4 h-4 border  rounded focus:ring-3 focus:ring-primary-300 bg-gray-700 border-gray-600 focus:ring-primary-600 ring-offset-gray-800"
                     required=""
                   />
                 </div>
