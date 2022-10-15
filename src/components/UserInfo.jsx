@@ -81,9 +81,8 @@ const Profile = () => {
       return;
     }
 
+    const user = supabase.auth.user();
     try {
-      const user = supabase.auth.user();
-
       const updates = {
         id: user.id,
         email: user.email,
@@ -99,6 +98,18 @@ const Profile = () => {
       let { error } = await supabase
         .from("profiles")
         .upsert(updates, { returning: "minimal" });
+
+      if (error) {
+        throw error;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
+    try {
+      const { error } = await supabase.from("customers").insert({
+        customer_id: user.id,
+      });
 
       if (error) {
         throw error;
