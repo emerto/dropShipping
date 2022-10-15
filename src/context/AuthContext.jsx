@@ -15,6 +15,7 @@ export const useAuth = () => {
 function useProvideAuth() {
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState(null);
+  const [isDropshipper, setIsDropshipper] = useState(false);
 
   const login = async (email, password) => {
     const { error, user } = await supabase.auth.signIn({ email, password });
@@ -68,21 +69,26 @@ function useProvideAuth() {
           console.log(error);
         }
 
-        setUserData([...userData]);
+        if (data) {
+          setIsDropshipper(true);
+        }
       }
     };
 
     getUserProfile();
+    isDropShipper();
 
     const auth = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN") {
         setUser(session.user);
         getUserProfile();
+        isDropShipper();
       }
 
       if (event === "SIGNED_OUT") {
         setUser(null);
         setUserData(null);
+        setIsDropshipper(false);
       }
     });
 
@@ -92,6 +98,7 @@ function useProvideAuth() {
   return {
     user,
     userData,
+    isDropshipper,
     login,
     logout,
   };
