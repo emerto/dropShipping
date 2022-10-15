@@ -100,7 +100,7 @@ const StoreForm = () => {
         draggable
         pauseOnHover
       />
-      <section id="StoreForm" className="bg-black">
+      <section id="StoreForm" className="bg-slate-900">
         <div className="flex flex-col  items-center justify-center px-6 py-8 mx-auto h-[100vh] lg:py-0">
           <a
             href="#"
