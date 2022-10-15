@@ -41,7 +41,7 @@ const EditProductPop = () => {
               Upload an image
             </label>
             <input
-              className="block  w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-primary cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-secondary dark:border-primary dark:placeholder-gray-400"
+              className="block  w-full text-sm  rounded-lg border  cursor-pointer text-gray-400 focus:outline-none bg-secondary border-primary placeholder-gray-400"
               aria-describedby="user_avatar_help"
               id="user_avatar"
               type="file"
