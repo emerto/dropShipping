@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import ModalPopup from "./ModalPopup";
+// import ModalPopup from "./ModalPopup";
 
 const CartProducts = () => {
   const price = 599;

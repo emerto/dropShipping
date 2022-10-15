@@ -39,7 +39,7 @@ const Navbar = () => {
           }`}
         >
           <div className="font-bold text-2x1 cursor-pointer flex item-center font-[Poppins] text-gray-800">
-            <span className="text-3x1 text-indigo-600 mr-1 pt-0">
+            <span className="text-3x1  mr-1 pt-0">
               <div className="flex">
                 <NavLink
                   to="../slider"

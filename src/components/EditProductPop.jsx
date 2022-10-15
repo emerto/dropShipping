@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import ReactModal from "react-modal";
 
 const EditProductPop = () => {
   const [showModal, setShowModal] = useState(false);
@@ -15,7 +14,7 @@ const EditProductPop = () => {
   return (
     <div className="bg-red-600">
       <button onClick={openModal}>Click Me</button>
-      <ReactModal
+      <div
         isOpen={showModal}
         contentLabel="This is a pop up"
         className="mx-20 mt-40 bg-gray-900 border border-white"
@@ -52,7 +51,7 @@ const EditProductPop = () => {
         <button className="bg-orange-400" onClick={closeModal}>
           Close
         </button>
-      </ReactModal>
+      </div>
     </div>
   );
 };
