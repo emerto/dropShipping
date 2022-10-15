@@ -5,8 +5,8 @@ import { useLocation } from "react-router-dom";
 import ModalPopup from "../components/ModalPopup";
 
 const Store = () => {
-  const { state } = useLocation();
-  const { store_name, store_address, store_phone } = state;
+  // const { state } = useLocation();
+  // const { store_name, store_address, store_phone } = state;
 
   return (
     <div className="bg-slate-900  mt-[95px]">
@@ -14,7 +14,7 @@ const Store = () => {
         <Navbar />
         <div className="text-primary  flex bg-slate-900  justify-center w-full  text-4xl font-semibold">
           <h1 className=" ml-8 pt-5 mt-5 border-b-2 w-[250px] flex justify-center">
-            {store_name}
+            Store
           </h1>
           <ModalPopup />
         </div>
