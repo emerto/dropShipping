@@ -33,25 +33,10 @@ const StoreForm1 = () => {
     );
   }
 
-  const hasStore = async () => {
-    const { data, error } = await supabase
-      .from("stores")
-      .select("*")
-      .eq("owner", auth.user.id);
-
-    navigate("/stores/" + data[0].store_name, { state: data[0] });
-  };
-
-  if (auth.user) {
-    if (auth.userData.has_store) {
-      hasStore();
-    }
-  }
-
   return (
     <div>
       <Navbar />
-      {auth.user && auth.userData.has_store ? null : <StoreForm />}
+      <StoreForm />
     </div>
   );
 };
