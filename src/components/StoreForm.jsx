@@ -33,16 +33,20 @@ const StoreForm = () => {
       return;
     }
 
-    const { data, error } = await supabase.from("stores").insert([
-      {
-        owner: auth.user.id,
-        store_name: storename,
-        store_address: storeaddress,
-        store_phone: storephone,
-      },
-    ]);
+    try {
+      const { error } = await supabase.from("stores").insert([
+        {
+          owner: auth.user.id,
+          store_name: storename,
+          store_address: storeaddress,
+          store_phone: storephone,
+        },
+      ]);
 
-    if (error) {
+      if (error) {
+        throw error;
+      }
+    } catch (err) {
       toast.error(`${error.message}!`, {
         position: "bottom-right",
         autoClose: 3000,
