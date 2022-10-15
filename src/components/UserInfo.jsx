@@ -237,7 +237,7 @@ const Profile = () => {
                         name="floating_email"
                         id="floating_email"
                         placeholder={email}
-                        className="input-form focus:bg-neutral-700 block  w-full text-sm rounded-lg border cursor-pointer text-gray-400 focus:outline-none bg-secondary border-primary placeholder-gray-400"
+                        className="input-form focus:bg-neutral-700 block  w-full text-sm rounded-lg border text-gray-400 focus:outline-none bg-secondary border-primary placeholder-gray-400"
                         disabled
                       />
                     </div>
@@ -249,7 +249,7 @@ const Profile = () => {
                         Upload an image
                       </label>
                       <input
-                        className="block w-full text-sm rounded-lg border cursor-pointer text-gray-400 focus:outline-none bg-secondary border-primary placeholder-gray-400"
+                        className="block w-full text-sm rounded-lg border  text-gray-400 focus:outline-none bg-secondary border-primary placeholder-gray-400"
                         aria-describedby="user_avatar_help"
                         id="user_avatar"
                         type="file"
@@ -271,10 +271,11 @@ const Profile = () => {
                       name="floating_address"
                       id="floating_address"
                       placeholder={address}
-                      className="input-form p-4 h-[131px] bg-secondary focus:bg-neutral-700 block  w-full text-sm rounded-lg border cursor-pointer text-gray-400 focus:outline-none border-primary placeholder-gray-400"
+                      className="input-form p-4 h-[131px] bg-secondary focus:bg-neutral-700 block  w-full text-sm rounded-lg border  text-gray-400 focus:outline-none border-primary placeholder-gray-400"
                       onChange={(e) => setAddress(e.target.value)}
                     />
                   </div>
+
                   {/* <div className="w-full">
                     <label
                       className="block mb-2 text-start text-sm font-medium text-gray-300"

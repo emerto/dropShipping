@@ -81,7 +81,7 @@ const Navbar = () => {
            } ${isSticky ? "bg-opacity-80 " : "bg-opacity-100"} `}
           >
             {" "}
-            <div className="flex hamburger:mr-16 hamburger:mb-0 mb-5 hamburger:mt-1 mt-[40px] space-x-2 bg-gray-300 p-2 rounded-xl ">
+            <div className="flex hamburger:mr-16 h-[60px] hamburger:mb-0 mb-5 hamburger:mt-1 mt-[40px] space-x-2 bg-gray-300 p-2 rounded-xl ">
               <MagnifyingGlassIcon className="w-[24px] h-[24px]" />
               <input
                 type="search"
