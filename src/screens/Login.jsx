@@ -95,7 +95,7 @@ const Login = () => {
                     type="email"
                     name="email"
                     id="email"
-                    className="input-form "
+                    className="input-form border-none focus:ring-0"
                     placeholder="name@company.com"
                     required=""
                     onChange={(e) => setEmail(e.target.value)}
@@ -113,7 +113,7 @@ const Login = () => {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    className="input-form "
+                    className="input-form border-none focus:ring-0"
                     required=""
                     onChange={(e) => setPassword(e.target.value)}
                   />
@@ -132,7 +132,7 @@ const Login = () => {
                         id="remember"
                         aria-describedby="remember"
                         type="checkbox"
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                        className="w-4 h-4 border  rounded  focus:ring-3 focus:ring-primary-300 bg-gray-700 :border-gray-600 focus:ring-primary-600 ring-offset-gray-800"
                         required=""
                       />
                     </div>
