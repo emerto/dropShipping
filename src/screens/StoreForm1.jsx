@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import StoreForm from "../components/StoreForm";
 import Navbar from "../components/Navbar";
 
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import supabase from "../config/supaBaseClient";
 
 const StoreForm1 = () => {
   const auth = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth.isDropshipper) {
+      navigate("/");
+    }
+  }, []);
 
   if (!auth.user) {
     return (

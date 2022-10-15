@@ -7,7 +7,6 @@ import { useAuth } from "../context/AuthContext";
 
 const Home = () => {
   const auth = useAuth();
-  console.log(auth);
 
   return (
     <>

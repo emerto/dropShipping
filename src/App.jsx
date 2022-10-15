@@ -30,6 +30,10 @@ const router = createBrowserRouter([
     element: <Register />,
   },
   {
+    path: "/stores-manage/:name",
+    element: <Store />,
+  },
+  {
     path: "/stores/:name",
     element: <Store />,
   },
