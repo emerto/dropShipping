@@ -2,7 +2,6 @@ import React from "react";
 import ProductCard from "../components/ProductCard";
 import Navbar from "../components/Navbar";
 import { useLocation } from "react-router-dom";
-// import ModalPopup from "../components/ModalPopup";
 
 const Store = () => {
   // const { state } = useLocation();
