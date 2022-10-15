@@ -96,7 +96,7 @@ const StoreForm = () => {
             className="flex items-center mb-6 text-2xl font-semibold text-gray-900"
           >
             <img
-              className="w-[420px] h-[100px] mt-20 object-cover"
+              className="w-[420px] h-[100px] mt-16 object-cover"
               src={kazik}
               alt="logo"
             />

@@ -36,8 +36,8 @@ const Register = () => {
   };
 
   return (
-    <section className="bg-black">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <section className="bg-gray-900">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-[100vh] md:h-screen lg:py-0">
         <Link
           to="/"
           className="flex items-center mb-6 text-2xl font-semibold  text-white"
