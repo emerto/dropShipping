@@ -6,12 +6,27 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+import supabase from "../config/supaBaseClient";
+
 const StoreForm1 = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
+  const getStoreInfo = async () => {
+    const { data, error } = await supabase
+      .from("stores")
+      .select("*")
+      .eq("owner", auth.user.id);
+
+    if (data) {
+      navigate(`/stores-manage/${data[0].store_name}`, { state: data[0] });
+    }
+  };
+
   useEffect(() => {
     if (auth.isDropshipper) {
+      getStoreInfo();
+
       navigate("/");
     }
   }, []);

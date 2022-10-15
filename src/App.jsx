@@ -9,6 +9,7 @@ import NotFound from "./screens/NotFound";
 import Profile from "./screens/Profile";
 import StoreForm1 from "./screens/StoreForm1";
 import Store from "./screens/Store";
+import ManageStore from "./screens/ManageStore";
 import Cart from "./screens/Cart";
 
 const router = createBrowserRouter([
@@ -16,7 +17,6 @@ const router = createBrowserRouter([
     path: "/",
     element: <Home />,
   },
-
   {
     path: "/cart",
     element: <Cart />,
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/stores-manage/:name",
-    element: <Store />,
+    element: <ManageStore />,
   },
   {
     path: "/stores/:name",
