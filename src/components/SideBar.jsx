@@ -24,9 +24,9 @@ const UserSideBar = () => {
   return (
     <div className="h-screen flex fixed">
       <aside className="w-64" aria-label="Sidebar">
-        <div className="overflow-y-auto py-4 px-3 h-screen w-[25vw] flex-col flex bg-gray-700 rounded ">
+        <div className="overflow-y-auto py-4 px-3 h-screen w-[20vw] flex-col flex bg-slate-900 rounded ">
           <div className="flex-[4] mt-5 pl-2.5 mb-5">
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
               <NavLink
                 className="bg-green-300 md:text-2xl flex text-base"
                 to="/"
@@ -42,16 +42,16 @@ const UserSideBar = () => {
           <div className="flex-[9] flex">
             <ul className="space-y-2">
               <li>
-                <div className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                  <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
+                <div className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-base font-normal  rounded-lg text-white hover:bg-gray-700">
+                  <span className="p-0 rounded-full ring-gray-500">
                     <ArrowPathIcon className="w-10 h-10" />
                   </span>
                   <span className="ml-3">Orders</span>
                 </div>
               </li>
               <li>
-                <div className="flex items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                  <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
+                <div className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-base font-normal  rounded-lg text-white hover:bg-gray-700">
+                  <span className="p-0 rounded-full ring-gray-500">
                     <ShoppingCartIcon className="w-10 h-10" />
                   </span>
                   <span className="ml-3">Store</span>
@@ -60,9 +60,9 @@ const UserSideBar = () => {
               <li>
                 <div
                   onClick={handleLogout}
-                  className="flex cursor-pointer items-center p-2 ml-5 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-base font-normal  rounded-lg text-white hover:bg-gray-700"
                 >
-                  <span className="p-0 rounded-full ring-gray-300 dark:ring-gray-500">
+                  <span className="p-0 rounded-full ring-gray-500">
                     <ArrowLeftOnRectangleIcon className="w-10 h-10" />
                   </span>
                   <span className="ml-3">Sign Out</span>

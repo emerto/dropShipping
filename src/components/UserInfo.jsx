@@ -129,9 +129,9 @@ const Profile = () => {
       />
       <div className=" ">
         <div className="flex flex-col items-end w-[80vw] mt-0 px-6 py-8 mx-auto lg:py-0">
-          <div className="w-full rounded-lg shadow dark:border md:mt-0 max-w-[50vw] xl:p-0 bg-secondary border-primary">
+          <div className="w-full rounded-lg shadow border md:mt-0 max-w-[50vw] xl:p-0 bg-secondary border-primary">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8 bg-secondary border-primary">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+              <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white">
                 USER
                 <span className="text-black bg-primary ml-1 p-2 py-[2px] rounded-3xl :">
                   PROFILE
@@ -237,7 +237,7 @@ const Profile = () => {
                         name="floating_email"
                         id="floating_email"
                         placeholder={email}
-                        className="input-form bg-secondary focus:bg-neutral-700"
+                        className="input-form focus:bg-neutral-700 block  w-full text-sm rounded-lg border cursor-pointer text-gray-400 focus:outline-none bg-secondary border-primary placeholder-gray-400"
                         disabled
                       />
                     </div>
@@ -249,7 +249,7 @@ const Profile = () => {
                         Upload an image
                       </label>
                       <input
-                        className="block  w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-primary cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-secondary dark:border-primary dark:placeholder-gray-400"
+                        className="block w-full text-sm rounded-lg border cursor-pointer text-gray-400 focus:outline-none bg-secondary border-primary placeholder-gray-400"
                         aria-describedby="user_avatar_help"
                         id="user_avatar"
                         type="file"
@@ -287,7 +287,7 @@ const Profile = () => {
                       name="floating_address"
                       id="floating_address"
                       placeholder={address}
-                      className="input-form p-4 h-[115px] bg-secondary focus:bg-neutral-700"
+                      className="input-form p-4 h-[131px] bg-secondary focus:bg-neutral-700 block  w-full text-sm rounded-lg border cursor-pointer text-gray-400 focus:outline-none border-primary placeholder-gray-400"
                       onChange={(e) => setAddress(e.target.value)}
                     />
                   </div>
