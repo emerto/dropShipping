@@ -56,6 +56,22 @@ function useProvideAuth() {
       }
     };
 
+    const isDropShipper = async () => {
+      if (user) {
+        const { data, error } = await supabase
+          .from("dropshippers")
+          .select("*")
+          .eq("dropshipper_id", user.id)
+          .single();
+
+        if (error) {
+          console.log(error);
+        }
+
+        setUserData([...userData]);
+      }
+    };
+
     getUserProfile();
 
     const auth = supabase.auth.onAuthStateChange((event, session) => {

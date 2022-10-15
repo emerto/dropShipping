@@ -34,7 +34,19 @@ const StoreForm = () => {
     }
 
     try {
-      const { error } = await supabase.from("stores").insert([
+      const { error } = await supabase.from("dropshippers").insert({
+        dropshipper_id: auth.user.id,
+      });
+
+      if (error) {
+        throw error;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
+    try {
+      const { data, error } = await supabase.from("stores").insert([
         {
           owner: auth.user.id,
           store_name: storename,
@@ -45,6 +57,21 @@ const StoreForm = () => {
 
       if (error) {
         throw error;
+      }
+
+      if (data) {
+        toast.success(`Store added successfully!`, {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+
+        navigate("/");
       }
     } catch (err) {
       toast.error(`${error.message}!`, {
@@ -58,26 +85,6 @@ const StoreForm = () => {
         theme: "dark",
       });
     }
-
-    if (data) {
-      toast.success(`Store added successfully!`, {
-        position: "bottom-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-
-      const { data, error } = await supabase
-        .from("profiles")
-        .update({ has_store: true })
-        .eq("id", auth.user.id);
-    }
-
-    navigate("/");
   };
 
   return (
