@@ -282,25 +282,10 @@ const Profile = () => {
                       name="floating_address"
                       id="floating_address"
                       placeholder={address}
-                      className="input-form p-4 h-[131px] bg-secondary focus:bg-neutral-700 block  w-full text-sm rounded-lg border  text-gray-400 focus:outline-none border-primary placeholder-gray-400"
+                      className="input-form p-4 h-[105px] bg-secondary focus:bg-neutral-700 block  w-full text-sm rounded-lg border  text-gray-400 focus:outline-none border-primary placeholder-gray-400"
                       onChange={(e) => setAddress(e.target.value)}
                     />
                   </div>
-
-                  {/* <div className="w-full">
-                    <label
-                      className="block mb-2 text-start text-sm font-medium text-gray-300"
-                      for="user_avatar"
-                    >
-                      Upload an image
-                    </label>
-                    <input
-                      className="block h-[165px] w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-primary cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-secondary dark:border-primary dark:placeholder-gray-400"
-                      aria-describedby="user_avatar_help"
-                      id="user_avatar"
-                      type="file"
-                    />
-                  </div> */}
                 </div>
                 <div className="flex items-start"></div>
                 <div className="flex justify-end">
