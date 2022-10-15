@@ -89,14 +89,14 @@ const StoreForm = () => {
         draggable
         pauseOnHover
       />
-      <section id="StoreForm" className="bg-black mt-24">
-        <div className="flex flex-col  items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <section id="StoreForm" className="bg-black">
+        <div className="flex flex-col  items-center justify-center px-6 py-8 mx-auto h-[100vh] lg:py-0">
           <a
             href="#"
             className="flex items-center mb-6 text-2xl font-semibold text-gray-900"
           >
             <img
-              className="w-[420px] h-[100px] object-cover"
+              className="w-[420px] h-[100px] mt-20 object-cover"
               src={kazik}
               alt="logo"
             />
