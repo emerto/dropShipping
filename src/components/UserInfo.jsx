@@ -258,22 +258,6 @@ const Profile = () => {
                         disabled={uploading}
                       />
                     </div>
-                    {/* <div>
-                      <label
-                        htmlFor="address"
-                        className="block mb-2 text-start text-sm font-medium text-gray-300"
-                      >
-                        Address
-                      </label>
-                      <input
-                        type="address"
-                        name="floating_address"
-                        id="floating_address"
-                        placeholder={address}
-                        className="input-form p-7 bg-secondary focus:bg-neutral-700"
-                        onChange={(e) => setAddress(e.target.value)}
-                      />
-                    </div> */}
                   </div>
                   <div className="w-full">
                     <label
