@@ -33,11 +33,7 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-4 bg-gray-900">
-          <CartProducts />
-          <CartProducts />
-          <CartProducts />
-          <CartProducts />
+        <div className="grid h-full grid-cols-4 bg-gray-900">
           <CartProducts />
         </div>
       )}
