@@ -136,7 +136,7 @@ const Login = () => {
                         required=""
                       />
                     </div>
-                    <div className="ml-3 text-sm">
+                    <div className="ml-3 text-base">
                       <label
                         htmlFor="remember"
                         className="text-primary font-medium"
@@ -147,7 +147,7 @@ const Login = () => {
                   </div>
                   <a
                     href="#"
-                    className="text-sm font-medium text-primary hover:underline "
+                    className="text-base font-medium text-primary hover:underline "
                   >
                     Forgot password?
                   </a>
