@@ -48,9 +48,9 @@ const Register = () => {
             alt="logo"
           />
         </Link>
-        <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-secondary border-primary">
+        <div className="w-full rounded-base shadow border md:mt-0 sm:max-w-md xl:p-0 bg-secondary border-primary">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl text-white">
+            <h1 className="text-2xl font-bold leading-tight tracking-normal text-white">
               Create{" "}
               <span className="text-black bg-primary p-2 rounded-3xl">
                 an account
@@ -64,7 +64,7 @@ const Register = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-primary"
+                  className="block mb-2 text-base font-medium text-primary"
                 >
                   Email
                 </label>
@@ -81,7 +81,7 @@ const Register = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium  text-primary"
+                  className="block mb-2 text-base font-medium text-primary"
                 >
                   Password
                 </label>
@@ -94,7 +94,7 @@ const Register = () => {
                   required=""
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <div className="mt-1" onClick={togglePasswordVisiblity}>
+                <div className="mt-2" onClick={togglePasswordVisiblity}>
                   {showPassword ? (
                     <EyeIcon className="w-[24px] h-[24px] text-primary " />
                   ) : (
@@ -112,7 +112,7 @@ const Register = () => {
                     required=""
                   />
                 </div>
-                <div className="ml-3 text-sm">
+                <div className="ml-3 text-base">
                   <label htmlFor="terms" className="font-light text-white">
                     I accept the{" "}
                     <a
@@ -127,7 +127,7 @@ const Register = () => {
               <button type="submit" className="btn-primary">
                 Create an account
               </button>
-              <p className="text-sm font-light text-white ">
+              <p className="text-base font-light text-white ">
                 Already have an account?{" "}
                 <Link
                   to="/login"

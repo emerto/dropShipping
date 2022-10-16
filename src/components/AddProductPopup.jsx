@@ -43,7 +43,11 @@ const AddProductPopup = () => {
       onClose={() => setShow(false)}
       onOpen={() => setShow(true)}
       open={Show}
-      trigger={<button className="btn-primary text-xl">Add Product</button>}
+      trigger={
+        <button className="bg-primary rounded-2xl text-black">
+          Show Modal
+        </button>
+      }
       style={{ backgroundColor: "1A1A1A" }}
     >
       <Modal.Header>Add product</Modal.Header>
