@@ -64,7 +64,7 @@ const Navbar = () => {
                   >
                     <img
                       src={Logo}
-                      className="w-[125px] h[125px] object-cover"
+                      className="w-[150px] h[150px] object-cover"
                     />
                   </NavLink>
                 </h1>
@@ -87,7 +87,7 @@ const Navbar = () => {
            } ${isSticky ? "bg-opacity-80 " : "bg-opacity-100"} `}
           >
             {" "}
-            <div className="flex hamburger:mr-16 h-[41px] hamburger:mb-0 mb-5 hamburger:mt-1 mt-[50px] space-x-2 bg-gray-300 p-2 rounded-xl ">
+            <div className="flex hamburger:mr-14 h-[41px] hamburger:mb-0 mb-5 hamburger:mt-1 mt-[50px] space-x-2 bg-gray-300 p-2 rounded-xl ">
               <MagnifyingGlassIcon className="w-[24px] h-[24px]" />
               <input
                 type="search"
@@ -96,78 +96,49 @@ const Navbar = () => {
                 className="bg-transparent outline-none w-[200px] hamburger:w-[400px] text-black placeholder-gray-600 border-none focus:ring-0"
               />
             </div>
-            <li
-              className="flex hamburger:mr-16 hamburger:mt-2 mt-2"
-              onMouseEnter={() => {
-                lottie.setDirection(1);
-                lottie.play("info");
-              }}
-              onMouseLeave={() => {
-                lottie.stop("info");
-              }}
-            >
+            <li className="flex hamburger:mr-16 hamburger:mt-2 mt-2">
               <NavLink
-                className="italic hamburger:not-italic text-lg flex items-center gap-x-4
-                  cursor-pointer "
+                className="italic text-primary hover:text-primary hamburger:not-italic text-lg flex items-center gap-x-4
+                cursor-pointer"
                 to={auth.user ? "/profile" : "/login"}
-                style={{ color: "inherit", backgroundColor: "inherit" }}
               >
                 <div
                   className={`flex hamburger:ml-1 ml-0 hamburger:block
-                    duration-500`}
+                  duration-500`}
                 >
                   <div ref={infoRef} />
-                  <UserIcon className="w-6 h-6" />
+                  <UserIcon className="w-7 h-7" />
                 </div>
               </NavLink>
             </li>
-            <li
-              className="flex hamburger:mr-16 hamburger:mt-2 mt-10"
-              onMouseEnter={() => {
-                lottie.play("services");
-              }}
-              onMouseLeave={() => {
-                lottie.stop("services");
-              }}
-            >
+            <li className="flex hamburger:mr-16 hamburger:mt-2 mt-10">
               <NavLink
-                className="italic hamburger:not-italic text-lg flex items-center gap-x-4
-                  cursor-pointer "
+                className="italic text-primary hover:text-primary hamburger:not-italic text-lg flex items-center gap-x-4
+                cursor-pointer"
                 to="/StoreForm"
-                style={{ color: "inherit", backgroundColor: "inherit" }}
               >
                 <div
                   className={`flex hamburger:ml-0 ml-0 hamburger:block
-                    duration-500`}
+                  duration-500`}
                 >
                   <div ref={serviceRef} />
-                  <BuildingStorefrontIcon className="w-6 h-6" />
+                  <BuildingStorefrontIcon className="w-7 h-7" />
                 </div>
               </NavLink>
             </li>
-            <li
-              className="flex hamburger:mr-[100px] hamburger:mt-2 mt-10"
-              onMouseEnter={() => {
-                lottie.setDirection(1);
-                lottie.play("contact");
-              }}
-              onMouseLeave={() => {
-                lottie.stop("contact");
-              }}
-            >
+            <li className="flex hamburger:mr-[80px] hamburger:mt-2 mt-10">
               <NavLink
-                className="italic hamburger:not-italic text-lg flex items-center gap-x-4
-                  cursor-pointer "
+                className="italic text-primary hover:text-primary hamburger:not-italic text-lg flex items-center gap-x-4
+                cursor-pointer"
                 to="contact"
                 smooth={true}
-                style={{ color: "inherit", backgroundColor: "inherit" }}
               >
                 <div
                   className={`flex hamburger:ml-0 ml-0 hamburger:block
                     duration-500`}
                 >
                   <div ref={contactRef} />
-                  <ShoppingCartIcon className="w-6 h-6" />
+                  <ShoppingCartIcon className="w-7 h-7" />
                 </div>
               </NavLink>
             </li>
