@@ -155,26 +155,21 @@ const Navbar = () => {
                 lottie.stop("contact");
               }}
             >
-              <Link
+              <NavLink
                 className="italic hamburger:not-italic text-lg flex items-center gap-x-4
-                cursor-pointer "
+                  cursor-pointer "
                 to="contact"
                 smooth={true}
                 style={{ color: "inherit", backgroundColor: "inherit" }}
               >
                 <div
                   className={`flex hamburger:ml-0 ml-0 hamburger:block
-                  duration-500`}
+                    duration-500`}
                 >
                   <div ref={contactRef} />
-                  <NavLink
-                    className="text-primary"
-                    to={auth.user ? "/Cart" : "/login"}
-                  >
-                    <ShoppingCartIcon className="w-6 h-6" />
-                  </NavLink>
+                  <ShoppingCartIcon className="w-6 h-6" />
                 </div>
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>

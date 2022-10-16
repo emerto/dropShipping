@@ -16,7 +16,7 @@ const AddProductPopup = () => {
       onOpen={() => setShow(true)}
       open={Show}
       trigger={
-        <button className="bg-primary rounded-2xl text-black">
+        <button className="bg-primary py-1 px-2 rounded-2xl text-black">
           Show Modal
         </button>
       }
