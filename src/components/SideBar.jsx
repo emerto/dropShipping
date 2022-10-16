@@ -25,7 +25,7 @@ const UserSideBar = () => {
     <div className="h-screen flex fixed">
       <aside className="w-64" aria-label="Sidebar">
         <div className="overflow-y-auto py-4 px-3 h-screen w-[20vw] flex-col flex bg-black rounded ">
-          <div className="flex-[4] mt-5 pl-2.5 mb-5">
+          <div className="flex-[6] mt-5 pl-2.5 mb-5">
             <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
               <NavLink
                 className="bg-green-300 md:text-2xl flex text-base"
@@ -44,7 +44,7 @@ const UserSideBar = () => {
               <li>
                 <div className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-base font-normal  rounded-lg text-white hover:bg-gray-700">
                   <span className="p-0 rounded-full ring-gray-500">
-                    <ArrowPathIcon className="w-10 h-10" />
+                    <ArrowPathIcon className="w-12 h-12" />
                   </span>
                   <span className="ml-3">Orders</span>
                 </div>
@@ -52,7 +52,7 @@ const UserSideBar = () => {
               <li>
                 <div className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-base font-normal  rounded-lg text-white hover:bg-gray-700">
                   <span className="p-0 rounded-full ring-gray-500">
-                    <ShoppingCartIcon className="w-10 h-10" />
+                    <ShoppingCartIcon className="w-12 h-12" />
                   </span>
                   <span className="ml-3">Store</span>
                 </div>
@@ -63,7 +63,7 @@ const UserSideBar = () => {
                   className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-base font-normal  rounded-lg text-white hover:bg-gray-700"
                 >
                   <span className="p-0 rounded-full ring-gray-500">
-                    <ArrowLeftOnRectangleIcon className="w-10 h-10" />
+                    <ArrowLeftOnRectangleIcon className="w-12 h-12" />
                   </span>
                   <span className="ml-3">Sign Out</span>
                 </div>
