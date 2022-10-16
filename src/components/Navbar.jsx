@@ -8,14 +8,8 @@ import {
   UserIcon,
 } from "@heroicons/react/24/solid";
 import { Cross as Hamburger } from "hamburger-react";
-
-import { Link } from "react-scroll";
 import Logo from "../assets/kazik.png";
-
 import { useAuth } from "../context/AuthContext";
-
-import lottie from "lottie-web";
-import CartProducts from "./CartProducts";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
