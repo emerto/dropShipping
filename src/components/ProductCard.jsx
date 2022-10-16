@@ -10,10 +10,14 @@ const ProductCard = () => {
       <div className="flex flex-row ml-5 w-[250px]">
         <div className="border-2 flex flex-col gap-1 py-3 px-4 mx-auto w-[800px] border-gray-900 ">
           <div className="flex justify-end">
+            <div className="flex justify-end">
+              <EditProductPop />
+            </div>
             {/* {auth.userData.has_store ? (
               <EditProductPop />
             ) : null} */}
           </div>
+
           <div className="gap-2 mt-8 flex justify-center ">
             <img
               className="object-cover w-max max-h-[200px] rounded-lg hover:transform  hover:scale-125 hover:-translate-y-5 transition duration-200 ease-in-out"
