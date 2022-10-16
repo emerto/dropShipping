@@ -7,10 +7,10 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import ProductCard from "../components/ProductCard";
-import AddProductPopup from "../components/EditProductPop";
+import AddProductPopup from "../components/AddProductPopup";
 
 const ManageStore = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const location = useLocation();
   const storeInfo = location.state;
 
@@ -29,6 +29,14 @@ const ManageStore = () => {
     }
   }, []);
 
+  const ProductPopup = () => {
+    return (
+      <div className="mt-5">
+        <AddProductPopup />
+      </div>
+    );
+  };
+
   return (
     <div className="flex flex-col bg-gray-900">
       <Navbar />
@@ -38,7 +46,7 @@ const ManageStore = () => {
           <div className="w-full h-1 bg-primary rounded-xl " />
         </div>
         <div className="flex justify-start flex-wrap gap-[20px] ">
-          {products ? <ProductCard /> : <AddProductPopup />}
+          {products ? <ProductCard /> : <ProductPopup />}
         </div>
       </div>
     </div>
