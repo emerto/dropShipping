@@ -139,10 +139,10 @@ const Profile = () => {
         pauseOnHover
       />
       <div className="">
-        <div className="flex flex-col items-end w-[80vw] mt-0 px-6 py-8 mx-auto lg:py-0">
-          <div className="w-full rounded-lg shadow border md:mt-0 max-w-[50vw] xl:p-0 bg-secondary border-primary">
+        <div className="flex flex-col items-end w-[85vw] mt-0 px-6 py-8 mx-auto lg:py-0">
+          <div className="w-full rounded-lg shadow border md:mt-0 max-w-[60vw] xl:p-0 bg-secondary border-primary">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8 bg-secondary border-primary">
-              <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white">
+              <h1 className="font-bold leading-tight tracking-tight text-2xl text-white">
                 USER
                 <span className="text-black bg-primary ml-1 p-2 py-[2px] rounded-3xl :">
                   PROFILE
@@ -151,12 +151,12 @@ const Profile = () => {
               {avatarUrl ? (
                 <img
                   src={`https://tcvbahslxgfxsxqidkyy.supabase.co/storage/v1/object/public/${avatarUrl}`}
-                  className="w-[50px] h-[50px] object-cover rounded-full"
+                  className="w-[60px] h-[60px] object-cover rounded-full"
                 />
               ) : (
                 <img
                   src={Test}
-                  className="w-[50px] h-[50px] object-cover rounded-full"
+                  className="w-[60px] h-[60px] object-cover rounded-full"
                 />
               )}
               <form
@@ -168,7 +168,7 @@ const Profile = () => {
                   <div className="mr-5 w-full">
                     <label
                       htmlFor="firstName"
-                      className="block mb-2 text-start w-auto text-sm font-medium text-gray-300"
+                      className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
                     >
                       First Name
                     </label>
@@ -184,7 +184,7 @@ const Profile = () => {
                   <div className="w-full">
                     <label
                       htmlFor="lastName"
-                      className="block mb-2 text-start w-auto text-sm font-medium text-gray-300"
+                      className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
                     >
                       Last Name
                     </label>
@@ -203,7 +203,7 @@ const Profile = () => {
                   <div className="mr-5 w-full">
                     <label
                       htmlFor="username"
-                      className="block mb-2 text-start text-sm font-medium text-gray-300"
+                      className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
                     >
                       Username
                     </label>
@@ -219,7 +219,7 @@ const Profile = () => {
                   <div className=" w-full">
                     <label
                       htmlFor="telephone"
-                      className="block mb-2 text-start text-sm font-medium text-gray-300"
+                      className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
                     >
                       Telephone
                     </label>
@@ -239,7 +239,7 @@ const Profile = () => {
                     <div className="mb-5">
                       <label
                         htmlFor="email"
-                        className="block mb-2 text-start text-sm font-medium text-gray-300"
+                        className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
                       >
                         Email
                       </label>
@@ -248,19 +248,19 @@ const Profile = () => {
                         name="floating_email"
                         id="floating_email"
                         placeholder={email}
-                        className="input-form focus:bg-neutral-700 block  w-full text-sm rounded-lg border text-gray-400 focus:outline-none bg-secondary border-primary placeholder-gray-400"
+                        className="input-form focus:bg-neutral-700 block  w-full text-base rounded-lg border text-gray-400 focus:outline-none bg-secondary border-primary placeholder-gray-400"
                         disabled
                       />
                     </div>
                     <div className="w-full">
                       <label
-                        className="block mb-2 text-start text-sm font-medium text-gray-300"
+                        className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
                         for="user_avatar"
                       >
                         Upload an image
                       </label>
                       <input
-                        className="block w-full text-sm rounded-lg border  text-gray-400 focus:outline-none bg-secondary border-primary placeholder-gray-400"
+                        className="block w-full text-base rounded-lg border  text-gray-400 focus:outline-none bg-secondary border-primary placeholder-gray-400"
                         aria-describedby="user_avatar_help"
                         id="user_avatar"
                         type="file"
@@ -273,7 +273,7 @@ const Profile = () => {
                   <div className="w-full">
                     <label
                       htmlFor="address"
-                      className="block mb-2 text-sm font-medium text-gray-300"
+                      className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
                     >
                       Address
                     </label>
@@ -282,7 +282,7 @@ const Profile = () => {
                       name="floating_address"
                       id="floating_address"
                       placeholder={address}
-                      className="input-form p-4 h-[105px] bg-secondary focus:bg-neutral-700 block  w-full text-sm rounded-lg border  text-gray-400 focus:outline-none border-primary placeholder-gray-400"
+                      className="input-form p-4 h-[115px] bg-secondary focus:bg-neutral-700 block  w-full text-base rounded-lg border  text-gray-400 focus:outline-none border-primary placeholder-gray-400"
                       onChange={(e) => setAddress(e.target.value)}
                     />
                   </div>
