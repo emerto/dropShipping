@@ -10,11 +10,32 @@ import {
 
 const AddProductPopup = () => {
   const products = [
-    { key: 1, text: "Product 1", value: 1 },
-    { key: 2, text: "Product 2", value: 2 },
-    { key: 3, text: "Product 3", value: 3 },
-    { key: 4, text: "Product 4", value: 4 },
-    { key: 5, text: "Product 5", value: 5 },
+    {
+      key: 1,
+      text: "Mobile",
+      value: 1,
+      content: <div className="bg-gray-800 w-full h-20">adasdas</div>,
+    },
+    {
+      key: 2,
+      text: "Tablet",
+      value: 2,
+      content: (
+        <Header
+          icon="tablet"
+          content="Tablet"
+          subheader="The size in the middle"
+        />
+      ),
+    },
+    {
+      key: 3,
+      text: "Desktop",
+      value: 3,
+      content: (
+        <Header icon="desktop" content="Desktop" subheader="The largest size" />
+      ),
+    },
   ];
   const [Show, setShow] = useState(false);
   return (
@@ -23,6 +44,7 @@ const AddProductPopup = () => {
       onOpen={() => setShow(true)}
       open={Show}
       trigger={<button className="btn-primary text-xl">Add Product</button>}
+      style={{ backgroundColor: "1A1A1A" }}
     >
       <Modal.Header>Add product</Modal.Header>
       <Modal.Content>
@@ -66,7 +88,6 @@ const AddProductPopup = () => {
               search
               selection
               options={products}
-              style={{ backgroundColor: "#1A1A1A", color: "white" }}
             />
           </div>
         </form>

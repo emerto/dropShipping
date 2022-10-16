@@ -14,3 +14,15 @@
     @apply w-[120px] text-black bg-primary hover:bg-primary/90 font-medium transition-all duration-200 ease-in-out rounded-lg text-sm px-5 py-2.5 text-center;
   }
 }
+
+.ui.dropdown .menu {
+  background-color: #1A1A1A !important;
+  border-color: #FF9000 !important;
+}
+.ui.dropdown{
+  background-color: #1A1A1A !important;
+  border-color: #FF9000 !important;
+}
+.ui.modal {
+  background-color: #1A1A1A !important;
+}
