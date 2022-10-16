@@ -7,43 +7,59 @@ import {
   Input,
   Dropdown,
 } from "semantic-ui-react";
+import supabase from "../config/supaBaseClient";
 
 const AddProductPopup = () => {
-  const products = [
-    {
-      key: 1,
-      text: "Mobile",
-      value: 1,
-      content: <div className="bg-gray-800 w-full h-20">adasdas</div>,
-    },
-    {
-      key: 2,
-      text: "Tablet",
-      value: 2,
+  const [supplierProducts, setSupplierProducts] = useState([]);
+
+  const fetchSupplierProducts = async () => {
+    const { data, error } = await supabase
+      .from("supplier_products")
+      .select("*");
+
+    if (error) {
+      console.log(error);
+    }
+
+    if (data) {
+      setSupplierProducts(data);
+    }
+  };
+
+  const mapToOptions = (product) => {
+    return product.map((product) => ({
+      key: product.id,
+      text: product.name,
+      value: product.id,
       content: (
-        <Header
-          icon="tablet"
-          content="Tablet"
-          subheader="The size in the middle"
-        />
+        <div className="flex text-white">
+          <img className="object-cover h-16 w-[20%]" src={product.image} />
+          <div className="flex items-center">
+            <span className="flex ml-6 text-3xl font-bold">{product.name}</span>
+          </div>
+          <div className="flex items-center">
+            <span className="flex ml-6 text-3xl font-bold">
+              {product.price}$
+            </span>
+          </div>
+        </div>
       ),
-    },
-    {
-      key: 3,
-      text: "Desktop",
-      value: 3,
-      content: (
-        <Header icon="desktop" content="Desktop" subheader="The largest size" />
-      ),
-    },
-  ];
+    }));
+  };
+
+  const productOptions = mapToOptions(supplierProducts);
+
   const [Show, setShow] = useState(false);
   return (
     <Modal
       onClose={() => setShow(false)}
       onOpen={() => setShow(true)}
       open={Show}
-      trigger={<button className="btn-primary text-xl">Add Product</button>}
+      trigger={
+        <button className="btn-primary text-xl" onClick={fetchSupplierProducts}>
+          Add Product
+        </button>
+      }
       style={{ backgroundColor: "1A1A1A" }}
     >
       <Modal.Header style={{ color: "#FFFFFF" }}>Add product</Modal.Header>
@@ -87,7 +103,7 @@ const AddProductPopup = () => {
               fluid
               search
               selection
-              options={products}
+              options={productOptions}
             />
           </div>
         </form>
