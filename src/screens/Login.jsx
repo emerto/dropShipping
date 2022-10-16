@@ -60,7 +60,7 @@ const Login = () => {
         pauseOnHover
       />
       <section className="bg-gray-900">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen h-[100vh] lg:py-0">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-[100vh] base:py-0">
           <Link
             to="/"
             className="flex items-center mb-6 text-2xl font-semibold text-gray-900"
@@ -71,9 +71,9 @@ const Login = () => {
               alt="logo"
             />
           </Link>
-          <div className="w-full bg-secondary rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 border border-primary">
+          <div className="w-full bg-secondary rounded-base shadow md:mt-0 sm:max-w-[400px] xl:p-0 border border-primary">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
+              <h1 className="text-2xl font-bold leading-tight tracking-normal text-white ">
                 Sign in to{" "}
                 <span className="text-black bg-primary p-2 rounded-3xl :">
                   your account
@@ -87,7 +87,7 @@ const Login = () => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-primary"
+                    className="block mb-2 text-base font-medium text-primary"
                   >
                     Your email
                   </label>
@@ -104,7 +104,7 @@ const Login = () => {
                 <div>
                   <label
                     htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-primary"
+                    className="block mb-2 text-base font-medium text-primary"
                   >
                     Password
                   </label>
@@ -117,7 +117,7 @@ const Login = () => {
                     required=""
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <div className="mt-1" onClick={togglePasswordVisiblity}>
+                  <div className="mt-2" onClick={togglePasswordVisiblity}>
                     {showPassword ? (
                       <EyeIcon className="w-[24px] h-[24px] text-primary " />
                     ) : (
@@ -132,7 +132,7 @@ const Login = () => {
                         id="remember"
                         aria-describedby="remember"
                         type="checkbox"
-                        className="w-4 h-4 border  rounded  focus:ring-3 focus:ring-primary-300 bg-gray-700 :border-gray-600 focus:ring-primary-600 ring-offset-gray-800"
+                        className="w-4 h-4 border rounded focus:ring-3 focus:ring-primary-300 bg-gray-700 border-gray-600 focus:ring-primary-600 ring-offset-gray-800"
                         required=""
                       />
                     </div>
@@ -154,11 +154,11 @@ const Login = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full text-black mt-5 bg-primary hover:bg-primary/90 transition-duration-75 ease-in-out focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center"
+                  className="w-full text-black mt-5 bg-primary hover:bg-primary/90 transition-duration-75 ease-in-out focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-xl text-lg px-5 py-1.5 text-center"
                 >
                   Sign in
                 </button>
-                <p className="text-sm font-light text-white">
+                <p className="text-base font-light text-white">
                   Don’t have an account yet?{" "}
                   <Link
                     to="/register"
