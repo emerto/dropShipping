@@ -139,8 +139,8 @@ const Profile = () => {
         pauseOnHover
       />
       <div className="">
-        <div className="flex flex-col items-end w-[85vw] mt-0 px-6 py-8 mx-auto lg:py-0">
-          <div className="w-full rounded-lg shadow border md:mt-0 max-w-[60vw] xl:p-0 bg-secondary border-primary">
+        <div className="flex flex-col items-end w-[95vw] mt-0 px-6 py-8 mx-auto lg:py-0">
+          <div className="w-full h-full rounded-lg shadow border md:mt-0 max-h-[80vh] max-w-[70vw] bg-secondary border-primary">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8 bg-secondary border-primary">
               <h1 className="font-bold leading-tight tracking-tight text-2xl text-white">
                 USER
