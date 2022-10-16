@@ -125,7 +125,6 @@ const Navbar = () => {
                 className="italic text-primary hover:text-primary hamburger:not-italic text-lg flex items-center gap-x-4
                 cursor-pointer"
                 to="/cart"
-                smooth={true}
               >
                 <div
                   className={`flex hamburger:ml-0 ml-0 hamburger:block
