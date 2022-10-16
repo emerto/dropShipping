@@ -23,6 +23,33 @@
   background-color: #1A1A1A !important;
   border-color: #FF9000 !important;
 }
-.ui.modal {
-  background-color: #1A1A1A !important;
+.ui.modal > .header {
+  background-color: #111827 !important;
+  border-top: solid !important;
+  border-left: solid !important;
+  border-right: solid !important;
+  border-top-color: #FF9000 !important;
+  border-left-color: #FF9000 !important;
+  border-right-color: #FF9000 !important;
+  border-width: 1px !important;
+
+}
+.ui.modal > .content {
+  background-color: #111827 !important;
+  border-left: solid !important;
+  border-right: solid !important;
+  border-left-color: #FF9000 !important;
+  border-right-color: #FF9000 !important;
+  border-left-width: 1px !important;
+  border-right-width: 1px !important;
+}
+.ui.modal > .actions {
+  background-color: #111827 !important;
+  border-bottom: solid !important;
+  border-left: solid !important;
+  border-right: solid !important;
+  border-bottom-color: #FF9000 !important;
+  border-left-color: #FF9000 !important;
+  border-right-color: #FF9000 !important;
+  border-width: 1px !important;
 }

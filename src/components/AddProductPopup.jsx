@@ -46,7 +46,7 @@ const AddProductPopup = () => {
       trigger={<button className="btn-primary text-xl">Add Product</button>}
       style={{ backgroundColor: "1A1A1A" }}
     >
-      <Modal.Header>Add product</Modal.Header>
+      <Modal.Header style={{ color: "#FFFFFF" }}>Add product</Modal.Header>
       <Modal.Content>
         <form className="space-y-4 md:space-y-6" action="Submit">
           <div>
@@ -93,7 +93,12 @@ const AddProductPopup = () => {
         </form>
       </Modal.Content>
       <Modal.Actions>
-        <button onClick={() => setShow(false)}>Close</button>
+        <button
+          className="bg-primary text-white rounded-2xl"
+          onClick={() => setShow(false)}
+        >
+          Close
+        </button>
       </Modal.Actions>
     </Modal>
   );
