@@ -128,7 +128,7 @@ const StoreForm = () => {
                 <div className="items-stretch md:flex-row flex-col flex">
                   <div className="mr-2 w-full">
                     <label
-                      for="text"
+                      htmlFor="text"
                       className="block mb-2 md:mt-0 mt-4 text-sm font-medium text-primary"
                     >
                       Store Name

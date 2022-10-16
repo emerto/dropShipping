@@ -124,8 +124,7 @@ const Navbar = () => {
               <NavLink
                 className="italic text-primary hover:text-primary hamburger:not-italic text-lg flex items-center gap-x-4
                 cursor-pointer"
-                to="contact"
-                smooth={true}
+                to="/cart"
               >
                 <div
                   className={`flex hamburger:ml-0 ml-0 hamburger:block

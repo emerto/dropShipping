@@ -28,7 +28,7 @@ const UserSideBar = () => {
           <div className="flex-[6] mt-5 pl-2.5 mb-5">
             <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
               <NavLink
-                className="bg-green-300 md:text-2xl flex text-base"
+                className="bg-green-300 md:text-2xl flex text-2xl"
                 to="/"
                 style={{ color: "inherit", backgroundColor: "inherit" }}
               >
@@ -42,7 +42,7 @@ const UserSideBar = () => {
           <div className="flex-[9] flex">
             <ul className="space-y-2">
               <li>
-                <div className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-base font-normal  rounded-lg text-white hover:bg-gray-700">
+                <div className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-2xl font-normal  rounded-lg text-white hover:bg-gray-700">
                   <span className="p-0 rounded-full ring-gray-500">
                     <ArrowPathIcon className="w-12 h-12" />
                   </span>
@@ -50,7 +50,7 @@ const UserSideBar = () => {
                 </div>
               </li>
               <li>
-                <div className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-base font-normal  rounded-lg text-white hover:bg-gray-700">
+                <div className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-2xl font-normal  rounded-lg text-white hover:bg-gray-700">
                   <span className="p-0 rounded-full ring-gray-500">
                     <ShoppingCartIcon className="w-12 h-12" />
                   </span>
@@ -60,7 +60,7 @@ const UserSideBar = () => {
               <li>
                 <div
                   onClick={handleLogout}
-                  className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-base font-normal  rounded-lg text-white hover:bg-gray-700"
+                  className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-2xl font-normal  rounded-lg text-white hover:bg-gray-700"
                 >
                   <span className="p-0 rounded-full ring-gray-500">
                     <ArrowLeftOnRectangleIcon className="w-12 h-12" />
