@@ -22,7 +22,7 @@ const Register = () => {
       password,
     });
 
-    if (session) {
+    if (user) {
       navigate("/profile");
     }
 

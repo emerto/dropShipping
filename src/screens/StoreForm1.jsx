@@ -22,12 +22,9 @@ const StoreForm1 = () => {
       navigate(`/stores-manage/${data[0].store_name}`, { state: data[0] });
     }
   };
-
   useEffect(() => {
-    if (auth.isDropshipper) {
+    if (auth.isDropShipper) {
       getStoreInfo();
-
-      navigate("/");
     }
   }, []);
 

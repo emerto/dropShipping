@@ -3,19 +3,41 @@ import { useState, useEffect, useContext, createContext } from "react";
 
 const authContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-  const auth = useProvideAuth();
-  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
-};
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(supabase.auth.user());
+  const [isDropShipper, setIsDropShipper] = useState(false);
 
-export const useAuth = () => {
-  return useContext(authContext);
-};
+  useEffect(() => {
+    const getUserProfile = async () => {
+      const sessionUser = supabase.auth.user();
 
-function useProvideAuth() {
-  const [user, setUser] = useState(null);
-  const [userData, setUserData] = useState(null);
-  const [isDropshipper, setIsDropshipper] = useState(false);
+      if (sessionUser) {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", sessionUser.id)
+          .single();
+
+        const { data: dropshipper, error: dropError } = await supabase
+          .from("dropshippers")
+          .select("*")
+          .eq("dropshipper_id", sessionUser.id)
+          .single();
+
+        if (dropshipper) {
+          setIsDropShipper(true);
+        }
+
+        setUser({ ...sessionUser, ...profile });
+      }
+    };
+
+    getUserProfile();
+
+    supabase.auth.onAuthStateChange(() => {
+      getUserProfile();
+    });
+  }, []);
 
   const login = async (email, password) => {
     const { error, user } = await supabase.auth.signIn({ email, password });
@@ -28,78 +50,23 @@ function useProvideAuth() {
   };
 
   const logout = async () => {
-    const { error } = await supabase.auth.signOut();
-
-    if (error) {
-      console.log(error);
-    }
-
+    await supabase.auth.signOut();
     setUser(null);
+    setIsDropShipper(false);
   };
 
-  useEffect(() => {
-    const user = supabase.auth.user();
-    setUser(user);
-
-    const getUserProfile = async () => {
-      if (user) {
-        const { data, error } = await supabase
-          .from("profiles")
-          .select("*")
-          .eq("id", user.id)
-          .single();
-
-        if (error) {
-          console.log(error);
-        }
-
-        setUserData(data);
-      }
-    };
-
-    const isDropShipper = async () => {
-      if (user) {
-        const { data, error } = await supabase
-          .from("dropshippers")
-          .select("*")
-          .eq("dropshipper_id", user.id)
-          .single();
-
-        if (error) {
-          console.log(error);
-        }
-
-        if (data) {
-          setIsDropshipper(true);
-        }
-      }
-    };
-
-    getUserProfile();
-    isDropShipper();
-
-    const auth = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === "SIGNED_IN") {
-        setUser(session.user);
-        getUserProfile();
-        isDropShipper();
-      }
-
-      if (event === "SIGNED_OUT") {
-        setUser(null);
-        setUserData(null);
-        setIsDropshipper(false);
-      }
-    });
-
-    return () => auth.data.unsubscribe();
-  }, []);
-
-  return {
+  const exposed = {
     user,
-    userData,
-    isDropshipper,
+    isDropShipper,
     login,
     logout,
   };
-}
+
+  return (
+    <authContext.Provider value={exposed}>{children}</authContext.Provider>
+  );
+};
+
+export const useAuth = () => useContext(authContext);
+
+export default AuthProvider;

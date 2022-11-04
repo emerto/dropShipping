@@ -74,7 +74,7 @@ const StoreForm = () => {
         navigate("/");
       }
     } catch (err) {
-      toast.error(`${error.message}!`, {
+      toast.error(`${err.message}!`, {
         position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
