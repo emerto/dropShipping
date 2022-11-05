@@ -139,7 +139,7 @@ const AddProductPopup = ({ storeId }) => {
             <div>
               <label
                 htmlFor="productName"
-                className="block mb-2 text-start w-auto text-sm font-medium text-gray-800"
+                className="block mb-2 text-start w-auto text-sm font-medium text-white"
               >
                 Product name
               </label>
@@ -151,9 +151,10 @@ const AddProductPopup = ({ storeId }) => {
                 className="input-form bg-secondary focus:bg-neutral-700"
                 onChange={(e) => setProductName(e.target.value)}
               />
+              <br />
               <label
                 htmlFor="price"
-                className="block mb-2 text-start w-auto text-sm font-medium text-gray-800"
+                className="block mb-2 text-start w-auto text-sm font-medium text-white"
               >
                 Price
               </label>
@@ -165,9 +166,10 @@ const AddProductPopup = ({ storeId }) => {
                 className="input-form bg-secondary focus:bg-neutral-700"
                 onChange={(e) => setPrice(e.target.value)}
               />
+              <br />
               <label
                 htmlFor="product"
-                className="block mb-2 text-start w-auto text-sm font-medium text-gray-800"
+                className="block mb-2 text-start w-auto text-sm font-medium text-white"
               >
                 Product
               </label>
@@ -182,22 +184,19 @@ const AddProductPopup = ({ storeId }) => {
                 }}
               />
             </div>
-            <button
-              className="bg-primary text-white rounded-2xl flex"
-              type="submit"
-            >
-              Submit
-            </button>
+            <div className="space-x-4 flex justify-end">
+              <button className="btn-primary text-xl w-[20%]" type="submit">
+                Submit
+              </button>
+              <button
+                className="btn-primary text-xl w-[20%]"
+                onClick={() => setShow(false)}
+              >
+                Close
+              </button>
+            </div>
           </form>
         </Modal.Content>
-        <Modal.Actions>
-          <button
-            className="bg-primary text-white rounded-2xl"
-            onClick={() => setShow(false)}
-          >
-            Close
-          </button>
-        </Modal.Actions>
       </Modal>
     </>
   );
