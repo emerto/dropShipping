@@ -14,38 +14,33 @@ import "react-toastify/dist/ReactToastify.css";
 
 const AddProductPopup = ({ storeId }) => {
   const [dropValue, setDropValue] = useState(null);
-  const [imageURL, setImageURL] = useState(null);
   const [supplierProducts, setSupplierProducts] = useState([]);
   const [Show, setShow] = useState(false);
   const [productName, setProductName] = useState("");
   const [price, setPrice] = useState("");
 
-  const getProduct = async () => {
-    const { data, error } = await supabase
+  const addProduct = async () => {
+    var imageUrlText;
+    const { data: imageData, error: imageError } = await supabase
       .from("supplier_products")
       .select("image")
-      .eq("id", dropValue);
-    if (error) {
-      console.log(error);
+      .eq("id", dropValue)
+      .single();
+
+    if (imageError) {
+      console.log(imageError);
     }
 
-    if (data) {
-      console.log(data);
-      setImageURL(data[0].image);
+    if (imageData) {
+      imageUrlText = imageData.image;
     }
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    addProduct();
-  };
-  const addProduct = async () => {
-    getProduct();
+
     const { data, error } = await supabase.from("products").insert([
       {
         supplier_product_id: dropValue,
         name: productName,
         price: price,
-        supplier_prod_image: imageURL,
+        supplier_prod_image: imageUrlText,
         store_id: storeId.toString(),
       },
     ]);
@@ -63,6 +58,11 @@ const AddProductPopup = ({ storeId }) => {
     } else {
       console.log(error);
     }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    addProduct();
   };
 
   const fetchSupplierProducts = async () => {
