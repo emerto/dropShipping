@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Header,
@@ -9,8 +9,61 @@ import {
 } from "semantic-ui-react";
 import supabase from "../config/supaBaseClient";
 
-const AddProductPopup = () => {
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const AddProductPopup = ({ storeId }) => {
+  const [dropValue, setDropValue] = useState(null);
+  const [imageURL, setImageURL] = useState(null);
   const [supplierProducts, setSupplierProducts] = useState([]);
+  const [Show, setShow] = useState(false);
+  const [productName, setProductName] = useState("");
+  const [price, setPrice] = useState("");
+
+  const getProduct = async () => {
+    const { data, error } = await supabase
+      .from("supplier_products")
+      .select("image")
+      .eq("id", dropValue);
+    if (error) {
+      console.log(error);
+    }
+
+    if (data) {
+      console.log(data);
+      setImageURL(data[0].image);
+    }
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    addProduct();
+  };
+  const addProduct = async () => {
+    getProduct();
+    const { data, error } = await supabase.from("products").insert([
+      {
+        supplier_product_id: dropValue,
+        name: productName,
+        price: price,
+        supplier_prod_image: imageURL,
+        store_id: storeId.toString(),
+      },
+    ]);
+    if (data) {
+      toast.success(`Store added successfully!`, {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } else {
+      console.log(error);
+    }
+  };
 
   const fetchSupplierProducts = async () => {
     const { data, error } = await supabase
@@ -39,7 +92,7 @@ const AddProductPopup = () => {
           </div>
           <div className="flex items-center">
             <span className="flex ml-6 text-3xl font-bold">
-              {product.price}$
+              ${product.price}
             </span>
           </div>
         </div>
@@ -49,74 +102,104 @@ const AddProductPopup = () => {
 
   const productOptions = mapToOptions(supplierProducts);
 
-  const [Show, setShow] = useState(false);
   return (
-    <Modal
-      onClose={() => setShow(false)}
-      onOpen={() => setShow(true)}
-      open={Show}
-      trigger={
-        <button className="btn-primary text-xl" onClick={fetchSupplierProducts}>
-          Add Product
-        </button>
-      }
-      style={{ backgroundColor: "1A1A1A" }}
-    >
-      <Modal.Header style={{ color: "#FFFFFF" }}>Add product</Modal.Header>
-      <Modal.Content>
-        <form className="space-y-4 md:space-y-6" action="Submit">
-          <div>
-            <label
-              htmlFor="productName"
-              className="block mb-2 text-start w-auto text-sm font-medium text-gray-800"
+    <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <Modal
+        onClose={() => setShow(false)}
+        onOpen={() => setShow(true)}
+        open={Show}
+        trigger={
+          <button
+            className="btn-primary text-xl"
+            onClick={fetchSupplierProducts}
+          >
+            Add Product
+          </button>
+        }
+        style={{ backgroundColor: "1A1A1A" }}
+      >
+        <Modal.Header style={{ color: "#FFFFFF" }}>Add product</Modal.Header>
+        <Modal.Content>
+          <form
+            className="space-y-4 md:space-y-6"
+            action="Submit"
+            onSubmit={handleSubmit}
+          >
+            <div>
+              <label
+                htmlFor="productName"
+                className="block mb-2 text-start w-auto text-sm font-medium text-gray-800"
+              >
+                Product name
+              </label>
+              <input
+                type="productName"
+                name="fProductName"
+                id="fProductName"
+                placeholder="Enter product name"
+                className="input-form bg-secondary focus:bg-neutral-700"
+                onChange={(e) => setProductName(e.target.value)}
+              />
+              <label
+                htmlFor="price"
+                className="block mb-2 text-start w-auto text-sm font-medium text-gray-800"
+              >
+                Price
+              </label>
+              <input
+                type="price"
+                name="fPrice"
+                id="fPrice"
+                placeholder="Enter price"
+                className="input-form bg-secondary focus:bg-neutral-700"
+                onChange={(e) => setPrice(e.target.value)}
+              />
+              <label
+                htmlFor="product"
+                className="block mb-2 text-start w-auto text-sm font-medium text-gray-800"
+              >
+                Product
+              </label>
+              <Dropdown
+                placeholder="Select product"
+                fluid
+                search
+                selection
+                options={productOptions}
+                onChange={(e, { value }) => {
+                  setDropValue(value);
+                }}
+              />
+            </div>
+            <button
+              className="bg-primary text-white rounded-2xl flex"
+              type="submit"
             >
-              Product name
-            </label>
-            <input
-              type="productName"
-              name="fProductName"
-              id="fProductName"
-              placeholder="Enter product name"
-              className="input-form bg-secondary focus:bg-neutral-700"
-            />
-            <label
-              htmlFor="price"
-              className="block mb-2 text-start w-auto text-sm font-medium text-gray-800"
-            >
-              Price
-            </label>
-            <input
-              type="price"
-              name="fPrice"
-              id="fPrice"
-              placeholder="Enter price"
-              className="input-form bg-secondary focus:bg-neutral-700"
-            />
-            <label
-              htmlFor="product"
-              className="block mb-2 text-start w-auto text-sm font-medium text-gray-800"
-            >
-              Product
-            </label>
-            <Dropdown
-              placeholder="Select product"
-              fluid
-              search
-              selection
-              options={productOptions}
-            />
-          </div>
-        </form>
-      </Modal.Content>
-      <Modal.Actions>
-        <button
-          className="bg-primary text-white rounded-2xl"
-          onClick={() => setShow(false)}
-        >
-          Close
-        </button>
-      </Modal.Actions>
-    </Modal>
+              Submit
+            </button>
+          </form>
+        </Modal.Content>
+        <Modal.Actions>
+          <button
+            className="bg-primary text-white rounded-2xl"
+            onClick={() => setShow(false)}
+          >
+            Close
+          </button>
+        </Modal.Actions>
+      </Modal>
+    </>
   );
 };
 

@@ -14,8 +14,7 @@ const ManageStore = () => {
   const location = useLocation();
   const storeInfo = location.state;
 
-  const { owner, store_name, store_description, store_image } = storeInfo;
-
+  const { id, owner, store_name, store_description, store_image } = storeInfo;
   const user = supabase.auth.user();
   const navigate = useNavigate();
 
@@ -32,7 +31,7 @@ const ManageStore = () => {
   const ProductPopup = () => {
     return (
       <div className="mt-5">
-        <AddProductPopup />
+        <AddProductPopup storeId={id} />
       </div>
     );
   };
