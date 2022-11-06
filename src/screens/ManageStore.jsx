@@ -83,7 +83,6 @@ const ManageStore = () => {
                 <TestProdCard product={product} key={product.id} />
               ))
             ) : null}
-            <ProductCard />
           </div>
         </div>
       </div>
