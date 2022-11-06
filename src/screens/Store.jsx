@@ -9,7 +9,7 @@ const Store = () => {
   // const { store_name, store_address, store_phone } = state;
 
   return (
-    <div className="bg-slate-900  mt-[95px]">
+    <div className="bg-slate-900 mt-[95px]">
       <div>
         <Navbar />
         <div className="text-primary  flex bg-slate-900  justify-center w-full  text-4xl font-semibold">

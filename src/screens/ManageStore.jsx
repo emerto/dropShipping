@@ -37,7 +37,7 @@ const ManageStore = () => {
   };
 
   return (
-    <div className="flex flex-col bg-gray-900">
+    <div className="flex flex-col h-[100vh] bg-gray-900">
       <Navbar />
       <div className="flex flex-col mt-[130px] ml-[100px] max-w-[90%]">
         <div className="flex flex-col justify-start ">
