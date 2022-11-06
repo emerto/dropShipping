@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import TestProdCard from "../components/TestProdCard";
 import AddProductPopup from "../components/AddProductPopup";
+import ProductCard from "../components/ProductCard";
 
 const ManageStore = () => {
   const [products, setProducts] = useState([]);
@@ -59,26 +60,31 @@ const ManageStore = () => {
   }, []);
 
   return (
-    <div className="flex flex-col bg-gray-900">
-      <Navbar />
-      <div className="flex flex-col mt-[130px] ml-[100px] max-w-[90%]">
-        <div className="flex flex-col">
-          <div className="flex justify-between">
-            <h1 className="text-5xl text-white tracking-wider">{store_name}</h1>
-            <div className="mt-5 w-[200px]">
-              <AddProductPopup storeId={id} />
+    <div className="h-[100vh] bg-slate-900">
+      <div className="flex flex-col bg-gray-900">
+        <Navbar />
+        <div className="flex flex-col mt-[130px] ml-[100px] max-w-[90%]">
+          <div className="flex flex-col">
+            <div className="flex justify-between">
+              <h1 className="text-5xl text-white tracking-wider">
+                {store_name}
+              </h1>
+              <div className="mt-5 w-[200px]">
+                <AddProductPopup storeId={id} />
+              </div>
             </div>
+            <div className="w-full h-1 bg-primary rounded-xl mt-3" />
           </div>
-          <div className="w-full h-1 bg-primary rounded-xl mt-3" />
-        </div>
-        <div className="flex justify-start flex-wrap gap-[20px] mt-5">
-          {loading ? (
-            <h1 className="text-white text-3xl">Loading...</h1>
-          ) : products.length > 0 ? (
-            products.map((product) => (
-              <TestProdCard product={product} key={product.id} />
-            ))
-          ) : null}
+          <div className="flex justify-start flex-wrap gap-[20px] mt-5">
+            {loading ? (
+              <h1 className="text-white text-3xl">Loading...</h1>
+            ) : products.length > 0 ? (
+              products.map((product) => (
+                <TestProdCard product={product} key={product.id} />
+              ))
+            ) : null}
+            <ProductCard />
+          </div>
         </div>
       </div>
     </div>
