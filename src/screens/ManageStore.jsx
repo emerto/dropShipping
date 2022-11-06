@@ -39,11 +39,10 @@ const ManageStore = () => {
       if (data) {
         setProducts(data);
       }
-
-      setLoading(false);
     } catch (err) {
       console.log(err);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -64,9 +63,9 @@ const ManageStore = () => {
     getProducts();
   }, []);
 
-  useEffect(() => {
-    getProducts();
-  }, [products]);
+  // useEffect(() => {
+  //   getProducts();
+  // }, [products.length]);
 
   useEffect(() => {
     if (!user) {

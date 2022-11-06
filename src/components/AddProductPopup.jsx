@@ -45,7 +45,7 @@ const AddProductPopup = ({ storeId }) => {
       },
     ]);
     if (data) {
-      toast.success(`Store added successfully!`, {
+      toast.success(`Product added successfully!`, {
         position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
