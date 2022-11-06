@@ -14,10 +14,6 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 const Login = () => {
   const auth = useAuth();
 
-  useEffect(() => {
-    console.log(auth);
-  }, []);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
