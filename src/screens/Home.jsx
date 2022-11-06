@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
     <>
-      <div className=" bg-gray-900 h-[100vh]">
+      <div className=" bg-gray-900">
         <Navbar />
         <StoreWithProducts />
         <StoreWithProducts />
