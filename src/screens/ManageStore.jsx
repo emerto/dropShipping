@@ -101,7 +101,16 @@ const ManageStore = () => {
               products.map((product) => (
                 <TestProdCard product={product} key={product.id} />
               ))
-            ) : null}
+            ) : (
+              <div className="flex items-center justify-center w-full ">
+                <div className="flex flex-col items-center justify-center">
+                  <div ref={animRef} className="w-[350px] h-[350px]" />
+                  <h1 className="text-white text-3xl">
+                    No products found in this store
+                  </h1>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
