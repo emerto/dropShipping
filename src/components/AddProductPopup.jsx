@@ -63,6 +63,7 @@ const AddProductPopup = ({ storeId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     addProduct();
+    setShow(false);
   };
 
   const fetchSupplierProducts = async () => {

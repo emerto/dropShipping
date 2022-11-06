@@ -16,7 +16,7 @@
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
@@ -24,42 +24,40 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  border: 1px solid #FF9000;
-  -webkit-text-fill-color: #9AA1AD;
-  -webkit-box-shadow: 0 0 0px 1000px #1B1B1B inset;
+  border: 1px solid #ff9000;
+  -webkit-text-fill-color: #9aa1ad;
+  -webkit-box-shadow: 0 0 0px 1000px #1b1b1b inset;
   transition: background-color 5000s ease-in-out 0s;
 }
 
 .ui.dropdown .menu {
-  background-color: #1A1A1A !important;
-  border-color: #FF9000 !important;
+  background-color: #1a1a1a !important;
+  border-color: #ff9000 !important;
 }
-.ui.dropdown{
-  background-color: #1A1A1A !important;
-  border-color: #FF9000 !important;
-  color: #A5A3AF !important;
+.ui.dropdown {
+  background-color: #1a1a1a !important;
+  border-color: #ff9000 !important;
+  color: #a5a3af !important;
 }
 .ui.modal > .header {
   background-color: #111827 !important;
   border-top: solid !important;
   border-left: solid !important;
   border-right: solid !important;
-  border-top-color: #FF9000 !important;
-  border-left-color: #FF9000 !important;
-  border-right-color: #FF9000 !important;
+  border-top-color: #ff9000 !important;
+  border-left-color: #ff9000 !important;
+  border-right-color: #ff9000 !important;
   border-width: 1px !important;
-
 }
 .ui.modal > .content {
   background-color: #111827 !important;
   border-left: solid !important;
   border-right: solid !important;
   border-bottom: solid !important;
-  border-left-color: #FF9000 !important;
-  border-right-color: #FF9000 !important;
-  border-bottom-color: #FF9000 !important;
+  border-left-color: #ff9000 !important;
+  border-right-color: #ff9000 !important;
+  border-bottom-color: #ff9000 !important;
   border-left-width: 1px !important;
   border-right-width: 1px !important;
   border-bottom-width: 1px !important;
 }
-
