@@ -7,7 +7,7 @@ import {
   Input,
   Dropdown,
 } from "semantic-ui-react";
-import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 const AddProductPopup = () => {
   const [Show, setShow] = useState(false);
