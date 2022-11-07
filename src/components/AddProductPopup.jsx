@@ -8,6 +8,7 @@ import {
   Dropdown,
 } from "semantic-ui-react";
 import supabase from "../config/supaBaseClient";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -132,7 +133,19 @@ const AddProductPopup = ({ storeId }) => {
         }
         style={{ backgroundColor: "1A1A1A" }}
       >
-        <Modal.Header style={{ color: "#FFFFFF" }}>Add product</Modal.Header>
+        <Modal.Header style={{ color: "#FFFFFF" }}>
+          <div className="flex justify-between">
+            Add product{" "}
+            <div className="flex bg-primary p-1 rounded-lg">
+              <button
+                className="flex text-white w-7 h-7"
+                onClick={() => setShow(false)}
+              >
+                <XMarkIcon className="text-white" />
+              </button>
+            </div>
+          </div>
+        </Modal.Header>
         <Modal.Content>
           <form
             className="space-y-4 md:space-y-6"
@@ -190,12 +203,6 @@ const AddProductPopup = ({ storeId }) => {
             <div className="space-x-4 flex justify-end">
               <button className="btn-primary text-xl w-[20%]" type="submit">
                 Submit
-              </button>
-              <button
-                className="btn-primary text-xl w-[20%]"
-                onClick={() => setShow(false)}
-              >
-                Close
               </button>
             </div>
           </form>
