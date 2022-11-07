@@ -87,15 +87,17 @@ const AddProductPopup = ({ storeId }) => {
       text: product.name,
       value: product.id,
       content: (
-        <div className="flex text-white">
-          <img className="object-cover h-16 w-[20%]" src={product.image} />
-          <div className="flex items-center">
+        <div className="flex items-center text-slate-300">
+          <img
+            className="object-cover h-[100px] w-[100px]"
+            src={product.image}
+          />
+          <div className="ml-3 min-w-[200px] justify-center flex items-center ">
             <span className="flex ml-6 text-3xl font-bold">{product.name}</span>
           </div>
-          <div className="flex items-center">
-            <span className="flex ml-6 text-3xl font-bold">
-              ${product.price}
-            </span>
+          <div className=" w-full ml-6 flex justify-around ">
+            <span className="text-3xl font-bold ">${product.price}</span>
+            <span className="text-3xl font-bold ">Stock: {product.stock}</span>
           </div>
         </div>
       ),

@@ -6,9 +6,9 @@ import EditProductPop from "./EditProductPop";
 
 const TestProdCard = ({ product }) => {
   return (
-    <section className="bg-gray-900 flex justify-center">
+    <section className="bg-slate-900 flex justify-center">
       <div className="flex flex-row ml-5 w-[250px]">
-        <div className="border-2 flex flex-col gap-1 py-3 px-4 mx-auto w-[800px] border-gray-900 ">
+        <div className="border-2 flex flex-col gap-1 py-3 px-4 mx-auto w-[800px] border-slate-900">
           <div className="flex justify-end">
             <div className="flex justify-end">
               <EditProductPop />
