@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import Logo from "../assets/kazik.png";
@@ -7,12 +8,12 @@ import {
   ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/solid";
 
-import React from "react";
-
 import { useAuth } from "../context/AuthContext";
+import supabase from "../config/supaBaseClient";
 import { useNavigate } from "react-router-dom";
 
 const UserSideBar = () => {
+  const [storeInfo, setStoreInfo] = useState(null);
   const auth = useAuth();
   const navigate = useNavigate();
 
@@ -20,6 +21,28 @@ const UserSideBar = () => {
     auth.logout();
     navigate("/");
   };
+
+  const getStoreInfo = async () => {
+    const { data: storeInfo, error } = await supabase
+      .from("stores")
+      .select("*")
+      .eq("owner", auth.user.id)
+      .single();
+
+    if (storeInfo) {
+      setStoreInfo(storeInfo);
+    }
+  };
+
+  const navToStore = () => {
+    navigate(`/store/${storeInfo.store_name}`, { state: storeInfo });
+  };
+
+  useEffect(() => {
+    if (auth.isDropShipper) {
+      getStoreInfo();
+    }
+  }, []);
 
   return (
     <div className="h-screen flex fixed">
@@ -49,14 +72,16 @@ const UserSideBar = () => {
                   <span className="ml-3">Orders</span>
                 </div>
               </li>
-              <li>
-                <div className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-2xl font-normal  rounded-lg text-white hover:bg-gray-700">
-                  <span className="p-0 rounded-full ring-gray-500">
-                    <ShoppingCartIcon className="w-12 h-12" />
-                  </span>
-                  <span className="ml-3">Store</span>
-                </div>
-              </li>
+              {auth.isDropShipper ? (
+                <li onClick={navToStore}>
+                  <div className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-2xl font-normal  rounded-lg text-white hover:bg-gray-700">
+                    <span className="p-0 rounded-full ring-gray-500">
+                      <ShoppingCartIcon className="w-12 h-12" />
+                    </span>
+                    <span className="ml-3">Store</span>
+                  </div>
+                </li>
+              ) : null}
               <li>
                 <div
                   onClick={handleLogout}
