@@ -39,13 +39,18 @@ const ProductCard = () => {
               <span className="absolute inset-0 flex items-center justify-center w-full h-full text-primary duration-300 -translate-x-full bg-gray-900 group-hover:translate-x-0 ease">
                 <NavLink to="../cart" className="flex flex-row">
                   <ShoppingCartIcon className="h-[25px] w-[50px] text-primary " />
-                  <p>Add To Cart</p> {/*BURAYA FİYATI KOYMAK LAZIM*/}
+                  <p className="text-white hover:text-primary duration-500">
+                    Add To Cart
+                  </p>{" "}
+                  {/*BURAYA FİYATI KOYMAK LAZIM*/}
                 </NavLink>
               </span>
               <span className="absolute flex flex-row items-center justify-center w-full h-full  transition-all duration-300 transform group-hover:translate-x-full ease">
                 <p>12$</p>
               </span>
-              <span className="relative invisible">Add To Card</span>
+              <span className="relative invisible text-primary">
+                Add To Card
+              </span>
             </div>
 
             {/* <button className=" bg-gray-800  rounded-2xl flex justify-center py-3 h-fill w-fill hover:bg-gray-700  ">

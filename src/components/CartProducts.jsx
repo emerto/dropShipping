@@ -25,11 +25,15 @@ const CartProducts = () => {
             className="text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center
            bg-blue-600 hover:bg-blue-700 focus:ring-blue-800 border border-blue-200"
           >
-            <button onClick={() => setNumber((prevNumber) => prevNumber + 1)}>
+            <button
+              className="text-3xl -mb-4 pl-2 pr-2 "
+              onClick={() => setNumber((prevNumber) => prevNumber + 1)}
+            >
               +
             </button>
             <h1>{number}</h1>
             <button
+              className="text-3xl -mb-4 pl-2 pr-2"
               onClick={() =>
                 number > 0
                   ? setNumber((prevNumber) => prevNumber - 1)

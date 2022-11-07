@@ -5,14 +5,14 @@ import { NavLink } from "react-router-dom";
 const Cart = () => {
   const isEmpty = false;
   return (
-    <div className="bg-black mt-24">
+    <div className="bg-slate-900 h-[100vh] mt-24">
       <div>
         <Navbar />
       </div>
-      <div className="text-primary ml-8 text-4xl font-semibold flex">
+      <div className="text-primary pl-8 bg-black text-4xl font-semibold flex">
         <h1>Your Products</h1>
         {isEmpty ? null : (
-          <button className="text-black bg-primary hover:bg-orange-500 focus:ring-4 focus:outline-none font-medium rounded-3xl text-sm px-5 py-2.5 text-center border border-white">
+          <button className="text-black bg-primary hover:bg-orange-500 focus:ring-4 ml-2 focus:outline-none font-medium rounded-3xl text-sm px-5 py-1 text-center border border-white">
             Buy
           </button>
         )}
@@ -33,7 +33,7 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className="grid h-full grid-cols-4 bg-gray-900">
+        <div className="grid  grid-cols-4 bg-gray-900">
           <CartProducts />
         </div>
       )}

@@ -7,6 +7,7 @@ import {
   Input,
   Dropdown,
 } from "semantic-ui-react";
+import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid";
 
 const AddProductPopup = () => {
   const [Show, setShow] = useState(false);
@@ -22,26 +23,28 @@ const AddProductPopup = () => {
       }
     >
       <Modal.Header>
-        <div>
-          Edit Product
+        <div className="text-white flex justify-between">
+          <span className="mt-1 text-2xl">Edit Product</span>
           <Modal.Actions>
             <div className="flex justify-end">
-              <div className="flex border py-2   rounded-xl bg-primary">
-                <button className="flex " onClick={() => setShow(false)}>
-                  Close
+              <div className="flex bg-primary p-1 rounded-lg">
+                <button
+                  className="flex text-white w-7 h-7"
+                  onClick={() => setShow(false)}
+                >
+                  <XMarkIcon className="text-white" />
                 </button>
               </div>
             </div>
           </Modal.Actions>
         </div>
       </Modal.Header>
-
       <Modal.Content>
         <form className="space-y-4 md:space-y-6" action="Submit">
-          <div>
+          <div className=" bg-slate-900">
             <label
               htmlFor="productName"
-              className="block mb-2 text-start w-auto text-sm font-medium text-gray-800"
+              className="block mb-2 text-start w-auto h-full text-sm font-medium text-white"
             >
               Product name
             </label>
@@ -54,7 +57,7 @@ const AddProductPopup = () => {
             />
             <label
               htmlFor="price"
-              className="block mb-2 text-start w-auto text-sm font-medium text-gray-800"
+              className="block mb-2 text-start w-auto text-sm font-medium text-white mt-2"
             >
               Price
             </label>
@@ -67,8 +70,14 @@ const AddProductPopup = () => {
             />
           </div>
         </form>
+        <Modal.Actions>
+          <div className="flex justify-end">
+            <div className="flex bg-primary p-3 rounded-lg">
+              <button className="flex text-white">Save Changes</button>
+            </div>
+          </div>
+        </Modal.Actions>
       </Modal.Content>
-      <Modal.Actions></Modal.Actions>
     </Modal>
   );
 };

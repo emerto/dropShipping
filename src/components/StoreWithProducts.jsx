@@ -6,7 +6,7 @@ const StoreWithProducts = () => {
   return (
     <div>
       <section className="bg-gray-900 flex justify-center">
-        <div className="flex flex-row mt-[150px] w-fill">
+        <div className="flex flex-row mt-16 w-fill">
           <div className="border-2 border-mx flex flex-col gap-5 py-1  mx-auto w-auto   ">
             <div className="flex-row flex ">
               <div className="flex-col border-r-2 flex w-[230px] px-2">

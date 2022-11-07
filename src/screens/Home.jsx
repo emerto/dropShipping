@@ -8,10 +8,12 @@ import { useAuth } from "../context/AuthContext";
 const Home = () => {
   return (
     <>
-      <div className=" bg-gray-900">
+      <div className="h-[100vh] bg-slate-900">
         <Navbar />
-        <StoreWithProducts />
-        <StoreWithProducts />
+        <div className="mt-24">
+          <StoreWithProducts />
+          <StoreWithProducts />
+        </div>
       </div>
     </>
   );
