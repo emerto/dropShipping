@@ -10,14 +10,13 @@ const Cart = () => {
         <Navbar />
       </div>
       <div className="text-primary pl-8 bg-black text-4xl font-semibold flex">
-        <h1>Your Products</h1>
+        <h1 className="">Your Products</h1>
         {isEmpty ? null : (
-          <button className="text-black bg-primary hover:bg-orange-500 focus:ring-4 ml-2 focus:outline-none font-medium rounded-3xl text-sm px-5 py-1 text-center border border-white">
+          <button className="text-black bg-primary hover:bg-orange-500 focus:ring-4 ml-2 focus:outline-none font-medium rounded-3xl text-sm px-5 py-2 text-center border border-white">
             Buy
           </button>
         )}
       </div>
-      <br />
       {isEmpty ? (
         <div>
           <div className="flex">
@@ -33,8 +32,19 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className="grid  grid-cols-4 bg-gray-900">
-          <CartProducts />
+        <div className="flex justify-center bg-slate-900 pb-36 flex-wrap gap-[20px] mt-5">
+          <div className="mt-10 w-[70vw]  h-full bg-gray-900">
+            <div className="flex justify-center">
+              <div className="flex flex-wrap justify-center mt-10 mb-10 h-full gap-10">
+                <CartProducts />
+                <CartProducts />
+                <CartProducts />
+                <CartProducts />
+                <CartProducts />
+                <CartProducts />
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
