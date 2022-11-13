@@ -8,12 +8,15 @@ import "react-toastify/dist/ReactToastify.css";
 
 import supabase from "../config/supaBaseClient";
 
-import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import { EyeIcon, EyeSlashIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Modal } from "semantic-ui-react";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -51,6 +54,20 @@ const Register = () => {
       return;
     }
 
+    if (!checked) {
+      toast.error("Please accept the terms and conditions!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return;
+    }
+
     const { user, session, error } = await supabase.auth.signUp({
       email,
       password,
@@ -61,7 +78,20 @@ const Register = () => {
     }
 
     if (error) {
-      alert(error.message);
+      toast.error(
+        { error },
+        {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        }
+      );
+      return;
     }
   };
 
@@ -158,21 +188,84 @@ const Register = () => {
                       type="checkbox"
                       className="w-4 h-4 border  rounded focus:ring-3 focus:ring-primary-300 bg-gray-700 border-gray-600 focus:ring-primary-600 ring-offset-gray-800"
                       required=""
-                      onChange={(e) => console.log(e.target.checked)}
+                      onChange={(e) => setChecked(e.target.checked)}
                     />
                   </div>
                   <div className="ml-3 text-base">
                     <label htmlFor="terms" className="font-light text-white">
                       I accept the{" "}
                       <a
-                        className="font-medium text-primary-600 hover:underline text-primary hover:text-primary/90"
-                        href="#"
+                        className="font-medium text-primary-600 hover:underline text-primary hover:text-primary/90 cursor-pointer"
+                        onClick={() => setShowModal(true)}
                       >
                         Terms and Conditions
                       </a>
                     </label>
                   </div>
                 </div>
+                <Modal
+                  onClose={() => setShowModal(false)}
+                  onOpen={() => setShowModal(true)}
+                  open={showModal}
+                >
+                  <Modal.Header style={{ color: "#FFFFFF" }}>
+                    <div className="flex justify-between">
+                      <h1>Terms and Conditions</h1>
+                      <div className="flex h-[30px] bg-primary p-1 rounded-lg hover:bg-primary/90">
+                        <button
+                          className="flex text-white w-7 h-7"
+                          onClick={() => setShowModal(false)}
+                        >
+                          <XMarkIcon className="text-white" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="w-full mt-3 h-1 bg-primary rounded-xl " />
+                  </Modal.Header>
+                  <Modal.Content>
+                    <h2 className="text-primary">Definitely not a scam</h2>
+                    <p className="text-white text-base text-justify">
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                      Qui iure error expedita omnis? Fuga magni nihil aliquid
+                      deserunt repellat neque obcaecati, enim numquam veniam
+                      odio blanditiis, porro eum quod earum. Lorem ipsum dolor,
+                      sit amet consectetur adipisicing elit. Corrupti amet magni
+                      dignissimos laboriosam sapiente debitis pariatur dolore
+                      quia, nihil doloremque laudantium repellendus voluptates
+                      possimus facilis delectus, aperiam alias, dolorem ut.
+                    </p>
+                    <h2 className="text-primary">This is Elon Ma</h2>
+                    <p className="text-white text-base text-justify">
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Atque, itaque. Numquam dicta ipsa provident tempora
+                      exercitationem at natus, temporibus molestiae reiciendis
+                      modi, et ducimus sed ad odit eos explicabo quis. Lorem
+                      ipsum dolor sit amet consectetur adipisicing elit. Animi
+                      distinctio deserunt blanditiis nostrum totam velit
+                      excepturi, ad quisquam facere quas adipisci reprehenderit,
+                      quasi porro minus maxime error repudiandae iste aliquam.
+                    </p>
+                    <h2 className="text-primary">
+                      Togg otomobilimiz yerli ve milli
+                    </h2>
+                    <p className="text-white text-base text-justify">
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Atque, itaque. Numquam dicta ipsa provident tempora
+                      exercitationem at natus, temporibus molestiae reiciendis
+                      modi, et ducimus sed ad odit eos explicabo quis.
+                    </p>
+                    <h2 className="text-primary">Disclaimer</h2>
+                    <p className="text-white text-lg text-justify ">
+                      This is a project for{" "}
+                      <span className="text-primary text-2xl">
+                        {" "}
+                        CMPE 341 course
+                      </span>
+                      . We do not take any responsibility for any damages caused
+                      by this project.
+                    </p>
+                  </Modal.Content>
+                </Modal>
                 <button type="submit" className="btn-primary">
                   Create an account
                 </button>
