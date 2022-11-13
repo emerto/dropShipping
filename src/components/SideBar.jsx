@@ -62,8 +62,8 @@ const UserSideBar = () => {
               </NavLink>
             </span>
           </div>
-          <div className="flex-[9] flex">
-            <ul className="space-y-2">
+          <div className="flex-[9] flex ">
+            <ul className="space-y-2 w-full">
               <li>
                 <div className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-2xl font-normal  rounded-lg text-white hover:bg-gray-700">
                   <span className="p-0 rounded-full ring-gray-500">
@@ -78,7 +78,7 @@ const UserSideBar = () => {
                     <span className="p-0 rounded-full ring-gray-500">
                       <ShoppingCartIcon className="w-12 h-12" />
                     </span>
-                    <span className="ml-3">Store</span>
+                    <span className="ml-3">View Store</span>
                   </div>
                 </li>
               ) : null}
