@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
+import { Item } from "semantic-ui-react";
 import { CartContext } from "../context/CartContext";
 
 const CartProducts = () => {
@@ -8,7 +9,9 @@ const CartProducts = () => {
   const dispatch = GlobalState.dispatch;
   const state = GlobalState.state;
   console.log(GlobalState.state);
-
+  const total = state.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
   return (
     <div className="">
       {state.map((product) => {
@@ -25,7 +28,7 @@ const CartProducts = () => {
               </h5>
               <div className="flex justify-between items-center">
                 <span className="text-3xl font-bold text-white">
-                  ${product.price * number}
+                  ${product.price * product.quantity}
                 </span>
                 <div
                   className="text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center
@@ -33,27 +36,45 @@ const CartProducts = () => {
                 >
                   <button
                     className="text-3xl -mb-4 pl-2 pr-2 "
-                    onClick={() => setNumber((prevNumber) => prevNumber + 1)}
+                    onClick={() =>
+                      dispatch({ type: "INCREASE", payload: product })
+                    }
                   >
                     +
                   </button>
-                  <h1>{number}</h1>
+                  <h1>{product.quantity}</h1>
                   <button
                     className="text-3xl -mb-4 pl-2 pr-2"
-                    onClick={() =>
-                      number > 0
-                        ? setNumber((prevNumber) => prevNumber - 1)
-                        : setNumber(0)
-                    }
+                    onClick={() => {
+                      if (product.quantity > 1)
+                        dispatch({ type: "DECREASE", payload: product });
+                      else dispatch({ type: "REMOVE", payload: product });
+                    }}
                   >
                     -
                   </button>
+                  <div>
+                    <button
+                      className="text-3xl -mb-4 pl-2 pr-2"
+                      onClick={() =>
+                        dispatch({ type: "REMOVE", payload: product })
+                      }
+                    >
+                      X
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         );
       })}
+      {state.length > 0 && (
+        <div className="mt-5 border-t-2 flex justify-between flex-row">
+          <span className="mt-8 text-white text-2xl">Total: </span>
+          <h1 className="text-white flex text-right">{total}</h1>
+        </div>
+      )}
     </div>
   );
 };

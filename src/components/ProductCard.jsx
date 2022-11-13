@@ -4,9 +4,9 @@ import { NavLink } from "react-router-dom";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 const ProductCard = ({ product }) => {
+  product.quantity = 1;
   const GlobalState = useContext(CartContext);
   const dispatch = GlobalState.dispatch;
-
   return (
     <section className="bg-gray-900 flex justify-center">
       <div className="flex flex-row ml-5 w-[250px]">
