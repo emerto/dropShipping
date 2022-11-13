@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const Cart = () => {
   const isEmpty = false;
   return (
-    <div className="bg-slate-900 h-[100vh] mt-24">
+    <div className="bg-gray-900 h-[100vh] mt-24">
       <div>
         <Navbar />
       </div>
@@ -32,7 +32,7 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center bg-slate-900 pb-36 flex-wrap gap-[20px] mt-5">
+        <div className="flex justify-center bg-gray-900 pb-36 flex-wrap gap-[20px] mt-5">
           <div className="mt-10 w-[70vw]  h-full bg-gray-900">
             <div className="flex justify-center">
               <div className="flex flex-wrap justify-center mt-10 mb-10 h-full gap-10">
