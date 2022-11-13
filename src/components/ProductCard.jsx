@@ -1,8 +1,15 @@
-import React from "react";
+import { React, useContext, useEffect } from "react";
+import { CartContext } from "../context/CartContext";
 import { NavLink } from "react-router-dom";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 const ProductCard = ({ product }) => {
+  const GlobalState = useContext(CartContext);
+  const dispatch = GlobalState.dispatch;
+  console.log(GlobalState);
+  // useEffect(() => {
+  //   console.log(GlobalState);
+  // }, []);
   return (
     <section className="bg-gray-900 flex justify-center">
       <div className="flex flex-row ml-5 w-[250px]">
@@ -32,13 +39,16 @@ const ProductCard = ({ product }) => {
              rounded-full shadow-md group"
             >
               <span className="absolute inset-0 flex items-center justify-center w-full h-full text-primary duration-300 -translate-x-full bg-gray-900 group-hover:translate-x-0 ease">
-                <NavLink to="../cart" className="flex flex-row">
+                <button
+                  onClick={() => dispatch({ type: "ADD", payload: product })}
+                  className="flex flex-row"
+                >
                   <ShoppingCartIcon className="h-[25px] w-[50px] text-primary " />
                   <p className="text-white hover:text-primary duration-500">
                     Add To Cart
                   </p>{" "}
                   {/*BURAYA FİYATI KOYMAK LAZIM*/}
-                </NavLink>
+                </button>
               </span>
               <span className="absolute flex flex-row items-center justify-center w-full h-full  transition-all duration-300 transform group-hover:translate-x-full ease">
                 <p>${product.price}</p>

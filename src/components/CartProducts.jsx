@@ -1,50 +1,17 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 const CartProducts = () => {
-  const price = 599;
-  const [number, setNumber] = useState(0);
-
+  const GlobalState = useContext(CartContext);
+  const dispatch = GlobalState.dispatch;
+  const state = GlobalState.state;
+  console.log(GlobalState.state);
   return (
-    <div className="w-full max-w-xs h-full max-h-xs bg-gray-900 border border-white">
-      <img
-        className="p-2 object-cover h-48 w-full border border-gray-900 rounded-2xl"
-        src="https://i.pinimg.com/originals/35/cb/31/35cb31391be518a21d604ca028db5f04.jpg"
-        alt="product image"
-      />
-
-      <div className="px-5 pb-5">
-        <h5 className="text-xl font-semibold tracking-tight text-white">
-          Cami
-        </h5>
-        <div className="flex justify-between items-center">
-          <span className="text-3xl font-bold text-white">
-            ${number * price}
-          </span>
-          <div
-            className="text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center
-           bg-blue-600 hover:bg-blue-700 focus:ring-blue-800 border border-blue-200"
-          >
-            <button
-              className="text-3xl -mb-4 pl-2 pr-2 "
-              onClick={() => setNumber((prevNumber) => prevNumber + 1)}
-            >
-              +
-            </button>
-            <h1>{number}</h1>
-            <button
-              className="text-3xl -mb-4 pl-2 pr-2"
-              onClick={() =>
-                number > 0
-                  ? setNumber((prevNumber) => prevNumber - 1)
-                  : setNumber(0)
-              }
-            >
-              -
-            </button>
-          </div>
-        </div>
-      </div>
+    <div>
+      {state.map((product) => {
+        return <div className="z-20 text-white ">{product.name}</div>;
+      })}
     </div>
   );
 };
