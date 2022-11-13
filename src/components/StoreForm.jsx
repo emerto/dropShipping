@@ -12,9 +12,26 @@ const StoreForm = () => {
   const [storename, setStorename] = useState("");
   const [storeaddress, setStoreaddress] = useState("");
   const [storephone, setStorephone] = useState("");
+  const [storeImageUrl, setStoreImageUrl] = useState("");
 
   const auth = useAuth();
   const navigate = useNavigate();
+
+  const uploadStoreImage = async (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const { data, error } = await supabase.storage
+        .from("stores")
+        .upload(`store_img-${storename}`, file);
+
+      if (error) {
+        console.log(error);
+      } else {
+        setStoreImageUrl(data.Key);
+      }
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,6 +69,7 @@ const StoreForm = () => {
           store_name: storename,
           store_address: storeaddress,
           store_phone: storephone,
+          store_image: storeImageUrl,
         },
       ]);
 
@@ -116,7 +134,7 @@ const StoreForm = () => {
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8 ">
               <h1 className="text-xl  font-bold leading-tight tracking-tight text-white md:text-2xl">
                 Create{" "}
-                <span className="text-black bg-primary p-2 rounded-3xl ">
+                <span className="text-black bg-primary p-2 rounded-md">
                   Your Store
                 </span>
               </h1>
@@ -192,6 +210,22 @@ const StoreForm = () => {
                     className="input-form h-20"
                     required=""
                     onChange={(e) => setStoreaddress(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label
+                    for="address"
+                    className="block mb-2 text-sm font-medium text-primary "
+                  >
+                    Upload an image
+                  </label>
+                  <input
+                    className="input-form"
+                    aria-describedby="store-image"
+                    id="store_image"
+                    type="file"
+                    accept={"image/jpeg image/png"}
+                    onChange={(e) => uploadStoreImage(e)}
                   />
                 </div>
                 <div className="max-w-[250px]">

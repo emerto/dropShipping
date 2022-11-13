@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import Lottie from "lottie-web";
 
 import notFound from "../animations/notFound.json";
+import placeHolder from "../assets/indir.jpg";
 
 const Store = () => {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,7 @@ const Store = () => {
   const animRef = useRef(null);
   const location = useLocation();
   const storeInfo = location.state;
-  const { id, owner, store_name, store_description } = storeInfo;
+  const { id, owner, store_name, store_description, store_image } = storeInfo;
 
   const getProducts = async () => {
     try {
@@ -28,7 +29,6 @@ const Store = () => {
       }
 
       if (data) {
-        console.log(data);
         setProducts(data);
       }
     } catch (err) {
@@ -61,12 +61,22 @@ const Store = () => {
         <Navbar />
         <div className="flex flex-col mt-[130px] ml-[100px] max-w-[90%]">
           <div className="flex flex-col">
-            <div className="flex justify-between">
-              <h1 className="text-5xl text-white tracking-wider">
+            <div className="flex items-center">
+              <div className="border-primary border-[0.25rem] w-[180px] h-[180px] rounded-full">
+                <img
+                  src={
+                    store_image
+                      ? `https://tcvbahslxgfxsxqidkyy.supabase.co/storage/v1/object/public/${store_image}`
+                      : placeHolder
+                  }
+                  className="object-cover rounded-full"
+                />
+              </div>
+              <h1 className="text-5xl ml-6 text-white tracking-wider">
                 {store_name}
               </h1>
             </div>
-            <div className="w-full h-1 bg-primary rounded-xl mt-3" />
+            <div className="w-full h-1 bg-primary rounded-xl mt-5" />
           </div>
           <div className="flex justify-start flex-wrap gap-[20px] mt-5">
             {loading ? (
