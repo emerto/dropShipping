@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import TestProdCard from "../components/TestProdCard";
 import AddProductPopup from "../components/AddProductPopup";
 import ProductCard from "../components/ProductCard";
+import Spinner from "../utils/Spinner";
 
 import Lottie from "lottie-web";
 
@@ -95,7 +96,7 @@ const ManageStore = () => {
           </div>
           <div className="flex justify-start flex-wrap gap-[20px] mt-5">
             {loading ? (
-              <h1 className="text-white text-3xl">Loading...</h1>
+              <Spinner />
             ) : products.length > 0 ? (
               products.map((product) => (
                 <TestProdCard product={product} key={product.id} />
