@@ -4,6 +4,8 @@ import supabase from "../config/supaBaseClient";
 import Navbar from "../components/Navbar";
 import { useLocation } from "react-router-dom";
 
+import Spinner from "../utils/Spinner";
+
 import Lottie from "lottie-web";
 
 import notFound from "../animations/notFound.json";
@@ -80,7 +82,7 @@ const Store = () => {
           </div>
           <div className="flex justify-start flex-wrap gap-[20px] mt-5">
             {loading ? (
-              <h1 className="text-white text-3xl">Loading...</h1>
+              <Spinner />
             ) : products.length > 0 ? (
               products.map((product) => (
                 <ProductCard product={product} key={product.id} />
