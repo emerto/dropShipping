@@ -1,15 +1,10 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import ProductCard from "../components/ProductCard";
 import StoreWithProducts from "../components/StoreWithProducts";
 
 import supabase from "../config/supaBaseClient";
-import { useAuth } from "../context/AuthContext";
-
 const Home = () => {
   const [randomStore, setRandomStore] = useState([]);
-  const auth = useAuth();
-  console.log(auth);
 
   const getStores = async () => {
     try {
