@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import ProductCard from "../components/ProductCard";
+import { CartContext } from "../context/CartContext";
 import supabase from "../config/supaBaseClient";
 import Navbar from "../components/Navbar";
 import { useLocation } from "react-router-dom";
@@ -18,7 +19,8 @@ const Store = () => {
   const location = useLocation();
   const storeInfo = location.state;
   const { id, owner, store_name, store_description, store_image } = storeInfo;
-
+  const GlobalState = useContext(CartContext);
+  console.log(GlobalState);
   const getProducts = async () => {
     try {
       const { data, error } = await supabase

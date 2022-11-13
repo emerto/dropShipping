@@ -37,11 +37,6 @@ const Cart = () => {
             <div className="flex justify-center">
               <div className="flex flex-wrap justify-center mt-10 mb-10 h-full gap-10">
                 <CartProducts />
-                <CartProducts />
-                <CartProducts />
-                <CartProducts />
-                <CartProducts />
-                <CartProducts />
               </div>
             </div>
           </div>

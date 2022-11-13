@@ -1,5 +1,4 @@
 import { createContext, useReducer } from "react";
-import { Item } from "semantic-ui-react";
 
 export const CartContext = createContext();
 export const Context = (props) => {

@@ -6,10 +6,7 @@ import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 const ProductCard = ({ product }) => {
   const GlobalState = useContext(CartContext);
   const dispatch = GlobalState.dispatch;
-  console.log(GlobalState);
-  // useEffect(() => {
-  //   console.log(GlobalState);
-  // }, []);
+
   return (
     <section className="bg-gray-900 flex justify-center">
       <div className="flex flex-row ml-5 w-[250px]">
