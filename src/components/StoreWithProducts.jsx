@@ -64,7 +64,7 @@ const StoreWithProducts = ({ store }) => {
                   />
                 </div>
               </div>
-              {products.map((product) => (
+              {products.slice(0, 4).map((product) => (
                 <ProductCard product={product} key={product.id} />
               ))}
             </div>
