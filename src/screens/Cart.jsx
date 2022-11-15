@@ -4,6 +4,13 @@ import { NavLink } from "react-router-dom";
 
 const Cart = () => {
   const isEmpty = false;
+  const createOrder = () => {
+    console.log("Order created");
+  };
+  const handleBuy = async (e) => {
+    e.preventDefault();
+    createOrder();
+  };
   return (
     <div className="bg-gray-900 h-[100vh] mt-24">
       <div>
@@ -12,7 +19,10 @@ const Cart = () => {
       <div className="text-primary pl-8 bg-black text-4xl font-semibold flex">
         <h1 className="">Your Products</h1>
         {isEmpty ? null : (
-          <button className="text-black bg-primary hover:bg-orange-500 focus:ring-4 ml-2 focus:outline-none font-medium rounded-3xl text-sm px-5 py-2 text-center border border-white">
+          <button
+            className="text-black bg-primary hover:bg-orange-500 focus:ring-4 ml-2 focus:outline-none font-medium rounded-3xl text-sm px-5 py-2 text-center border border-white"
+            onClick={handleBuy}
+          >
             Buy
           </button>
         )}
