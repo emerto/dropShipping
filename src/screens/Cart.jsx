@@ -15,8 +15,7 @@ const Cart = () => {
 
   const GlobalState = useContext(CartContext);
   const dispatch = GlobalState.dispatch;
-  const state = GlobalState.state;
-  console.log(GlobalState.state);
+
   const cart = useContext(CartContext);
   const auth = useAuth();
   const navigate = useNavigate();
