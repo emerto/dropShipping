@@ -1,97 +1,58 @@
 import Navbar from "../components/Navbar";
 import CartProducts from "../components/CartProducts";
+import supabase from "../config/supaBaseClient";
+import { useState, useEffect, useContext } from "react";
+
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import supabase from "../config/supaBaseClient";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState, useEffect, useContext } from "react";
+
 import { CartContext } from "../context/CartContext";
 
 const Cart = () => {
   const isEmpty = false;
-  const [userId, setUserId] = useState();
-  const [productIds, setProductIds] = useState();
 
-  const GlobalState = useContext(CartContext);
+  const cart = useContext(CartContext);
   const auth = useAuth();
-  const getUser = async () => {
-    const { data, error } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", auth.user.id)
-      .single();
-    if (error) {
-      console.log(error);
-    }
-    if (data) {
-      setUserId(data.id);
-    }
-  };
-  // const getCartProducts = async () => {
-  //   for (let i = 0; i < GlobalState.state.length; i++) {
-  //     var prodId = [];
-  //     prodId.push(GlobalState.state[i].id);
-  //     console.log(i);
-  //     console.log(prodId);
-  //   }
-  // };
+
   const createOrder = async () => {
-    console.log("Order created");
-    getUser();
-    for (let i = 0; i < GlobalState.state.length; i++) {
-      //setProductIds(GlobalState.state[i].id);
-      var prodId = GlobalState.state[i].id;
-      console.log(i);
-      console.log(prodId);
-      const { data, error } = await supabase.from("orders").insert([
+    const { data: orderData, error: orderError } = await supabase
+      .from("orders")
+      .insert([
         {
-          product_id: prodId,
-          customer_id: userId,
+          customer_id: auth.user.id,
+          order_date: new Date(),
         },
       ]);
-      if (data) {
-        toast.success(`Order created successfully!`, {
-          position: "bottom-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-      } else {
-        console.log(error);
-      }
-    }
 
-    //getCartProducts();
-    // const { data, error } = await supabase.from("orders").insert([
-    //   {
-    //     product_id: productIds,
-    //     customer_id: userId,
-    //   },
-    // ]);
-    // if (data) {
-    //   toast.success(`Order created successfully!`, {
-    //     position: "bottom-right",
-    //     autoClose: 3000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "dark",
-    //   });
-    // } else {
-    //   console.log(error);
-    // }
+    if (orderError) {
+      console.log(orderError);
+    } else {
+      console.log(orderData);
+      const { data: orderItemsData, error: cartError } = await supabase
+        .from("carts")
+        .insert(
+          cart.state.map((item) => {
+            return {
+              order_id: orderData[0].id,
+              product_id: item.id,
+              amount: item.quantity,
+            };
+          })
+        );
+
+      if (cartError) {
+        console.log(cartError);
+      }
+      console.log(orderItemsData);
+    }
   };
-  const handleBuy = async (e) => {
-    e.preventDefault();
+
+  const handleBuy = () => {
     createOrder();
   };
+
   return (
     <>
       <ToastContainer
