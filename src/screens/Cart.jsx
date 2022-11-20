@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import CartProducts from "../components/CartProducts";
 import supabase from "../config/supaBaseClient";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -10,12 +10,32 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { CartContext } from "../context/CartContext";
 
+import lottie from "lottie-web";
+import shoppingCart from "../animations/shoppingCart.json";
+
 const Cart = () => {
   const [isCartEmpty, setIsCartEmpty] = useState(false);
 
+  const shoppingCartRef = useRef(null);
   const cart = useContext(CartContext);
   const auth = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const instance = lottie.loadAnimation({
+      name: "shoppingCart",
+      container: shoppingCartRef.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: shoppingCart,
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice",
+      },
+    });
+
+    return () => instance.destroy();
+  }, [shoppingCartRef]);
 
   useEffect(() => {
     if (cart.state.length === 0) {
@@ -34,9 +54,17 @@ const Cart = () => {
       ]);
 
     if (orderError) {
-      toast.error(orderError.message);
+      toast.error(`${orderError.message}`, {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     } else {
-      console.log(orderData);
       const { data: orderItemsData, error: cartError } = await supabase
         .from("carts")
         .insert(
@@ -50,7 +78,7 @@ const Cart = () => {
         );
 
       if (cartError) {
-        toast.error(`${cartError}`, {
+        toast.error(`${cartError.message}`, {
           position: "bottom-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -86,52 +114,52 @@ const Cart = () => {
 
   return (
     <>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <div className="bg-gray-900 h-[100vh] mt-24">
-        <div>
+      <div className="h-[100vh] bg-slate-900">
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <div className="flex flex-col bg-slate-900">
           <Navbar />
-        </div>
-        <div className="text-primary pl-8 bg-black text-4xl font-semibold flex">
-          <h1 className="">Your Products</h1>
-        </div>
-        {isCartEmpty ? (
-          <div>
-            <div className="flex">
-              <h1 className="text-primary ml-12 text-4xl font-semibold">
-                You don't have any product
-              </h1>
-              <NavLink
-                className="bg-primary hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-3xl text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 border border-blue-200"
-                to="/store"
-              >
-                Add product
-              </NavLink>
+          <div className="flex flex-col mt-[130px]  ml-[100px] max-w-[90%]">
+            <div className="flex flex-col">
+              <div className="flex justify-between">
+                <h1 className="text-5xl text-white tracking-wider">Cart</h1>
+              </div>
+              <div className="w-full h-1 bg-primary rounded-xl mt-3" />
             </div>
-          </div>
-        ) : (
-          <div className="flex justify-center bg-gray-900 pb-36 flex-wrap gap-[20px] mt-5">
-            <div className="mt-10 w-[70vw]  h-full bg-gray-900">
-              <div className="flex justify-center">
-                <div className="flex flex-wrap justify-center mt-10 mb-10 h-full gap-10">
-                  <CartProducts />
-                  <button className="btn-primary" onClick={handleBuy}>
-                    Buy
-                  </button>
+            {isCartEmpty ? (
+              <div className="flex items-center justify-center w-full ">
+                <div className="flex flex-col items-center justify-center">
+                  <div ref={shoppingCartRef} className="w-[350px] h-[350px]" />
+                  <h1 className="text-white text-3xl">
+                    No products found in this store
+                  </h1>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="flex justify-center bg-gray-900 pb-36 flex-wrap gap-[20px] mt-5">
+                <div className="mt-10 w-[70vw]  h-full bg-gray-900">
+                  <div className="flex justify-center">
+                    <div className="flex flex-wrap justify-center mt-10 mb-10 h-full gap-10">
+                      <CartProducts />
+                      <button className="btn-primary" onClick={handleBuy}>
+                        Buy
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </>
   );
