@@ -27,6 +27,10 @@ const Cart = () => {
     }
   }, [cart.state]);
 
+  const RemoveAll = () => {
+    dispatch({ type: "REMOVE_ALL" });
+  };
+
   const createOrder = async () => {
     const { data: orderData, error: orderError } = await supabase
       .from("orders")
@@ -137,12 +141,7 @@ const Cart = () => {
                       >
                         Buy
                       </button>
-                      <button
-                        className="btn-primary w-64"
-                        onClick={() => {
-                          dispatch({ type: "REMOVE_ALL" });
-                        }}
-                      >
+                      <button className="btn-primary w-64" onClick={RemoveAll}>
                         Remove All
                       </button>
                     </div>

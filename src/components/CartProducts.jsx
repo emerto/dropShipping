@@ -12,6 +12,16 @@ const CartProducts = () => {
   const total = state.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0);
+  const Increase = (product) => {
+    dispatch({ type: "INCREASE", payload: product });
+  };
+  const Decrease = (product) => {
+    dispatch({ type: "DECREASE", payload: product });
+  };
+  const Remove = (product) => {
+    dispatch({ type: "REMOVE", payload: product });
+  };
+
   return (
     <div className="">
       {state.map((product) => {
@@ -43,9 +53,7 @@ const CartProducts = () => {
                     >
                       <button
                         className="text-3xl -mb-4 px-2 "
-                        onClick={() =>
-                          dispatch({ type: "INCREASE", payload: product })
-                        }
+                        onClick={() => Increase(product)}
                       >
                         +
                       </button>
@@ -53,9 +61,8 @@ const CartProducts = () => {
                       <button
                         className="text-3xl -mb-4 pl-2 pr-2"
                         onClick={() => {
-                          if (product.quantity > 1)
-                            dispatch({ type: "DECREASE", payload: product });
-                          else dispatch({ type: "REMOVE", payload: product });
+                          if (product.quantity > 1) Decrease(product);
+                          else Remove(product);
                         }}
                       >
                         -
@@ -63,9 +70,7 @@ const CartProducts = () => {
                       <div>
                         <button
                           className="text-3xl -mb-4 pt-3 pl-2 pr-2"
-                          onClick={() =>
-                            dispatch({ type: "REMOVE", payload: product })
-                          }
+                          onClick={() => Remove(product)}
                         >
                           X
                         </button>
