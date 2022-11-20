@@ -3,7 +3,7 @@ import CartProducts from "../components/CartProducts";
 import supabase from "../config/supaBaseClient";
 import { useState, useEffect, useContext } from "react";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,10 +11,17 @@ import "react-toastify/dist/ReactToastify.css";
 import { CartContext } from "../context/CartContext";
 
 const Cart = () => {
-  const isEmpty = false;
+  const [isCartEmpty, setIsCartEmpty] = useState(false);
 
   const cart = useContext(CartContext);
   const auth = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (cart.state.length === 0) {
+      setIsCartEmpty(true);
+    }
+  }, [cart.state]);
 
   const createOrder = async () => {
     const { data: orderData, error: orderError } = await supabase
@@ -27,7 +34,7 @@ const Cart = () => {
       ]);
 
     if (orderError) {
-      console.log(orderError);
+      toast.error(orderError.message);
     } else {
       console.log(orderData);
       const { data: orderItemsData, error: cartError } = await supabase
@@ -43,9 +50,33 @@ const Cart = () => {
         );
 
       if (cartError) {
-        console.log(cartError);
+        toast.error(`${cartError}`, {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
-      console.log(orderItemsData);
+      if (orderItemsData) {
+        toast.success(` Order created successfully!`, {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+
+        setTimeout(() => {
+          navigate("/orders");
+        }, 2500);
+      }
     }
   };
 
@@ -72,16 +103,8 @@ const Cart = () => {
         </div>
         <div className="text-primary pl-8 bg-black text-4xl font-semibold flex">
           <h1 className="">Your Products</h1>
-          {isEmpty ? null : (
-            <button
-              className="text-black bg-primary hover:bg-orange-500 focus:ring-4 ml-2 focus:outline-none font-medium rounded-3xl text-sm px-5 py-2 text-center border border-white"
-              onClick={handleBuy}
-            >
-              Buy
-            </button>
-          )}
         </div>
-        {isEmpty ? (
+        {isCartEmpty ? (
           <div>
             <div className="flex">
               <h1 className="text-primary ml-12 text-4xl font-semibold">
@@ -101,6 +124,9 @@ const Cart = () => {
               <div className="flex justify-center">
                 <div className="flex flex-wrap justify-center mt-10 mb-10 h-full gap-10">
                   <CartProducts />
+                  <button className="btn-primary" onClick={handleBuy}>
+                    Buy
+                  </button>
                 </div>
               </div>
             </div>
