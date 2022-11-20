@@ -36,6 +36,9 @@ export const Context = (props) => {
           (product) => product.id !== action.payload.id
         );
         return tempstate3;
+
+      case "REMOVE_ALL":
+        return [];
       default:
         return state;
     }

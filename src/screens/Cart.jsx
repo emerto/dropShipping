@@ -13,6 +13,10 @@ import { CartContext } from "../context/CartContext";
 const Cart = () => {
   const [isCartEmpty, setIsCartEmpty] = useState(false);
 
+  const GlobalState = useContext(CartContext);
+  const dispatch = GlobalState.dispatch;
+  const state = GlobalState.state;
+  console.log(GlobalState.state);
   const cart = useContext(CartContext);
   const auth = useAuth();
   const navigate = useNavigate();
@@ -119,18 +123,35 @@ const Cart = () => {
             </div>
           </div>
         ) : (
-          <div className="flex justify-center bg-gray-900 pb-36 flex-wrap gap-[20px] mt-5">
-            <div className="mt-10 w-[70vw]  h-full bg-gray-900">
-              <div className="flex justify-center">
-                <div className="flex flex-wrap justify-center mt-10 mb-10 h-full gap-10">
-                  <CartProducts />
-                  <button className="btn-primary" onClick={handleBuy}>
-                    Buy
-                  </button>
+          <>
+            {/* {state.map((product) => { */}
+            <div className="flex justify-center bg-gray-900 pb-36 flex-wrap gap-[20px] mt-5">
+              <div className="mt-10 w-[70vw]  h-full bg-gray-900">
+                <div className="flex justify-center">
+                  <div className="flex flex-col justify-center mt-10 mb-10 h-full gap-10">
+                    <CartProducts />
+                    <div className="flex justify-start gap-10 w-full">
+                      <button
+                        className="btn-primary w-full"
+                        onClick={handleBuy}
+                      >
+                        Buy
+                      </button>
+                      <button
+                        className="btn-primary w-64"
+                        onClick={() => {
+                          dispatch({ type: "REMOVE_ALL" });
+                        }}
+                      >
+                        Remove All
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+            ;{/* })} */}
+          </>
         )}
       </div>
     </>
