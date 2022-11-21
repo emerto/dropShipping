@@ -179,7 +179,7 @@ const Cart = () => {
                     htmlFor="address"
                     className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
                   >
-                    Address
+                    Addresss
                   </label>
                   <textarea
                     type="address"
