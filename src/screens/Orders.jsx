@@ -40,7 +40,6 @@ const Orders = () => {
 
   useEffect(() => {
     fetchOrders();
-    console.log(orders);
   }, []);
 
   return (
