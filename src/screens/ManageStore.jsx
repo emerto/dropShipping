@@ -18,6 +18,7 @@ import notFound from "../animations/notFound.json";
 const ManageStore = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [addedProduct, setAddedProduct] = useState({});
   const location = useLocation();
   const animRef = useRef(null);
   const storeInfo = location.state;
@@ -38,7 +39,7 @@ const ManageStore = () => {
       }
 
       if (data) {
-        setProducts(data);
+        setProducts([...data]);
       }
     } catch (err) {
       console.log(err);
@@ -64,10 +65,6 @@ const ManageStore = () => {
     getProducts();
   }, []);
 
-  // useEffect(() => {
-  //   getProducts();
-  // }, [products.length]);
-
   useEffect(() => {
     if (!user) {
       navigate("/");
@@ -89,7 +86,10 @@ const ManageStore = () => {
                 {store_name}
               </h1>
               <div className="mt-5 w-[200px]">
-                <AddProductPopup storeId={id} />
+                <AddProductPopup
+                  storeId={id}
+                  setAddedProduct={setAddedProduct}
+                />
               </div>
             </div>
             <div className="w-full h-1 bg-primary rounded-xl mt-3" />
