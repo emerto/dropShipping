@@ -19,6 +19,7 @@ const Orders = () => {
             id,
             status,
             order_date,
+            total,
             carts (
                 *,
             products (

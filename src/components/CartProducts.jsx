@@ -3,15 +3,22 @@ import { useState, useEffect, useContext } from "react";
 import { Item } from "semantic-ui-react";
 import { CartContext } from "../context/CartContext";
 
-const CartProducts = () => {
+const CartProducts = ({ setTotal }) => {
   const [number, setNumber] = useState(1);
+  const [totalLocal, setTotalLocal] = useState(0);
   const GlobalState = useContext(CartContext);
   const dispatch = GlobalState.dispatch;
   const state = GlobalState.state;
-  console.log(GlobalState.state);
-  const total = state.reduce((total, item) => {
-    return total + item.price * item.quantity;
-  }, 0);
+
+  useEffect(() => {
+    let total = 0;
+    state.forEach((product) => {
+      total += product.price * product.quantity;
+    });
+    setTotal(total);
+    setTotalLocal(total);
+  }, [state, setTotal]);
+
   const Increase = (product) => {
     dispatch({ type: "INCREASE", payload: product });
   };
@@ -86,7 +93,7 @@ const CartProducts = () => {
       {state.length > 0 && (
         <div className="mt-5 border-t-2 flex justify-between flex-row">
           <span className="mt-8 text-white text-2xl">Total: </span>
-          <h1 className="text-white flex text-right">{total}</h1>
+          <h1 className="text-white flex text-right">{totalLocal}</h1>
         </div>
       )}
     </div>

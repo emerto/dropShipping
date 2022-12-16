@@ -19,16 +19,14 @@ const Cart = () => {
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-
+  const [total, setTotal] = useState(0);
   const GlobalState = useContext(CartContext);
   const dispatch = GlobalState.dispatch;
 
   const cart = useContext(CartContext);
   const auth = useAuth();
   const navigate = useNavigate();
-  const [number, setNumber] = useState(1);
 
-  const state = GlobalState.state;
   useEffect(() => {
     if (cart.state.length === 0) {
       setIsCartEmpty(true);
@@ -40,12 +38,27 @@ const Cart = () => {
   };
 
   const createOrder = async () => {
+    if (total > auth.user.balance) {
+      toast.error("Insufficant Balance", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return;
+    }
+
     const { data: orderData, error: orderError } = await supabase
       .from("orders")
       .insert([
         {
           customer_id: auth.user.id,
           order_date: new Date(),
+          total: total,
         },
       ]);
 
@@ -89,9 +102,31 @@ const Cart = () => {
           theme: "dark",
         });
 
-        setTimeout(() => {
-          navigate("/orders");
-        }, 2500);
+        const { data, error } = await supabase
+          .from("profiles")
+          .update({ balance: auth.user.balance - total })
+          .eq("id", auth.user.id);
+
+        if (error) {
+          toast.error(`${error}`, {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        }
+
+        if (data) {
+          RemoveAll();
+
+          setTimeout(() => {
+            navigate("/orders");
+          }, 2500);
+        }
       }
     }
   };
@@ -142,13 +177,20 @@ const Cart = () => {
                 <div className="mt-10 w-[70vw]  h-full bg-gray-900">
                   <div className="flex justify-center">
                     <div className="flex flex-col justify-center mt-10 mb-10 h-full gap-10">
-                      <CartProducts />
+                      <CartProducts setTotal={setTotal} />
                       <div className="flex justify-start gap-10 w-full">
                         <button
-                          className="btn-primary w-full"
+                          className={`btn-primary w-full ${
+                            total > auth.user.balance
+                              ? "bg-gray-500"
+                              : "bg-primary"
+                          }`}
+                          disabled={total > auth.user.balance}
                           onClick={handleBuy}
                         >
-                          Buy
+                          {total > auth.user.balance
+                            ? "Insufficant Balance"
+                            : "Buy"}
                         </button>
                         <button
                           className="btn-primary w-64"

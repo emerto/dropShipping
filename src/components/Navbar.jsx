@@ -6,6 +6,7 @@ import {
   BuildingStorefrontIcon,
   ShoppingCartIcon,
   UserIcon,
+  CurrencyDollarIcon,
 } from "@heroicons/react/24/solid";
 import { Cross as Hamburger } from "hamburger-react";
 import Logo from "../assets/kazik.png";
@@ -134,6 +135,15 @@ const Navbar = () => {
                   <ShoppingCartIcon className="w-7 h-7" />
                 </div>
               </NavLink>
+            </li>
+            <li className="flex hamburger:mr-16 hamburger:mt-2 mt-10">
+              <div
+                className={`flex hamburger:ml-0 ml-0 hamburger:block
+                  duration-500`}
+              >
+                <CurrencyDollarIcon className="w-7 h-7" />
+                <p>{auth.user.balance}</p>
+              </div>
             </li>
           </ul>
         </div>
