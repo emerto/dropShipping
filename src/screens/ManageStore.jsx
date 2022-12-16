@@ -18,7 +18,6 @@ import notFound from "../animations/notFound.json";
 const ManageStore = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [addedProduct, setAddedProduct] = useState({});
   const location = useLocation();
   const animRef = useRef(null);
   const storeInfo = location.state;
@@ -86,10 +85,7 @@ const ManageStore = () => {
                 {store_name}
               </h1>
               <div className="mt-5 w-[200px]">
-                <AddProductPopup
-                  storeId={id}
-                  setAddedProduct={setAddedProduct}
-                />
+                <AddProductPopup storeId={id} />
               </div>
             </div>
             <div className="w-full h-1 bg-primary rounded-xl mt-3" />
