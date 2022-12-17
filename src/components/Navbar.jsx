@@ -140,7 +140,7 @@ const Navbar = () => {
             <li className="flex hamburger:mr-[50px] hamburger:mt-2 mt-10">
               <CurrencyDollarIcon className="w-7 h-7" />
               <p className="flex justify-center items-center content-center ml-1">
-                {auth.user.balance}
+                {auth.user.balance === null ? "0" : auth.user.balance}
               </p>
             </li>
           </ul>
