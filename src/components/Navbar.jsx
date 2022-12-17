@@ -121,7 +121,7 @@ const Navbar = () => {
                 </div>
               </NavLink>
             </li>
-            <li className="flex hamburger:mr-[80px] hamburger:mt-2 mt-10">
+            <li className="flex hamburger:mr-16 hamburger:mt-2 mt-10">
               <NavLink
                 className="italic text-primary hover:text-primary hamburger:not-italic text-lg flex items-center gap-x-4
                 cursor-pointer"
@@ -136,14 +136,12 @@ const Navbar = () => {
                 </div>
               </NavLink>
             </li>
-            <li className="flex hamburger:mr-16 hamburger:mt-2 mt-10">
-              <div
-                className={`flex hamburger:ml-0 ml-0 hamburger:block
-                  duration-500`}
-              >
-                <CurrencyDollarIcon className="w-7 h-7" />
-                <p>{auth.user.balance}</p>
-              </div>
+            {/* <li className="flex flex-row hamburger:mr-16 hamburger:mt-2 mt-10"> */}
+            <li className="flex hamburger:mr-[50px] hamburger:mt-2 mt-10">
+              <CurrencyDollarIcon className="w-7 h-7" />
+              <p className="flex justify-center items-center content-center ml-1">
+                {auth.user.balance}
+              </p>
             </li>
           </ul>
         </div>
