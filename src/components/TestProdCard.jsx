@@ -11,13 +11,13 @@ const TestProdCard = ({ product }) => {
         <div className="border-2 flex flex-col gap-1 py-3 px-4 mx-auto w-[800px] border-primary rounded-lg">
           <div className="flex justify-end">
             <div className="flex justify-end">
-              <EditProductPop />
+              <EditProductPop product={product} />
             </div>
           </div>
 
           <div className="gap-2 mt-8 flex justify-center ">
             <img
-              className="object-cover w-max max-h-[200px] rounded-lg hover:transform  hover:scale-[2.0] hover:-translate-y-5 transition duration-200 ease-in-out"
+              className="object-cover w-max max-h-[200px] rounded-lg hover:transform  hover:scale-[1.16] hover:-translate-y-5 transition duration-200 ease-in-out"
               src={product.supplier_prod_image}
               alt="office content 1"
             />

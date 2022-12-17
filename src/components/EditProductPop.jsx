@@ -9,8 +9,9 @@ import {
 } from "semantic-ui-react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
-const AddProductPopup = () => {
+const AddProductPopup = ({ product }) => {
   const [Show, setShow] = useState(false);
+  console.log(product);
   return (
     <Modal
       onClose={() => setShow(false)}
@@ -52,7 +53,7 @@ const AddProductPopup = () => {
               type="productName"
               name="fProductName"
               id="fProductName"
-              placeholder="Enter product name"
+              placeholder={product.name}
               className="input-form w-auto bg-secondary focus:bg-neutral-700"
             />
             <label
@@ -65,7 +66,7 @@ const AddProductPopup = () => {
               type="price"
               name="fPrice"
               id="fPrice"
-              placeholder="Enter price"
+              placeholder={product.price}
               className="input-form w-auto bg-secondary focus:bg-neutral-700"
             />
           </div>
