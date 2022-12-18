@@ -16,6 +16,45 @@ const EditProductPopup = ({ product }) => {
     updateProduct();
     setShow(false);
   };
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    deleteProduct();
+
+    setShow(false);
+  };
+
+  const deleteProduct = async () => {
+    const { data, error } = await supabase
+      .from("products")
+      .delete()
+      .eq("id", product.id);
+
+    if (error) {
+      console.log(error);
+      toast.error("Deleting product failed.", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+    if (data) {
+      toast.success(`Product deleted successfully!`, {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  };
 
   const updateProduct = async () => {
     const { data, error } = await supabase
@@ -68,8 +107,8 @@ const EditProductPopup = ({ product }) => {
         onOpen={() => setShow(true)}
         open={Show}
         trigger={
-          <button className="bg-primary py-1 px-2 rounded-2xl text-black">
-            Show Modal
+          <button className="bg-primary py-1 px-2 font-bold rounded-2xl text-black">
+            Edit Product
           </button>
         }
       >
@@ -127,11 +166,23 @@ const EditProductPopup = ({ product }) => {
               />
             </div>
             <Modal.Actions>
-              <div className="flex justify-end">
-                <div className="flex bg-primary p-3 rounded-lg">
-                  <button className="flex text-white" type="submit">
-                    Save Changes
-                  </button>
+              <div className="flex justify-end ">
+                <div className="flex   ">
+                  <div className="flex  rounded-lg ">
+                    <button
+                      className=" text-white btn-primary mr-5 w-[200px]  h-[40px] "
+                      onClick={handleDelete}
+                    >
+                      Delete Product
+                    </button>
+
+                    <button
+                      className=" text-white btn-primary w-[200px]  h-[40px]"
+                      type="submit"
+                    >
+                      Save Changes
+                    </button>
+                  </div>
                 </div>
               </div>
             </Modal.Actions>
