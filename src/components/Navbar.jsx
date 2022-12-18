@@ -72,6 +72,10 @@ const Navbar = ({ setSearchReturn, setIsStoreRet }) => {
           >
             <Hamburger size={30} className={`${open ? "close" : "menu"} `} />
           </div>
+          <Search
+            setSearchReturn={setSearchReturn}
+            setIsStoreRet={setIsStoreRet}
+          />
           <ul
             className={`hamburger:flex text-orange-400 mr-0 hamburger:items-center hamburger:pb-0 pb-12 absolute hamburger:static 
            hamburger:z-auto z-[-1] left-0 hamburger:pl-0 pl-0 transition-all flex flex-col hamburger:flex-row
@@ -82,10 +86,6 @@ const Navbar = ({ setSearchReturn, setIsStoreRet }) => {
            } ${isSticky ? "bg-opacity-80 " : "bg-opacity-100"} `}
           >
             {" "}
-            <Search
-              setSearchReturn={setSearchReturn}
-              setIsStoreRet={setIsStoreRet}
-            />
             <li className="flex hamburger:mr-16 hamburger:mt-2 mt-2">
               <NavLink
                 className="italic text-primary hover:text-primary hamburger:not-italic text-lg flex items-center gap-x-4

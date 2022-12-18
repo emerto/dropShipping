@@ -96,7 +96,7 @@ const Search = ({ setSearchReturn, setIsStoreRet }) => {
         pauseOnHover
       />
       <form
-        className="flex hamburger:mr-14 h-[41px] hamburger:mb-0 mb-5 hamburger:mt-1 mt-[50px] space-x-2 bg-gray-300 p-2 rounded-xl "
+        className="flex hamburger:mr-14 h-[41px] hamburger:mb-0 mb-5 hamburger:mt-1 mt-[50px] space-x-2 bg-gray-300 p-2 rounded-xl text-primary"
         onSubmit={formSubmit}
       >
         <MagnifyingGlassIcon className="w-[24px] h-[24px]" />
