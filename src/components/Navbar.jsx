@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import {
-  MagnifyingGlassIcon,
   BuildingStorefrontIcon,
   ShoppingCartIcon,
   UserIcon,
@@ -11,8 +10,9 @@ import {
 import { Cross as Hamburger } from "hamburger-react";
 import Logo from "../assets/kazik.png";
 import { useAuth } from "../context/AuthContext";
+import Search from "./Search";
 
-const Navbar = () => {
+const Navbar = ({ setSearchReturn, setIsStoreRet }) => {
   const [open, setOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const homeRef = useRef(null);
@@ -82,15 +82,10 @@ const Navbar = () => {
            } ${isSticky ? "bg-opacity-80 " : "bg-opacity-100"} `}
           >
             {" "}
-            <div className="flex hamburger:mr-14 h-[41px] hamburger:mb-0 mb-5 hamburger:mt-1 mt-[50px] space-x-2 bg-gray-300 p-2 rounded-xl ">
-              <MagnifyingGlassIcon className="w-[24px] h-[24px]" />
-              <input
-                type="search"
-                name="search"
-                placeholder="Search"
-                className="bg-transparent outline-none w-[200px] hamburger:w-[400px] text-black placeholder-gray-600 border-none focus:ring-0"
-              />
-            </div>
+            <Search
+              setSearchReturn={setSearchReturn}
+              setIsStoreRet={setIsStoreRet}
+            />
             <li className="flex hamburger:mr-16 hamburger:mt-2 mt-2">
               <NavLink
                 className="italic text-primary hover:text-primary hamburger:not-italic text-lg flex items-center gap-x-4
