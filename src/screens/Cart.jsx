@@ -156,13 +156,13 @@ const Cart = () => {
           <h1 className="">Your Products</h1>
         </div>
         {isCartEmpty ? (
-          <div>
-            <div className="flex">
+          <div className="flex justify-center mt-[400px] ">
+            <div className="flex items-center ">
               <h1 className="text-primary ml-12 text-4xl font-semibold">
                 You don't have any product
               </h1>
               <NavLink
-                className="bg-primary hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-3xl text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 border border-blue-200"
+                className="bg-primary ml-3 text-black  hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-white  font-medium-bold rounded-3xl text-xl px-2 py-2.5 text-center  border border-black"
                 to="/store"
               >
                 Add product
