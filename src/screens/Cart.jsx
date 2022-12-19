@@ -172,26 +172,13 @@ const Cart = () => {
         ) : (
           <>
             {/* {state.map((product) => { */}
-            <div className="flex">
+            <div className="flex ">
               <div className="flex justify-center bg-gray-900 pb-36 flex-wrap gap-[20px] mt-5">
                 <div className="mt-10 w-[70vw]  h-full bg-gray-900">
                   <div className="flex justify-center">
-                    <div className="flex flex-col justify-center mt-10 mb-10 h-full gap-10">
+                    <div className="flex flex-col justify-center bg-slate-700/30 rounded-2xl p-3 mt-10 mb-10 h-full gap-10 pb-10 ">
                       <CartProducts setTotal={setTotal} />
-                      <div className="flex justify-start gap-10 w-full">
-                        <button
-                          className={`btn-primary w-full ${
-                            total > auth.user.balance
-                              ? "bg-gray-500"
-                              : "bg-primary"
-                          }`}
-                          disabled={total > auth.user.balance}
-                          onClick={handleBuy}
-                        >
-                          {total > auth.user.balance
-                            ? "Insufficant Balance"
-                            : "Buy"}
-                        </button>
+                      <div className="flex justify-end gap-10 w-full">
                         <button
                           className="btn-primary w-64"
                           onClick={RemoveAll}
@@ -203,70 +190,79 @@ const Cart = () => {
                   </div>
                 </div>
               </div>
-              <div className=" pl-6 border-0 mr-2 border-l-2 ml-7 w-[500px] flex-col  h-auto mt-5 max-h-xs bg-gray-900  border-white">
+              <div className=" pl-6 border-0 mr-2 border-l-2 ml-7 w-full flex-col  h-auto mt-5 max-h-xs bg-gray-900  border-white">
                 {/* ITEMS LIST */}
-
-                <div>
-                  {/* <div>{product.name}</div> */}
-                  <h1 className="text-gray-300 	text-decoration-line: underline">
-                    Items in Cart
-                  </h1>
-                  <div className="flex justify-between">
-                    <h2></h2>
+                <div className="flex flex-col items-start mt-20">
+                  <div>
+                    <h1 className="text-gray-300 text-decoration-line: underline">
+                      Order Info
+                    </h1>
+                    <div className="flex justify-between">
+                      <h2></h2>
+                    </div>
                   </div>
-                </div>
 
-                <div className="w-1/2">
-                  <label
-                    htmlFor="address"
-                    className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
-                  >
-                    Addresss
-                  </label>
-                  <textarea
-                    type="address"
-                    name="floating_address"
-                    id="floating_address"
-                    placeholder={address}
-                    className="input-form p-4 h-[115px] bg-secondary focus:bg-neutral-700 block  w-full text-base rounded-lg border  text-gray-400 focus:outline-none border-primary placeholder-gray-400"
-                    // onChange={(e) => setAddress(e.target.value)}
-                  />
-                </div>
-                <div className=" w-1/2">
-                  <label
-                    htmlFor="telephone"
-                    className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
-                  >
-                    Telephone
-                  </label>
-                  <input
-                    type="telephone"
-                    name="floating_telephone"
-                    id="floating_telephone"
-                    placeholder={phoneNumber}
-                    className="input-form bg-secondary focus:bg-neutral-700"
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                  />
-                </div>
-                <div className="mb-5 w-1/2">
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="floating_email"
-                    id="floating_email"
-                    placeholder={email}
-                    className="input-form focus:bg-neutral-700 block  w-full text-base rounded-lg border text-gray-400 focus:outline-none bg-secondary border-primary placeholder-gray-400"
-                  />
-                </div>
-                <div className="flex justify-start pl-2">
-                  <button type="submit" className="btn-secondary">
-                    Confirm Order
-                  </button>
+                  <div className="w-4/5">
+                    <label
+                      htmlFor="address"
+                      className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
+                    >
+                      Addresss
+                    </label>
+                    <textarea
+                      type="address"
+                      name="floating_address"
+                      id="floating_address"
+                      placeholder={address}
+                      className="input-form p-4 h-[115px] bg-secondary focus:bg-neutral-700 block  w-full text-base rounded-lg border  text-gray-400 focus:outline-none border-primary placeholder-gray-400"
+                      // onChange={(e) => setAddress(e.target.value)}
+                    />
+                  </div>
+                  <div className=" w-4/5">
+                    <label
+                      htmlFor="telephone"
+                      className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
+                    >
+                      Telephone
+                    </label>
+                    <input
+                      type="telephone"
+                      name="floating_telephone"
+                      id="floating_telephone"
+                      placeholder={phoneNumber}
+                      className="input-form bg-secondary focus:bg-neutral-700"
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                    />
+                  </div>
+                  <div className="mb-5 w-4/5">
+                    <label
+                      htmlFor="email"
+                      className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="floating_email"
+                      id="floating_email"
+                      placeholder={email}
+                      className="input-form focus:bg-neutral-700 block  w-full text-base rounded-lg border text-gray-400 focus:outline-none bg-secondary border-primary placeholder-gray-400"
+                    />
+                  </div>
+                  <div className="flex justify-start ">
+                    <button
+                      className={`btn-secondary w-52 text-center text-lg justify-center
+                    ${
+                      total > auth.user.balance ? "bg-gray-500" : "bg-primary"
+                    }`}
+                      disabled={total > auth.user.balance}
+                      onClick={handleBuy}
+                    >
+                      {total > auth.user.balance
+                        ? "Insufficant Balance"
+                        : "Confirm Order"}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
