@@ -5,6 +5,13 @@ export const Context = (props) => {
   const reducer = (state, action) => {
     switch (action.type) {
       case "ADD":
+        //! Get the store ID of the first product in the cart
+        const storeId = state.length > 0 ? state[0].store_id : null;
+        //! Check if the product being added is from the same store
+        if (storeId && action.payload.store_id !== storeId) {
+          return state;
+        }
+        //! Check if the product is already in the cart
         const tempstate = state.filter(
           (product) => action.payload.id === product.id
         );
