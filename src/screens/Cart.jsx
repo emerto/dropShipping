@@ -163,7 +163,7 @@ const Cart = () => {
               </h1>
               <NavLink
                 className="bg-primary ml-3 text-black  hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-white  font-medium-bold rounded-3xl text-xl px-2 py-2.5 text-center  border border-black"
-                to="/store"
+                to="/"
               >
                 Add product
               </NavLink>
