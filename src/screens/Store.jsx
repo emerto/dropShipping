@@ -10,7 +10,7 @@ import Spinner from "../utils/Spinner";
 import Lottie from "lottie-web";
 
 import notFound from "../animations/notFound.json";
-import placeHolder from "../assets/indir.jpg";
+import placeHolder from "../assets/shopPlaceholder.png";
 
 const Store = () => {
   const [products, setProducts] = useState([]);

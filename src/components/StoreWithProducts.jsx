@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 
-import placeHolder from "../assets/indir.jpg";
+import placeHolder from "../assets/shopPlaceholder.png";
 import supabase from "../config/supaBaseClient";
 
 import { useNavigate } from "react-router-dom";
