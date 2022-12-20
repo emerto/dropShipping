@@ -213,6 +213,7 @@ const Cart = () => {
                       type="address"
                       name="floating_address"
                       id="floating_address"
+                      required
                       placeholder={address}
                       className="input-form p-4 h-[115px] bg-secondary focus:bg-neutral-700 block  w-full text-base rounded-lg border  text-gray-400 focus:outline-none border-primary placeholder-gray-400"
                       // onChange={(e) => setAddress(e.target.value)}
@@ -227,6 +228,7 @@ const Cart = () => {
                     </label>
                     <input
                       type="telephone"
+                      required
                       name="floating_telephone"
                       id="floating_telephone"
                       placeholder={phoneNumber}
@@ -243,6 +245,7 @@ const Cart = () => {
                     </label>
                     <input
                       type="email"
+                      required
                       name="floating_email"
                       id="floating_email"
                       placeholder={email}
