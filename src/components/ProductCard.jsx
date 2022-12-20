@@ -12,21 +12,8 @@ const ProductCard = ({ product }) => {
   const GlobalState = useContext(CartContext);
   const dispatch = GlobalState.dispatch;
   const auth = useAuth();
-  console.log(GlobalState.state);
   return (
     <>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-
       <section className="flex justify-center">
         <div className="flex flex-row ml-5 w-[250px]">
           <div className="flex flex-col gap-1 py-3 px-4 mx-auto w-[800px]">
@@ -58,13 +45,45 @@ const ProductCard = ({ product }) => {
                   <button
                     onClick={() => {
                       if (product.store_id === auth.user.store.id) {
-                        toast.error("You can't add your own product to cart");
+                        toast.error("You can't add your own product to cart.", {
+                          position: "bottom-right",
+                          autoClose: 3000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                          theme: "dark",
+                        });
                       } else if (
                         GlobalState.state.length === 0 ||
                         GlobalState.state[0].store_id === product.store_id
                       ) {
                         dispatch({ type: "ADD", payload: product });
-                        toast.success("Product added to cart");
+                        toast.success(`Product added to cart!`, {
+                          position: "bottom-right",
+                          autoClose: 3000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                          theme: "dark",
+                        });
+                      } else {
+                        toast.error(
+                          "You can't add products from different stores to cart.",
+                          {
+                            position: "bottom-right",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                          }
+                        );
                       }
                     }}
                     className="flex flex-row"
