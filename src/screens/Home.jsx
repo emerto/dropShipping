@@ -54,7 +54,10 @@ const Home = () => {
             <StoreWithProducts store={store} key={store.id} />
           ))
         ) : (
-          <SearchComp />
+          <div className="mt-[100px]">
+            {" "}
+            <SearchComp />
+          </div>
         )}
       </div>
     </div>
