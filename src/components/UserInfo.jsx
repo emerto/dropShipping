@@ -255,7 +255,7 @@ const Profile = () => {
                     <div className="w-full">
                       <label
                         className="block mb-2 text-start w-auto text-base font-medium text-gray-300"
-                        for="user_avatar"
+                        htmlFor="user_avatar"
                       >
                         Upload an image
                       </label>
