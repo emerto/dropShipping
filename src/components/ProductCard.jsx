@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
 
           <div className="gap-2 mt-8 flex justify-center ">
             <img
-              className="object-cover w-max h-[200px] rounded-lg hover:transform  hover:scale-125 hover:-translate-y-5 transition duration-200 ease-in-out"
+              className="object-cover w-max h-[200px] rounded-lg hover:transform  hover:scale-110 hover:-translate-y-5 transition duration-200 ease-in-out"
               src={product.supplier_prod_image}
               alt="office content 1"
             />
