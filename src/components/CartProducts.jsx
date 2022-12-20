@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
-import { Item } from "semantic-ui-react";
+
 import { CartContext } from "../context/CartContext";
 import {
   PlusCircleIcon,
@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 const CartProducts = ({ setTotal }) => {
-  const [number, setNumber] = useState(1);
+  // const [number, setNumber] = useState(1);
   const [totalLocal, setTotalLocal] = useState(0);
   const GlobalState = useContext(CartContext);
   const dispatch = GlobalState.dispatch;

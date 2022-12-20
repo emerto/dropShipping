@@ -1,12 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Header,
-  Image,
-  Modal,
-  Input,
-  Dropdown,
-} from "semantic-ui-react";
+import React, { useState } from "react";
+import { Modal, Dropdown } from "semantic-ui-react";
 import supabase from "../config/supaBaseClient";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
