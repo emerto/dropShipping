@@ -42,7 +42,7 @@ const CartProducts = ({ setTotal }) => {
             <div className="flex justify-between">
               <div className="flex flex-row w-full">
                 <img
-                  className="p-2 flex justify-start object-cover h-48 max-w-[200px] border border-gray-900 rounded-2xl"
+                  className="p-2 flex justify-start object-cover h-48 max-w-[168px] border border-gray-900 rounded-2xl"
                   src={product.supplier_prod_image}
                   alt="product image"
                 />
