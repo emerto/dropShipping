@@ -17,7 +17,7 @@ const TestProdCard = ({ product }) => {
 
           <div className="gap-2 mt-8 flex justify-center ">
             <img
-              className="object-cover w-max max-h-[200px] rounded-lg hover:transform  hover:scale-[1.16] hover:-translate-y-5 transition duration-200 ease-in-out"
+              className="object-cover w-max min-h-[200px] max-h-[200px] rounded-lg hover:transform  hover:scale-[1.16] hover:-translate-y-5 transition duration-200 ease-in-out"
               src={product.supplier_prod_image}
               alt="office content 1"
             />
