@@ -148,7 +148,7 @@ const Cart = () => {
         draggable
         pauseOnHover
       />
-      <div className="bg-gray-900 h-[100vh] mt-24">
+      <div className="bg-gray-900 min-h-[100vh] mt-24">
         <div>
           <Navbar />
         </div>
@@ -156,7 +156,7 @@ const Cart = () => {
           <h1 className="">Your Products</h1>
         </div>
         {isCartEmpty ? (
-          <div className="flex justify-center mt-[400px] ">
+          <div className="flex justify-center h-[80vh] ">
             <div className="flex items-center ">
               <h1 className="text-primary ml-12 text-4xl font-semibold">
                 You don't have any product
