@@ -34,16 +34,6 @@ const CartProducts = ({ setTotal }) => {
     dispatch({ type: "REMOVE", payload: product });
   };
 
-  const [isHovering, setIsHovering] = useState(false);
-
-  const handleMouseOver = () => {
-    setIsHovering(true);
-  };
-
-  const handleMouseOut = () => {
-    setIsHovering(false);
-  };
-
   return (
     <div className="">
       {state.map((product) => {
