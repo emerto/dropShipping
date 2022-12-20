@@ -82,10 +82,10 @@ const Navbar = ({ setSearchReturn, setIsStoreRet }) => {
            } ${isSticky ? "bg-opacity-80 " : "bg-opacity-100"} `}
           >
             {" "}
-            <li className="flex hamburger:mr-16 hamburger:mt-2 mt-10">
+            <li className="flex hamburger:mr-[100px] hamburger:mt-2 mt-10">
               <div
                 className={`flex hamburger:ml-0 ml-0 hamburger:block
-                    duration-500`}
+                      duration-500`}
               >
                 <Search
                   setSearchReturn={setSearchReturn}
