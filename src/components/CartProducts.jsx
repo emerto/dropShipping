@@ -72,7 +72,7 @@ const CartProducts = ({ setTotal }) => {
                   {product.quantity > 1 ? (
                     <div className="flex mt-2 ">
                       <div
-                        className="text-3xl cursor-pointer flex justify-center my-12 text-white -mb-4 pt-3 pl-2 pr-2 hover:visible duration-300"
+                        className="text-3xl cursor-pointer flex justify-center my-12 text-white -mb-4 pt-3 pl-2 pr-2 duration-300"
                         onClick={() => Remove(product)}
                       >
                         <TrashIcon className="w-9 h-9 text-white justify-center flex mt-2 hover:text-red-500 duration-300" />
