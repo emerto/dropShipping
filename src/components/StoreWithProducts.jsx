@@ -37,8 +37,8 @@ const StoreWithProducts = ({ store }) => {
 
   return (
     <div>
-      <section className="mt-16 flex justify-center">
-        <div className="flex flex-row mt-16 w-full">
+      <section className=" flex justify-center">
+        <div className="flex flex-row w-full">
           <div className="flex flex-col gap-5 py-1 mx-auto w-auto ">
             <div className="flex-row flex bg-slate-700/30 rounded-xl">
               <div
