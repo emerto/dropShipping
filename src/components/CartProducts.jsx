@@ -59,35 +59,58 @@ const CartProducts = ({ setTotal }) => {
 
               <div className="">
                 <div className="flex ">
-                  <div className="flex mt-2 ">
-                    <div
-                      className="text-3xl cursor-pointer flex justify-center my-12 text-white -mb-4 pt-3 pl-2 pr-2"
-                      onClick={() => Remove(product)}
-                    >
-                      <TrashIcon className="w-9 h-9 text-white justify-center flex mt-2 hover:text-red-500 duration-300" />
-                    </div>
-                    <div
-                      className=" flex flex-col items-center ml-5 text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center
+                  {product.quantity > 1 ? (
+                    <div className="flex mt-2 ">
+                      <div
+                        className="text-3xl cursor-pointer flex justify-center my-12 text-white -mb-4 pt-3 pl-2 pr-2"
+                        onClick={() => Remove(product)}
+                      >
+                        <TrashIcon className="w-9 h-9 text-white justify-center flex mt-2 hover:text-red-500 duration-300" />
+                      </div>
+                      <div
+                        className=" flex flex-col items-center ml-5 text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center
                      -200 m-2"
-                    >
-                      <div
-                        className="text-3xl  cursor-pointer -mb-4 px-2 "
-                        onClick={() => Increase(product)}
                       >
-                        <PlusCircleIcon className="w-9 h-9 text-white hover:text-primary duration-300" />
-                      </div>
-                      <h1>{product.quantity}</h1>
-                      <div
-                        className="text-3xl cursor-pointer -mb-4 pl-2 pr-2"
-                        onClick={() => {
-                          if (product.quantity > 1) Decrease(product);
-                          else Remove(product);
-                        }}
-                      >
-                        <MinusCircleIcon className="w-9 h-9 text-white hover:text-primary duration-300" />
+                        <div
+                          className="text-3xl  cursor-pointer -mb-4 px-2 "
+                          onClick={() => Increase(product)}
+                        >
+                          <PlusCircleIcon className="w-9 h-9 text-white hover:text-primary duration-300" />
+                        </div>
+                        <h1>{product.quantity}</h1>
+                        <div
+                          className="text-3xl cursor-pointer -mb-4 pl-2 pr-2"
+                          onClick={() => {
+                            if (product.quantity > 1) Decrease(product);
+                            else Remove(product);
+                          }}
+                        >
+                          <MinusCircleIcon className="w-9 h-9 text-white hover:text-primary duration-300" />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="flex mt-2 ">
+                      <div
+                        className=" flex flex-col items-center ml-5 text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center
+                     -200 m-2"
+                      >
+                        <div
+                          className="text-3xl  cursor-pointer -mb-4 px-2 "
+                          onClick={() => Increase(product)}
+                        >
+                          <PlusCircleIcon className="w-9 h-9 text-white hover:text-primary duration-300" />
+                        </div>
+                        <h1>{product.quantity}</h1>
+                        <div
+                          className="text-3xl cursor-pointer -mb-4 pl-2 pr-2"
+                          onClick={() => Remove(product)}
+                        >
+                          <TrashIcon className="w-9 h-9 text-white hover:text-primary duration-300" />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
