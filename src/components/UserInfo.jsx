@@ -144,7 +144,7 @@ const Profile = () => {
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8 bg-secondary border-primary">
               <h1 className="font-bold leading-tight tracking-tight text-2xl text-white">
                 USER
-                <span className="text-black bg-primary ml-1 p-2 py-[2px] rounded-3xl :">
+                <span className="text-black bg-primary ml-1 p-2 py-[2px] rounded-lg :">
                   PROFILE
                 </span>
               </h1>
