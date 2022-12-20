@@ -8,9 +8,9 @@ const ProductCard = ({ product }) => {
   const GlobalState = useContext(CartContext);
   const dispatch = GlobalState.dispatch;
   return (
-    <section className="bg-gray-900 flex justify-center">
+    <section className="flex justify-center">
       <div className="flex flex-row ml-5 w-[250px]">
-        <div className="border-2 flex flex-col gap-1 py-3 px-4 mx-auto w-[800px] border-gray-900 ">
+        <div className="flex flex-col gap-1 py-3 px-4 mx-auto w-[800px]">
           <div className="flex justify-end">
             {/* {auth.userData.has_store ? (
               <EditProductPop />
@@ -35,7 +35,7 @@ const ProductCard = ({ product }) => {
               className="relative flex items-center justify-center  p-4 px-6 py-3 overflow-hidden font-medium text-primary transition duration-300 ease-out border-2 border-primary
              rounded-full shadow-md group"
             >
-              <span className="absolute inset-0 flex items-center justify-center w-full h-full text-primary duration-300 -translate-x-full bg-gray-900 group-hover:translate-x-0 ease">
+              <span className="absolute inset-0 flex items-center justify-center w-full h-full text-primary duration-300 -translate-x-full  group-hover:translate-x-0 ease">
                 <button
                   onClick={() => dispatch({ type: "ADD", payload: product })}
                   className="flex flex-row"

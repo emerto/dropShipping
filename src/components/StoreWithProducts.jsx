@@ -37,12 +37,12 @@ const StoreWithProducts = ({ store }) => {
 
   return (
     <div>
-      <section className="bg-slate-900 mt-16 flex justify-center">
+      <section className="mt-16 flex justify-center">
         <div className="flex flex-row mt-16 w-full">
-          <div className="border-2 border-mx flex flex-col gap-5 py-1  mx-auto w-auto   ">
-            <div className="flex-row flex  ">
+          <div className="flex flex-col gap-5 py-1 mx-auto w-auto ">
+            <div className="flex-row flex bg-slate-700/30 rounded-xl">
               <div
-                className="flex-col justify-center items-center border-r-2 flex w-[230px] px-2 cursor-pointer"
+                className="flex-col justify-center items-center flex w-[230px] px-2 cursor-pointer "
                 onClick={() =>
                   navigate(`/store/${store_name}`, { state: store })
                 }
@@ -52,7 +52,7 @@ const StoreWithProducts = ({ store }) => {
                     {store_name}
                   </p>
                 </div>
-                <div className="max-w-[230px] h-[280px] flex ">
+                <div className="max-w-[230px] h-[280px] flex mb-3">
                   <img
                     className="rounded-xl mb-2 object-cover px-2 "
                     src={
