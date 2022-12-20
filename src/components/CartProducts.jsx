@@ -34,6 +34,16 @@ const CartProducts = ({ setTotal }) => {
     dispatch({ type: "REMOVE", payload: product });
   };
 
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
+
   return (
     <div className="">
       {state.map((product) => {
@@ -62,11 +72,12 @@ const CartProducts = ({ setTotal }) => {
                   {product.quantity > 1 ? (
                     <div className="flex mt-2 ">
                       <div
-                        className="text-3xl cursor-pointer flex justify-center my-12 text-white -mb-4 pt-3 pl-2 pr-2"
+                        className="text-3xl cursor-pointer flex justify-center my-12 text-white -mb-4 pt-3 pl-2 pr-2 hover:visible duration-300"
                         onClick={() => Remove(product)}
                       >
                         <TrashIcon className="w-9 h-9 text-white justify-center flex mt-2 hover:text-red-500 duration-300" />
                       </div>
+
                       <div
                         className=" flex flex-col items-center ml-5 text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center
                      -200 m-2"
