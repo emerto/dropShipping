@@ -24,11 +24,17 @@ const AuthProvider = ({ children }) => {
           .eq("dropshipper_id", sessionUser.id)
           .single();
 
+        const { data: store, error: storeError } = await supabase
+          .from("stores")
+          .select("id")
+          .eq("owner", sessionUser.id)
+          .single();
+
         if (dropshipper) {
           setIsDropShipper(true);
         }
 
-        setUser({ ...sessionUser, ...profile });
+        setUser({ ...sessionUser, ...profile, store });
       }
     };
 

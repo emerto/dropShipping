@@ -5,12 +5,14 @@ import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { useAuth } from "../context/AuthContext";
+
 const ProductCard = ({ product }) => {
   product.quantity = 1;
   const GlobalState = useContext(CartContext);
   const dispatch = GlobalState.dispatch;
-  const storeid = GlobalState.store_id;
-  console.log(storeid);
+  const auth = useAuth();
+  console.log(GlobalState.state);
   return (
     <>
       <ToastContainer
@@ -55,24 +57,22 @@ const ProductCard = ({ product }) => {
                 <span className="absolute inset-0 flex items-center justify-center w-full h-full text-primary duration-300 -translate-x-full  group-hover:translate-x-0 ease">
                   <button
                     onClick={() => {
-                      dispatch({ type: "ADD", payload: product });
-                      toast.success(`Product added to the cart succesfully!`, {
-                        position: "bottom-right",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
-                      });
+                      if (product.store_id === auth.user.store.id) {
+                        toast.error("You can't add your own product to cart");
+                      } else if (
+                        GlobalState.state.length === 0 ||
+                        GlobalState.state[0].store_id === product.store_id
+                      ) {
+                        dispatch({ type: "ADD", payload: product });
+                        toast.success("Product added to cart");
+                      }
                     }}
                     className="flex flex-row"
                   >
                     <ShoppingCartIcon className="h-[25px] w-[50px] text-primary " />
                     <p className="text-white hover:text-primary duration-500">
                       Add To Cart
-                    </p>{" "}
+                    </p>
                   </button>
                 </span>
                 <span className="absolute flex flex-row items-center justify-center w-full h-full  transition-all duration-300 transform group-hover:translate-x-full ease">
