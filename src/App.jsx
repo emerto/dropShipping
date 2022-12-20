@@ -12,6 +12,7 @@ import Store from "./screens/Store";
 import ManageStore from "./screens/ManageStore";
 import Cart from "./screens/Cart";
 import Orders from "./screens/Orders";
+import ReceivedOrders from "./screens/ReceivedOrders";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
   {
     path: "/orders",
     element: <Orders />,
+  },
+  {
+    path: "/receivedorders",
+    element: <ReceivedOrders />,
   },
   {
     path: "/profile",

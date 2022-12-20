@@ -103,7 +103,7 @@ const CartProducts = ({ setTotal }) => {
                   ) : (
                     <div className="flex mt-2 ">
                       <div
-                        className=" flex flex-col items-center ml-5 text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center
+                        className=" flex flex-col items-center ml-5 text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center
                      -200 m-2"
                       >
                         <div
@@ -117,7 +117,7 @@ const CartProducts = ({ setTotal }) => {
                           className="text-3xl cursor-pointer -mb-4 pl-2 pr-2"
                           onClick={() => Remove(product)}
                         >
-                          <TrashIcon className="w-9 h-9 text-white hover:text-primary duration-300" />
+                          <TrashIcon className="w-9 h-9 text-white hover:text-primary duration-300 " />
                         </div>
                       </div>
                     </div>

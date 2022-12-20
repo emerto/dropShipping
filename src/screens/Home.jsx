@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import ProductCard from "../components/ProductCard";
+import SearchProdCard from "../components/SearchProdCard";
 import StoreWithProducts from "../components/StoreWithProducts";
 
 import supabase from "../config/supaBaseClient";
@@ -33,17 +33,17 @@ const Home = () => {
   const SearchComp = () => {
     if (isStoreRet) {
       return searchReturn.map((store) => (
-        <StoreWithProducts store={store} key={store.id} />
+        <SearchProdCard store={store} key={store.id} />
       ));
     }
 
     return searchReturn.map((product) => (
-      <ProductCard product={product} key={product.id} />
+      <SearchProdCard product={product} key={product.id} />
     ));
   };
 
   return (
-    <div className="h-[100vh] bg-slate-900">
+    <div className="h-[120vh] bg-slate-900">
       <div className="flex flex-col bg-slate-900">
         <Navbar
           setSearchReturn={setSearchReturn}
@@ -51,11 +51,12 @@ const Home = () => {
         />
         {searchReturn.length === 0 ? (
           randomStore.map((store) => (
-            <StoreWithProducts store={store} key={store.id} />
+            <div className="mt-28">
+              <StoreWithProducts store={store} key={store.id} />
+            </div>
           ))
         ) : (
-          <div className="mt-[100px]">
-            {" "}
+          <div className="flex flex-wrap justify-center items-center mt-[100px]">
             <SearchComp />
           </div>
         )}
