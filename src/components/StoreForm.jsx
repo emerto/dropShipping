@@ -163,7 +163,7 @@ const StoreForm = () => {
                   </div>
                   <div className="w-full">
                     <label
-                      for="telephone"
+                      htmlFor="telephone"
                       className="block mb-2 md:mt-0 mt-4 text-sm font-medium text-primary  "
                     >
                       Telephone Number
@@ -197,7 +197,7 @@ const StoreForm = () => {
                 </div>
                 <div>
                   <label
-                    for="address"
+                    htmlFor="address"
                     className="block mb-2 text-sm font-medium text-primary "
                   >
                     Adress
@@ -214,7 +214,7 @@ const StoreForm = () => {
                 </div>
                 <div>
                   <label
-                    for="address"
+                    htmlFor="address"
                     className="block mb-2 text-sm font-medium text-primary "
                   >
                     Upload an image

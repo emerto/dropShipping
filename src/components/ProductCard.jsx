@@ -1,6 +1,6 @@
 import { React, useContext, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
-import { NavLink } from "react-router-dom";
+
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 const ProductCard = ({ product }) => {
@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
 
           <div className="gap-2 mt-8 flex justify-center ">
             <img
-              className="object-cover w-max max-h-[200px] rounded-lg hover:transform  hover:scale-125 hover:-translate-y-5 transition duration-200 ease-in-out"
+              className="object-cover w-max h-[200px] rounded-lg hover:transform  hover:scale-125 hover:-translate-y-5 transition duration-200 ease-in-out"
               src={product.supplier_prod_image}
               alt="office content 1"
             />
@@ -44,7 +44,6 @@ const ProductCard = ({ product }) => {
                   <p className="text-white hover:text-primary duration-500">
                     Add To Cart
                   </p>{" "}
-                  {/*BURAYA FİYATI KOYMAK LAZIM*/}
                 </button>
               </span>
               <span className="absolute flex flex-row items-center justify-center w-full h-full  transition-all duration-300 transform group-hover:translate-x-full ease">

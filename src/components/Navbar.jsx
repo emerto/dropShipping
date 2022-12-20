@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import {
@@ -139,12 +139,14 @@ const Navbar = ({ setSearchReturn, setIsStoreRet }) => {
               </NavLink>
             </li>
             {/* <li className="flex flex-row hamburger:mr-16 hamburger:mt-2 mt-10"> */}
-            <li className="flex hamburger:mr-[50px] hamburger:mt-2 mt-10">
-              <CurrencyDollarIcon className="w-7 h-7" />
-              <p className="flex justify-center items-center content-center ml-1">
-                {auth.user.balance === null ? "0" : auth.user.balance}
-              </p>
-            </li>
+            {auth.user ? (
+              <li className="flex hamburger:mr-[50px] hamburger:mt-2 mt-10">
+                <CurrencyDollarIcon className="w-7 h-7" />
+                <p className="flex justify-center items-center content-center ml-1">
+                  {auth.user.balance}
+                </p>
+              </li>
+            ) : null}
           </ul>
         </div>
       </div>
