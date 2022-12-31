@@ -51,7 +51,7 @@ const Home = () => {
         />
         {searchReturn.length === 0 ? (
           randomStore.map((store) => (
-            <div className="mt-28">
+            <div className="mt-28" key={store.id}>
               <StoreWithProducts store={store} key={store.id} />
             </div>
           ))

@@ -5,7 +5,11 @@ import Navbar from "../components/Navbar";
 import OrderCard from "../components/OrderCard";
 import { useAuth } from "../context/AuthContext";
 
-import { ClockIcon, CheckBadgeIcon } from "@heroicons/react/24/solid";
+import {
+  ClockIcon,
+  CheckBadgeIcon,
+  XCircleIcon,
+} from "@heroicons/react/24/solid";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -78,22 +82,34 @@ const Orders = () => {
                   <div className="w-full h-1 bg-primary rounded-xl mt-3" />
                   <div className="flex flex-col items-end p-3">
                     <div className="flex flex-col items-center">
-                      <div className="text-3xl text-white">
+                      <div className="flex justify-end w-full  text-3xl text-white">
                         <p>
                           Total:
                           <span className="text-primary"> ${order.total}</span>
                         </p>
                       </div>
                       <div className="text-3xl text-white ">
-                        {order.status ? (
+                        {order.status === "accepted" && (
                           <div className="flex flex-row items-center">
                             <CheckBadgeIcon className="h-[24px] w-[24px] text-green-500" />
                             <p>Delivered</p>
                           </div>
-                        ) : (
+                        )}
+                        {order.status === "pending" && (
                           <div className="flex items-center">
                             <ClockIcon className="h-[24px] w-[24px] text-primary" />
                             <p>Pending</p>
+                          </div>
+                        )}
+                        {order.status === "rejected" && (
+                          <div className="flex flex-col">
+                            <div className="flex items-center text-3xl text-white ">
+                              <XCircleIcon className="h-[24px] w-[24px] text-red-500" />
+                              <p>Rejected by the Dropshipper</p>
+                            </div>
+                            <span className="text-primary text-base flex justify-end">
+                              Money will be refunded
+                            </span>
                           </div>
                         )}
                       </div>

@@ -12,6 +12,7 @@ const ProductCard = ({ product }) => {
   const GlobalState = useContext(CartContext);
   const dispatch = GlobalState.dispatch;
   const auth = useAuth();
+
   return (
     <>
       <section className="flex justify-center">
@@ -42,38 +43,29 @@ const ProductCard = ({ product }) => {
              rounded-full shadow-md group"
               >
                 <span className="absolute inset-0 flex items-center justify-center w-full h-full text-primary duration-300 -translate-x-full  group-hover:translate-x-0 ease">
-                  <button
-                    onClick={() => {
-                      if (product.store_id === auth.user.store.id) {
-                        toast.error("You can't add your own product to cart.", {
-                          position: "bottom-right",
-                          autoClose: 3000,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          theme: "dark",
-                        });
-                      } else if (
-                        GlobalState.state.length === 0 ||
-                        GlobalState.state[0].store_id === product.store_id
-                      ) {
-                        dispatch({ type: "ADD", payload: product });
-                        toast.success(`Product added to cart!`, {
-                          position: "bottom-right",
-                          autoClose: 3000,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          theme: "dark",
-                        });
-                      } else {
-                        toast.error(
-                          "You can't add products from different stores to cart.",
-                          {
+                  {auth.user && (
+                    <button
+                      onClick={() => {
+                        if (product.store_id === auth.user.store.id) {
+                          toast.error(
+                            "You can't add your own product to cart.",
+                            {
+                              position: "bottom-right",
+                              autoClose: 3000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: "dark",
+                            }
+                          );
+                        } else if (
+                          GlobalState.state.length === 0 ||
+                          GlobalState.state[0].store_id === product.store_id
+                        ) {
+                          dispatch({ type: "ADD", payload: product });
+                          toast.success(`Product added to cart!`, {
                             position: "bottom-right",
                             autoClose: 3000,
                             hideProgressBar: false,
@@ -82,17 +74,73 @@ const ProductCard = ({ product }) => {
                             draggable: true,
                             progress: undefined,
                             theme: "dark",
-                          }
-                        );
-                      }
-                    }}
-                    className="flex flex-row"
-                  >
-                    <ShoppingCartIcon className="h-[25px] w-[50px] text-primary " />
-                    <p className="text-white hover:text-primary duration-500">
-                      Add To Cart
-                    </p>
-                  </button>
+                          });
+                        } else {
+                          toast.error(
+                            "You can't add products from different stores to cart.",
+                            {
+                              position: "bottom-right",
+                              autoClose: 3000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: "dark",
+                            }
+                          );
+                        }
+                      }}
+                      className="flex flex-row"
+                    >
+                      <ShoppingCartIcon className="h-[25px] w-[50px] text-primary " />
+                      <p className="text-white hover:text-primary duration-500">
+                        Add To Cart
+                      </p>
+                    </button>
+                  )}
+                  {!auth.user && (
+                    <button
+                      onClick={() => {
+                        if (
+                          GlobalState.state.length === 0 ||
+                          GlobalState.state[0].store_id === product.store_id
+                        ) {
+                          dispatch({ type: "ADD", payload: product });
+                          toast.success(`Product added to cart!`, {
+                            position: "bottom-right",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                          });
+                        } else {
+                          toast.error(
+                            "You can't add products from different stores to cart.",
+                            {
+                              position: "bottom-right",
+                              autoClose: 3000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: "dark",
+                            }
+                          );
+                        }
+                      }}
+                      className="flex flex-row"
+                    >
+                      <ShoppingCartIcon className="h-[25px] w-[50px] text-primary " />
+                      <p className="text-white hover:text-primary duration-500">
+                        Add To Cart
+                      </p>
+                    </button>
+                  )}
                 </span>
                 <span className="absolute flex flex-row items-center justify-center w-full h-full  transition-all duration-300 transform group-hover:translate-x-full ease">
                   <p>${product.price}</p>
