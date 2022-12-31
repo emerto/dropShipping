@@ -37,9 +37,6 @@ const UserSideBar = () => {
   const navToStore = () => {
     navigate(`/store/${storeInfo.store_name}`, { state: storeInfo });
   };
-  const navToreceivedOrders = () => {
-    navigate(`/receivedorders`, { state: storeInfo });
-  };
 
   useEffect(() => {
     if (auth.isDropShipper) {
@@ -68,15 +65,13 @@ const UserSideBar = () => {
           <div className="flex-[9] flex ">
             <ul className="space-y-2 w-full">
               {auth.isDropShipper ? (
-                <li onClick={navToreceivedOrders}>
-                  <li onClick={() => navigate("/receivedorders")}>
-                    <div className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-2xl font-normal  rounded-lg text-white hover:bg-gray-700">
-                      <span className="p-0 rounded-full ring-gray-500">
-                        <ArrowPathIcon className="w-12 h-12" />
-                      </span>
-                      <span className="ml-3">Received Orders</span>
-                    </div>
-                  </li>
+                <li onClick={() => navigate("/receivedorders")}>
+                  <div className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-2xl font-normal  rounded-lg text-white hover:bg-gray-700">
+                    <span className="p-0 rounded-full ring-gray-500">
+                      <ArrowPathIcon className="w-12 h-12" />
+                    </span>
+                    <span className="ml-3">Received Orders</span>
+                  </div>
                 </li>
               ) : null}
               <li onClick={() => navigate("/orders")}>
