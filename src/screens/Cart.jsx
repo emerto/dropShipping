@@ -253,18 +253,28 @@ const Cart = () => {
                     />
                   </div>
                   <div className="flex justify-start ">
-                    <button
-                      className={`btn-secondary w-52 text-center text-lg justify-center
+                    {auth.user && (
+                      <button
+                        className={`btn-secondary w-52 text-center text-lg justify-center
                     ${
                       total > auth.user.balance ? "bg-gray-500" : "bg-primary"
                     }`}
-                      disabled={total > auth.user.balance}
-                      onClick={handleBuy}
-                    >
-                      {total > auth.user.balance
-                        ? "Insufficant Balance"
-                        : "Confirm Order"}
-                    </button>
+                        disabled={total > auth.user.balance}
+                        onClick={handleBuy}
+                      >
+                        {total > auth.user.balance
+                          ? "Insufficant Balance"
+                          : "Confirm Order"}
+                      </button>
+                    )}
+                    {!auth.user && (
+                      <button
+                        className="btn-secondary w-52 text-center text-lg justify-center"
+                        onClick={() => navigate("/login")}
+                      >
+                        Sign In to Buy
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
