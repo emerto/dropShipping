@@ -8,6 +8,7 @@ import OrderCard from "../components/OrderCard";
 
 const ReceivedOrders = () => {
   const [orders, setOrders] = useState([]);
+  const [stock, setStock] = useState([]);
   const auth = useAuth();
 
   const getOrders = async () => {
@@ -16,6 +17,7 @@ const ReceivedOrders = () => {
       .select(
         `
           id,
+          customer_id,
           status,
           order_date,
           total,
@@ -36,6 +38,89 @@ const ReceivedOrders = () => {
     if (data) {
       setOrders(data);
     }
+  };
+
+  const acceptOrder = async (id) => {
+    const { data, error } = await supabase
+      .from("orders")
+      .select(
+        `
+          id,
+          customer_id,
+          status,
+          order_date,
+          total,
+          carts (
+              *,
+          products (
+              *
+              )
+          )
+      `
+      )
+      .eq("id", id);
+
+    if (error) {
+      console.log(error);
+    }
+
+    if (data) {
+      setStock(data);
+    }
+
+    let productArr = [];
+
+    data.forEach((order) => {
+      order.carts.forEach((cart) => {
+        productArr.push({
+          product: cart.products.supplier_product_id,
+          amount: cart.amount,
+        });
+      });
+    });
+
+    let stockArr = [];
+
+    productArr.map(async (product) => {
+      const { data, error } = await supabase
+        .from("supplier_products")
+        .select("stock")
+        .eq("id", product.product)
+        .single();
+
+      if (error) {
+        console.log(error);
+      }
+
+      if (data) {
+        stockArr.push({
+          supplierProductId: product.product,
+          supplierStock: data.stock,
+          boughtQty: product.amount,
+        });
+        setStock(stockArr);
+      }
+    });
+
+    stock.map(async (stock) => {
+      let calculatedStock = stock.supplierStock - stock.boughtQty;
+      const { data, error } = await supabase
+        .from("supplier_products")
+        .update({ stock: calculatedStock })
+        .eq("id", stock.supplierProductId);
+
+      if (error) {
+        console.log(error);
+      }
+
+      if (data) {
+        console.log(data);
+      }
+    });
+  };
+
+  const rejectOrder = async (id) => {
+    const { data, error } = await supabase.from("orders");
   };
 
   const updateOrderStatus = async (id, status) => {
@@ -103,6 +188,14 @@ const ReceivedOrders = () => {
                           <span className="text-primary"> ${order.total}</span>
                         </p>
                       </div>
+                      <button
+                        className="btn-primary"
+                        onClick={() => {
+                          acceptOrder(order.id);
+                        }}
+                      >
+                        A
+                      </button>
                       {order.status === "pending" ? (
                         <div className="flex mt-3 gap-3">
                           <button
