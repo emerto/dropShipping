@@ -149,6 +149,7 @@ const ReceivedOrders = () => {
 
       if (balance) {
         let newBalance = balance.balance + data.total;
+        console.log(newBalance);
         const { data: update, error } = await supabase
           .from("profiles")
           .update({ balance: newBalance })
