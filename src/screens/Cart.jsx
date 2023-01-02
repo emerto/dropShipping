@@ -59,6 +59,7 @@ const Cart = () => {
           customer_id: auth.user.id,
           order_date: new Date(),
           total: total,
+          store_id: cart.state[0].store_id,
         },
       ]);
 
