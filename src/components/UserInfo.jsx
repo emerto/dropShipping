@@ -108,7 +108,7 @@ const Profile = () => {
 
     try {
       const { error } = await supabase.from("customers").insert({
-        customer_id: user.id,
+        customer_id: auth.user.id,
       });
 
       if (error) {
