@@ -6,6 +6,7 @@ import {
   ArrowPathIcon,
   ShoppingCartIcon,
   ArrowLeftOnRectangleIcon,
+  ClipboardDocumentListIcon,
 } from "@heroicons/react/24/solid";
 
 import { useAuth } from "../context/AuthContext";
@@ -68,7 +69,7 @@ const UserSideBar = () => {
                 <li onClick={() => navigate("/receivedorders")}>
                   <div className="flex pr-[50px] cursor-pointer items-center p-2 ml-5 text-2xl font-normal  rounded-lg text-white hover:bg-gray-700">
                     <span className="p-0 rounded-full ring-gray-500">
-                      <ArrowPathIcon className="w-12 h-12" />
+                      <ClipboardDocumentListIcon className="w-12 h-12" />
                     </span>
                     <span className="ml-3">Received Orders</span>
                   </div>
