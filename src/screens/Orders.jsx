@@ -10,9 +10,11 @@ import {
   CheckBadgeIcon,
   XCircleIcon,
 } from "@heroicons/react/24/solid";
+import { Dropdown } from "semantic-ui-react";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+  const [orderBy, setOrderBy] = useState("order_date");
   const auth = useAuth();
 
   const fetchOrders = async () => {
@@ -33,7 +35,7 @@ const Orders = () => {
         `
       )
       .eq("customer_id", auth.user.id)
-      .order("order_date", { ascending: false });
+      .order(orderBy, { ascending: false });
 
     if (error) {
       console.log(error);
@@ -46,7 +48,7 @@ const Orders = () => {
 
   useEffect(() => {
     fetchOrders();
-  }, []);
+  }, [orderBy]);
 
   return (
     <div className="h-[100vh] bg-slate-900">
@@ -57,6 +59,30 @@ const Orders = () => {
             <h1 className="text-5xl text-white tracking-wider">Orders</h1>
           </div>
           <div className="w-full h-1 bg-primary rounded-xl mt-3" />
+
+          <div className="text-lg mt-5 text-white flex gap-2 text-center items-center justify-center">
+            <p className="pt-7 mr-5 text-2xl">ORDER BY:</p>
+            <div
+              className="mr-[10px] py-1 min-w-[120px] border hover:bg-blue-900 duration-300 rounded-xl cursor-pointer text-center justify-center content-center"
+              onClick={() => setOrderBy("order_date")}
+            >
+              Order Date
+            </div>
+            {/* <div
+              className="mr-[10px] py-1 border min-w-[120px] hover:bg-blue-900 duration-300 rounded-xl text-center cursor-pointer"
+              onClick={() => setOrderBy("id")}
+            >
+              ID
+            </div> */}
+            <div
+              className="mr-[10px] py-1 border hover:bg-blue-900 duration-300 rounded-xl min-w-[120px] text-center cursor-pointer"
+              onClick={() => setOrderBy("total")}
+            >
+              Total
+            </div>
+            {/* {orderBy} */}
+          </div>
+
           <div className="flex flex-col justify-center items-center ">
             {orders.map((order) => {
               return (
