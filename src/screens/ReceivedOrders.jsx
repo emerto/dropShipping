@@ -81,7 +81,8 @@ const ReceivedOrders = () => {
 
     let stockArr = [];
 
-    productArr.map(async (product) => {
+    for (let i = 0; i < productArr.length; i++) {
+      const product = productArr[i];
       const { data, error } = await supabase
         .from("supplier_products")
         .select("stock")
@@ -98,25 +99,26 @@ const ReceivedOrders = () => {
           supplierStock: data.stock,
           boughtQty: product.amount,
         });
-        setStock(stockArr);
       }
-    });
+    }
 
-    stock.map(async (stock) => {
-      let calculatedStock = stock.supplierStock - stock.boughtQty;
-      const { data, error } = await supabase
-        .from("supplier_products")
-        .update({ stock: calculatedStock })
-        .eq("id", stock.supplierProductId);
+    setStock(stockArr);
 
-      if (error) {
-        console.log(error);
-      }
+    const updatePromises = [];
 
-      if (data) {
-        updateOrderStatus(id, "accepted");
-      }
-    });
+    for (let i = 0; i < stockArr.length; i++) {
+      const stock = stockArr[i];
+      const calculatedStock = stock.supplierStock - stock.boughtQty;
+      updatePromises.push(
+        supabase
+          .from("supplier_products")
+          .update({ stock: calculatedStock })
+          .eq("id", stock.supplierProductId)
+      );
+    }
+
+    await Promise.all(updatePromises);
+    updateOrderStatus(id, "accepted");
   };
 
   const rejectOrder = async (id) => {
