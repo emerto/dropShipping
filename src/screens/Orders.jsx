@@ -32,12 +32,8 @@ const Orders = () => {
             )
         `
       )
-      .eq("customer_id", auth.user.id);
-
-    // order by decreasing the date
-    data.sort((a, b) => {
-      return new Date(b.order_date) - new Date(a.order_date);
-    });
+      .eq("customer_id", auth.user.id)
+      .order("order_date", { ascending: false });
 
     if (error) {
       console.log(error);
