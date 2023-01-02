@@ -44,6 +44,79 @@ const ReceivedOrders = () => {
     }
   };
 
+  const calculateProfit = async (id) => {
+    const { data, error } = await supabase
+      .from("orders")
+      .select(
+        `
+          id,
+          customer_id,
+          status,
+          order_date,
+          total,
+          carts (
+              *,
+          products (
+              *
+              )
+          )
+      `
+      )
+      .eq("id", id);
+
+    if (error) {
+      console.log(error);
+    }
+
+    let productArr = [];
+
+    if (data) {
+      data.forEach((order) => {
+        order.carts.forEach((cart) => {
+          productArr.push({
+            supplierProdId: cart.products.supplier_product_id,
+            productId: cart.product_id,
+          });
+        });
+      });
+
+      let profitArr = [];
+
+      for (let i = 0; i < productArr.length; i++) {
+        const product = productArr[i];
+        const { data: prodPrice, error: prodErr } = await supabase
+          .from("products")
+          .select("price")
+          .eq("id", product.productId)
+          .single();
+
+        const { data: suppPrice, error: suppErr } = await supabase
+          .from("supplier_products")
+          .select("price")
+          .eq("id", product.supplierProdId)
+          .single();
+
+        if (error) {
+          console.log(error);
+        }
+
+        if (prodPrice && suppPrice) {
+          profitArr.push({
+            profit: prodPrice.price - suppPrice.price,
+          });
+        }
+      }
+
+      let totalProfit = 0;
+
+      profitArr.forEach((profit) => {
+        totalProfit += profit.profit;
+      });
+
+      return totalProfit;
+    }
+  };
+
   const acceptOrder = async (id) => {
     const { data, error } = await supabase
       .from("orders")
@@ -123,6 +196,21 @@ const ReceivedOrders = () => {
 
     await Promise.all(updatePromises);
     updateOrderStatus(id, "accepted");
+
+    const profit = await calculateProfit(id);
+
+    const { data: balance, error: balanceErr } = await supabase
+      .from("profiles")
+      .update({ balance: auth.user.balance + profit })
+      .eq("id", auth.user.id);
+
+    if (balanceErr) {
+      console.log(balanceErr);
+    }
+
+    if (balance) {
+      console.log(balance);
+    }
   };
 
   const rejectOrder = async (id) => {
@@ -250,7 +338,6 @@ const ReceivedOrders = () => {
                             <button
                               className="btn-primary"
                               onClick={() => {
-                                // updateOrderStatus(order.id, "rejected");
                                 rejectOrder(order.id);
                               }}
                             >
