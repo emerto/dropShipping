@@ -12,6 +12,7 @@ const ReceivedOrders = () => {
   const [orders, setOrders] = useState([]);
   const [stock, setStock] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [statusCounts, setStatusCounts] = useState({});
   const auth = useAuth();
 
   const getOrders = async () => {
@@ -41,6 +42,13 @@ const ReceivedOrders = () => {
 
     if (data) {
       setOrders(data);
+      const counts = data.reduce((acc, order) => {
+        acc[order.status] = acc[order.status] || 0;
+        acc[order.status]++;
+        return acc;
+      }, {});
+
+      setStatusCounts(counts); // added
       setIsLoading(false);
     }
   };
@@ -366,6 +374,16 @@ const ReceivedOrders = () => {
             <Spinner />
           )}
         </section>
+        <div className="w-full mb-5 flex text-white justify-center flex-row gap-5">
+          {Object.keys(statusCounts).map((status) => (
+            <div className="flex border p-3 mt-5 rounded-lg" key={status}>
+              <h3 className="pt-3 pr-5">{status} count:</h3>
+              <button className="border-2 p-4 bg-primary text-slate-900 rounded-full">
+                Count: {statusCounts[status]}
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -61,19 +61,13 @@ const Orders = () => {
           <div className="w-full h-1 bg-primary rounded-xl mt-3" />
 
           <div className="text-lg mt-5 text-white flex gap-2 text-center items-center justify-center">
-            <p className="pt-7 mr-5 text-2xl">ORDER BY:</p>
+            <p className="pt-7 mr-5 text-2xl">ORDER BY DESCENDING:</p>
             <div
               className="mr-[10px] py-1 min-w-[120px] border hover:bg-blue-900 duration-300 rounded-xl cursor-pointer text-center justify-center content-center"
               onClick={() => setOrderBy("order_date")}
             >
-              Order Date
+              Ordered Date
             </div>
-            {/* <div
-              className="mr-[10px] py-1 border min-w-[120px] hover:bg-blue-900 duration-300 rounded-xl text-center cursor-pointer"
-              onClick={() => setOrderBy("id")}
-            >
-              ID
-            </div> */}
             <div
               className="mr-[10px] py-1 border hover:bg-blue-900 duration-300 rounded-xl min-w-[120px] text-center cursor-pointer"
               onClick={() => setOrderBy("total")}
