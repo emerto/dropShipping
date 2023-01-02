@@ -32,7 +32,8 @@ const ReceivedOrders = () => {
           )
       `
       )
-      .eq("store_id", auth.user.store.id);
+      .eq("store_id", auth.user.store.id)
+      .order("id", { ascending: false });
 
     if (error) {
       console.log(error);
