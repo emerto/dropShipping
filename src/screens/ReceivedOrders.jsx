@@ -114,7 +114,7 @@ const ReceivedOrders = () => {
       }
 
       if (data) {
-        console.log(data);
+        updateOrderStatus(id, "accepted");
       }
     });
   };
@@ -188,20 +188,12 @@ const ReceivedOrders = () => {
                           <span className="text-primary"> ${order.total}</span>
                         </p>
                       </div>
-                      <button
-                        className="btn-primary"
-                        onClick={() => {
-                          acceptOrder(order.id);
-                        }}
-                      >
-                        A
-                      </button>
                       {order.status === "pending" ? (
                         <div className="flex mt-3 gap-3">
                           <button
                             className="btn-primary"
                             onClick={() => {
-                              updateOrderStatus(order.id, "accepted");
+                              acceptOrder(order.id);
                             }}
                           >
                             Accept
