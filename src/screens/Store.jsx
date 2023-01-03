@@ -20,7 +20,6 @@ const Store = () => {
   const storeInfo = location.state;
   const { id, owner, store_name, store_description, store_image } = storeInfo;
   const GlobalState = useContext(CartContext);
-  console.log(GlobalState);
   const getProducts = async () => {
     try {
       const { data, error } = await supabase
