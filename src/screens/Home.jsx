@@ -33,7 +33,7 @@ const Home = () => {
   const SearchComp = () => {
     if (isStoreRet) {
       return searchReturn.map((store) => (
-        <SearchProdCard store={store} key={store.id} />
+        <StoreWithProducts store={store} key={store.id} />
       ));
     }
 

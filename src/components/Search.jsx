@@ -11,6 +11,11 @@ const Search = ({ setSearchReturn, setIsStoreRet }) => {
   const [search, setSearch] = useState("");
   const [isStore, setIsStore] = useState(false);
 
+  const controller = () => {
+    setIsStore(!isStore);
+    setSearchReturn([]);
+  };
+
   const formSubmit = async (e) => {
     e.preventDefault();
 
@@ -80,6 +85,8 @@ const Search = ({ setSearchReturn, setIsStoreRet }) => {
     if (search === "") {
       setSearchReturn([]);
     }
+
+    setSearch("");
   };
 
   return (
@@ -103,6 +110,7 @@ const Search = ({ setSearchReturn, setIsStoreRet }) => {
         <input
           type="search"
           name="search"
+          value={search}
           placeholder={`Search for ${isStore ? "stores" : "products"}`}
           className="bg-transparent outline-none w-[200px] hamburger:w-[400px] text-black placeholder-gray-600 border-none focus:ring-0"
           onChange={(e) => setSearch(e.target.value)}
@@ -111,7 +119,7 @@ const Search = ({ setSearchReturn, setIsStoreRet }) => {
           {isStore ? (
             <div
               onClick={() => {
-                setIsStore(!isStore);
+                controller();
                 setIsStoreRet(!isStore);
               }}
             >
@@ -120,7 +128,7 @@ const Search = ({ setSearchReturn, setIsStoreRet }) => {
           ) : (
             <div
               onClick={() => {
-                setIsStore(!isStore);
+                controller();
                 setIsStoreRet(!isStore);
               }}
             >
