@@ -60,13 +60,13 @@ const Cart = () => {
           order_date: new Date(),
           total: total,
           store_id: cart.state[0].store_id,
+          delivery_address: address,
         },
       ]);
 
     if (orderError) {
       toast.error(orderError.message);
     } else {
-      console.log(orderData);
       const { data: orderItemsData, error: cartError } = await supabase
         .from("carts")
         .insert(
@@ -218,7 +218,7 @@ const Cart = () => {
                       required
                       placeholder={address}
                       className="input-form p-4 h-[115px] bg-secondary focus:bg-neutral-700 block  w-full text-base rounded-lg border  text-gray-400 focus:outline-none border-primary placeholder-gray-400"
-                      // onChange={(e) => setAddress(e.target.value)}
+                      onChange={(e) => setAddress(e.target.value)}
                     />
                   </div>
                   <div className=" w-4/5">
