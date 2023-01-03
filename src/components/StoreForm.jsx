@@ -27,7 +27,8 @@ const StoreForm = () => {
 
       if (error) {
         console.log(error);
-      } else {
+      }
+      if (data) {
         setStoreImageUrl(data.Key);
       }
     }

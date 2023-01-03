@@ -22,6 +22,7 @@ const Profile = () => {
   const [uploading, setUploading] = useState(false);
 
   const auth = useAuth();
+  const session = supabase.auth.session();
   const navigate = useNavigate();
 
   const getProfile = async () => {
@@ -120,7 +121,7 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    if (!auth.user) {
+    if (!session || !auth.user) {
       navigate("/login");
     }
   }, []);
