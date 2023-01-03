@@ -76,6 +76,7 @@ const ReceivedOrders = () => {
           productArr.push({
             supplierProdId: cart.products.supplier_product_id,
             productId: cart.product_id,
+            amount: cart.amount,
           });
         });
       });
@@ -102,7 +103,7 @@ const ReceivedOrders = () => {
 
         if (prodPrice && suppPrice) {
           profitArr.push({
-            profit: prodPrice.price - suppPrice.price,
+            profit: (prodPrice.price - suppPrice.price) * product.amount,
           });
         }
       }
@@ -206,10 +207,6 @@ const ReceivedOrders = () => {
 
     if (balanceErr) {
       console.log(balanceErr);
-    }
-
-    if (balance) {
-      console.log(balance);
     }
   };
 
