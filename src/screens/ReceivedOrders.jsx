@@ -295,10 +295,24 @@ const ReceivedOrders = () => {
         <Navbar />
         <section className="flex flex-col mt-[130px] ml-[100px] max-w-[90%]">
           <header className="flex justify-between">
-            <h1 className="text-5xl text-white tracking-wider">
+            <h1 className="flex w-full items-center text-5xl text-white tracking-wider ">
               Recived Orders
             </h1>
+            <div className="w-full mb-5 flex text-white justify-end flex-row gap-5">
+              {Object.keys(statusCounts).map((status) => (
+                <div
+                  className="flex justify-center items-center bg-slate-700/20 p-3 rounded-lg"
+                  key={status}
+                >
+                  <h3 className="pt-3 pr-2 capitalize">{status} Count:</h3>
+                  <p className="text-primary text-3xl">
+                    {statusCounts[status]}
+                  </p>
+                </div>
+              ))}
+            </div>
           </header>
+
           <div className="w-full h-1 bg-primary rounded-xl mt-3" />
           {!isLoading ? (
             <section className="flex flex-col justify-center items-center ">
@@ -381,16 +395,6 @@ const ReceivedOrders = () => {
             <Spinner />
           )}
         </section>
-        <div className="w-full mb-5 flex text-white justify-center flex-row gap-5">
-          {Object.keys(statusCounts).map((status) => (
-            <div className="flex border p-3 mt-5 rounded-lg" key={status}>
-              <h3 className="pt-3 pr-5">{status} count:</h3>
-              <button className="border-2 p-4 bg-primary text-slate-900 rounded-full">
-                Count: {statusCounts[status]}
-              </button>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
