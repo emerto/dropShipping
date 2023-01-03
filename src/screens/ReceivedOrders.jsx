@@ -191,11 +191,16 @@ const ReceivedOrders = () => {
 
     setStock(stockArr);
 
+    let reject = false;
     const updatePromises = [];
 
     for (let i = 0; i < stockArr.length; i++) {
       const stock = stockArr[i];
       const calculatedStock = stock.supplierStock - stock.boughtQty;
+      if (calculatedStock < 0) {
+        reject = true;
+        break;
+      }
       updatePromises.push(
         supabase
           .from("supplier_products")
@@ -204,18 +209,23 @@ const ReceivedOrders = () => {
       );
     }
 
-    await Promise.all(updatePromises);
-    updateOrderStatus(id, "accepted");
+    if (reject) {
+      updateOrderStatus(id, "rejected");
+      rejectOrder(id);
+    } else {
+      await Promise.all(updatePromises);
+      updateOrderStatus(id, "accepted");
 
-    const profit = await calculateProfit(id);
+      const profit = await calculateProfit(id);
 
-    const { data: balance, error: balanceErr } = await supabase
-      .from("profiles")
-      .update({ balance: auth.user.balance + profit })
-      .eq("id", auth.user.id);
+      const { data: balance, error: balanceErr } = await supabase
+        .from("profiles")
+        .update({ balance: auth.user.balance + profit })
+        .eq("id", auth.user.id);
 
-    if (balanceErr) {
-      console.log(balanceErr);
+      if (balanceErr) {
+        console.log(balanceErr);
+      }
     }
   };
 

@@ -14,6 +14,20 @@ const AddProductPopup = ({ storeId }) => {
   const [price, setPrice] = useState("");
 
   const addProduct = async () => {
+    if (!productName || !price) {
+      toast.error(`Please fill all fields`, {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return;
+    }
+
     var imageUrlText;
     const { data: imageData, error: imageError } = await supabase
       .from("supplier_products")
