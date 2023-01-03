@@ -56,7 +56,11 @@ const Home = () => {
             </div>
           ))
         ) : (
-          <div className="flex flex-wrap justify-center items-center mt-[100px]">
+          <div
+            className={`flex ${
+              isStoreRet ? "flex-col" : "flex-row"
+            } justify-center items-center mt-[100px]`}
+          >
             <SearchComp />
           </div>
         )}
