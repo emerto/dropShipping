@@ -7,7 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import eCart from "../assets/basket.svg";
 import { CartContext } from "../context/CartContext";
 
 const Cart = () => {
@@ -153,17 +153,18 @@ const Cart = () => {
         <div>
           <Navbar />
         </div>
-        <div className="text-primary pl-8 bg-black text-4xl font-semibold flex">
-          <h1 className="">Your Products</h1>
-        </div>
+
         {isCartEmpty ? (
           <div className="flex justify-center h-[80vh] ">
-            <div className="flex items-center ">
-              <h1 className="text-primary ml-12 text-4xl font-semibold">
+            <div className="flex items-center flex-col justify-center">
+              <div>
+                <img className="w-24 h-24 " src={eCart} alt />
+              </div>
+              <h1 className="text-primary text-4xl font-semibold">
                 You don't have any product
               </h1>
               <NavLink
-                className="bg-primary ml-3 text-black  hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-white  font-medium-bold rounded-3xl text-xl px-2 py-2.5 text-center  border border-black"
+                className="bg-primary ml-3 mt-2 text-black  hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-white hover:text-white font-medium-bold rounded-3xl text-xl px-5 py-3 text-center  border border-black"
                 to="/"
               >
                 Add product
