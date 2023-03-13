@@ -23,7 +23,7 @@ const StoreForm = () => {
     if (file) {
       const { data, error } = await supabase.storage
         .from("stores")
-        .upload(`store_img-${storename}`, file);
+        .upload(`${Date.now()}_${file.name}`, file);
 
       if (error) {
         console.log(error);
