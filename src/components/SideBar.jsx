@@ -36,7 +36,7 @@ const UserSideBar = () => {
   };
 
   const navToStore = () => {
-    navigate(`/store/${storeInfo.store_name}`, { state: storeInfo });
+    navigate(`/store/${storeInfo.store_name}`, { state: storeInfo.name });
   };
 
   useEffect(() => {

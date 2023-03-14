@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ProductCard from "../components/ProductCard";
-import { CartContext } from "../context/CartContext";
 import supabase from "../config/supaBaseClient";
 import Navbar from "../components/Navbar";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Spinner from "../utils/Spinner";
 
@@ -13,14 +12,35 @@ import notFound from "../animations/notFound.json";
 import placeHolder from "../assets/shopPlaceholder.png";
 
 const Store = () => {
+  const [storeInfo, setStoreInfo] = useState({});
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const animRef = useRef(null);
-  const location = useLocation();
-  const storeInfo = location.state;
-  const { id, owner, store_name, store_description, store_image } = storeInfo;
-  const GlobalState = useContext(CartContext);
-  const getProducts = async () => {
+
+  let { name } = useParams();
+
+  const getStoreInfo = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("stores")
+        .select("*")
+        .eq("store_name", name)
+        .single();
+
+      if (error) {
+        throw error;
+      }
+
+      if (data) {
+        setStoreInfo(data);
+        getProducts(data.id);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getProducts = async (id) => {
     try {
       const { data, error } = await supabase
         .from("products")
@@ -41,7 +61,7 @@ const Store = () => {
   };
 
   useEffect(() => {
-    getProducts();
+    getStoreInfo();
   }, []);
 
   useEffect(() => {
@@ -68,15 +88,15 @@ const Store = () => {
               <div className="border-primary border-[0.25rem] w-[180px] h-[180px] rounded-full">
                 <img
                   src={
-                    store_image
-                      ? `https://tcvbahslxgfxsxqidkyy.supabase.co/storage/v1/object/public/${store_image}`
+                    storeInfo.store_image
+                      ? `https://tcvbahslxgfxsxqidkyy.supabase.co/storage/v1/object/public/${storeInfo.store_image}`
                       : placeHolder
                   }
                   className="object-cover rounded-full"
                 />
               </div>
               <h1 className="text-5xl ml-6 text-white tracking-wider">
-                {store_name}
+                {storeInfo.store_name}
               </h1>
             </div>
             <div className="w-full h-1 bg-primary rounded-xl mt-5" />
