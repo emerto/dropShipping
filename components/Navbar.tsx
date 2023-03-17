@@ -98,16 +98,13 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
                     className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
                   >
                     <li>
-                      <Link href="/profile">Profile</Link>
+                      <a>Profile</a>
                     </li>
                     <li>
                       <Link href="/orders">Orders</Link>
                     </li>
                     <li>
-                      <Link href="/recivedOrders">Recived Orders</Link>
-                    </li>
-                    <li>
-                      <Link href="/manageStore">Manage Store</Link>
+                      <Link href="/manageStore">Orders</Link>
                     </li>
                     <li onClick={signOut}>
                       <a>Sign Out</a>
@@ -146,14 +143,6 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
                 <p className="text-sm">{userStore?.balance}</p>
               </div>
             </div>
-          </li>
-          <li>
-            <Link href="/recivedOrders" className="btn p-4 w-full">
-              <div className="flex items-center  h-full">
-                Profile
-                <Icon icon="carbon:user-avatar" className="w-6 h-6 ml-1" />
-              </div>
-            </Link>
           </li>
           <li>
             <Link href="/recivedOrders" className="btn p-4 w-full">
