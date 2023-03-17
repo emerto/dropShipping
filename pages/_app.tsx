@@ -1,37 +1,21 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { useState } from "react";
+import { supabase } from "../utils/supabaseClient";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
+import { useAuthStore } from "../stores/useAuthStore";
 
 import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
 
-import { supabaseClient } from "../utils/supabaseBrowserClient";
-
 import { useUser } from "@supabase/auth-helpers-react";
-import { useAuthStore } from "../stores/useAuthStore";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const user = useUser();
 
-  async function fetchUser() {
-    const { data: userData, error } = await supabaseClient
-      .from("profiles")
-      .select("*")
-      .eq("id", user.id)
-      .single();
-
-    if (userData) {
-      useAuthStore.setState({
-        userStore: userData,
-      });
-    }
-  }
-
   if (user) {
-    fetchUser();
+    console.log(user);
   }
-
   return (
     <div>
       <Navbar children={children} />
