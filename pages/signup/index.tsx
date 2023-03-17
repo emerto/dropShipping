@@ -20,14 +20,13 @@ const SignUp = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     const { email, password } = inputs;
-    console.log(inputs);
   };
 
   return (
     <div className="hero">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center">
-          <h1 className="text-5xl font-bold">Login now!</h1>
+          <h1 className="text-5xl font-bold">Sign up!</h1>
         </div>
         <form
           className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
@@ -100,12 +99,13 @@ const SignUp = () => {
                 />
                 <p>
                   I agree to the{" "}
-                  <Link
+                  <a
                     href="/terms-and-conditions"
+                    target="_blank"
                     className="text-primary hover:underline hover:cursor-pointer"
                   >
-                    Terms of Service
-                  </Link>
+                    Terms and Conditions
+                  </a>
                 </p>
               </div>
               {errors.terms?.type === "required" && (
@@ -117,7 +117,7 @@ const SignUp = () => {
 
             <div className="form-control mt-6">
               <button className="btn btn-primary" type="submit">
-                Login
+                Sign Up
               </button>
             </div>
           </div>
