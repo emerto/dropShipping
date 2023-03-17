@@ -81,51 +81,40 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
                   </div>
                 </div>
               </li>
-              {userStore.id ? (
-                <li>
-                  <div className="dropdown dropdown-end">
-                    <label
-                      tabIndex={0}
-                      className="btn btn-ghost btn-circle avatar"
-                    >
-                      <div className="w-10 rounded-full">
-                        <img
-                          src={`https://tcvbahslxgfxsxqidkyy.supabase.co/storage/v1/object/public/${userStore?.avatar_url}`}
-                        />
-                      </div>
-                    </label>
-                    <ul
-                      tabIndex={0}
-                      className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-                    >
-                      <li>
-                        <Link href="/profile">Profile</Link>
-                      </li>
-                      <li>
-                        <Link href="/orders">Orders</Link>
-                      </li>
-                      <li>
-                        <Link href="/recivedOrders">Recived Orders</Link>
-                      </li>
-                      <li>
-                        <Link href="/manageStore">Manage Store</Link>
-                      </li>
-                      <li onClick={signOut}>
-                        <a>Sign Out</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              ) : (
-                <li className="flex gap-3">
-                  <Link href="/signin">
-                    <div className="btn btn-primary">Sign In</div>
-                  </Link>
-                  <Link href="/signup">
-                    <div className="btn ">Sign Up</div>
-                  </Link>
-                </li>
-              )}
+              <li>
+                <div className="dropdown dropdown-end">
+                  <label
+                    tabIndex={0}
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-10 rounded-full">
+                      <img
+                        src={`https://tcvbahslxgfxsxqidkyy.supabase.co/storage/v1/object/public/${userStore?.avatar_url}`}
+                      />
+                    </div>
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+                  >
+                    <li>
+                      <Link href="/profile">Profile</Link>
+                    </li>
+                    <li>
+                      <Link href="/orders">Orders</Link>
+                    </li>
+                    <li>
+                      <Link href="/recivedOrders">Recived Orders</Link>
+                    </li>
+                    <li>
+                      <Link href="/manageStore">Manage Store</Link>
+                    </li>
+                    <li onClick={signOut}>
+                      <a>Sign Out</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
