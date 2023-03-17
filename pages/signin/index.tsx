@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { supabaseClient } from "../../utils/supabaseBrowserClient";
+import { supabase } from "../../utils/supabaseClient";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { useRouter } from "next/navigation";
 
@@ -18,13 +18,13 @@ const SignIn = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     const { email, password } = inputs;
-    const { data, error } = await supabaseClient.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (data) {
-      const { data: userData, error } = await supabaseClient
+      const { data: userData, error } = await supabase
         .from("profiles")
         .select("*")
         .eq("id", data.user?.id)

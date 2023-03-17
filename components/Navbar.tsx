@@ -2,16 +2,13 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuthStore } from "../stores/useAuthStore";
-import { supabaseClient } from "../utils/supabaseBrowserClient";
-
-import { useUser } from "@supabase/auth-helpers-react";
+import { supabase } from "../utils/supabaseClient";
 
 const Navbar = ({ children }: { children: React.ReactNode }) => {
   const { userStore } = useAuthStore();
-  const user = useUser();
 
   const signOut = async () => {
-    await supabaseClient.auth.signOut();
+    await supabase.auth.signOut();
     useAuthStore.setState({
       userStore: {
         address: "",
@@ -84,7 +81,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
                   </div>
                 </div>
               </li>
-              {user ? (
+              {userStore.id ? (
                 <li>
                   <div className="dropdown dropdown-end">
                     <label
@@ -139,85 +136,70 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-3" className="drawer-overlay" />
-        {user ? (
-          <ul className="flex flex-col gap-5 p-4 w-80 bg-base-100">
-            <li className="flex flex-row py-2 border-b-2 border-primary gap-3 items-center">
-              <label tabIndex={0} className="avatar">
-                <div className="w-12 rounded-full">
-                  <img
-                    src={`https://tcvbahslxgfxsxqidkyy.supabase.co/storage/v1/object/public/${userStore?.avatar_url}`}
-                  />
-                </div>
-              </label>
-              <div className="flex flex-col">
-                <p className="text-xl font-bold">
-                  {userStore?.first_name + " " + userStore?.last_name}
-                </p>
-                <div className="flex flex-row items-center">
-                  <Icon
-                    icon="ri:money-dollar-circle-fill"
-                    className="w-6 h-6 text-primary"
-                  />
-                  <p className="text-sm">{userStore?.balance}</p>
-                </div>
+        <ul className="flex flex-col gap-5 p-4 w-80 bg-base-100">
+          <li className="flex flex-row py-2 border-b-2 border-primary gap-3 items-center">
+            <label tabIndex={0} className="avatar">
+              <div className="w-12 rounded-full">
+                <img
+                  src={`https://tcvbahslxgfxsxqidkyy.supabase.co/storage/v1/object/public/${userStore?.avatar_url}`}
+                />
               </div>
-            </li>
-            <li>
-              <Link href="/recivedOrders" className="btn p-4 w-full">
-                <div className="flex items-center  h-full">
-                  Profile
-                  <Icon icon="carbon:user-avatar" className="w-6 h-6 ml-1" />
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link href="/recivedOrders" className="btn p-4 w-full">
-                <div className="flex items-center  h-full">
-                  Recived Orders
-                  <Icon
-                    icon="mdi:clipboard-check-multiple-outline"
-                    className="w-6 h-6 ml-1"
-                  />
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link href="/orders" className="btn p-4 w-full">
-                <div className="flex items-center h-full">
-                  Orders
-                  <Icon icon="heroicons:arrow-path" className="w-6 h-6 ml-1" />
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link href="/manageStore" className="btn p-4 w-full">
-                <div className="flex items-center h-full">
-                  Manage Store
-                  <Icon icon="mdi:store-edit" className="w-6 h-6 ml-1" />
-                </div>
-              </Link>
-            </li>
-            <li className="btn p-4" onClick={signOut}>
+            </label>
+            <div className="flex flex-col">
+              <p className="text-xl font-bold">
+                {userStore?.first_name + " " + userStore?.last_name}
+              </p>
+              <div className="flex flex-row items-center">
+                <Icon
+                  icon="ri:money-dollar-circle-fill"
+                  className="w-6 h-6 text-primary"
+                />
+                <p className="text-sm">{userStore?.balance}</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <Link href="/recivedOrders" className="btn p-4 w-full">
+              <div className="flex items-center  h-full">
+                Profile
+                <Icon icon="carbon:user-avatar" className="w-6 h-6 ml-1" />
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link href="/recivedOrders" className="btn p-4 w-full">
+              <div className="flex items-center  h-full">
+                Recived Orders
+                <Icon
+                  icon="mdi:clipboard-check-multiple-outline"
+                  className="w-6 h-6 ml-1"
+                />
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link href="/orders" className="btn p-4 w-full">
               <div className="flex items-center h-full">
-                Sign Out
-                <Icon icon="mdi:sign-out" className="w-6 h-6 ml-1" />
+                Orders
+                <Icon icon="heroicons:arrow-path" className="w-6 h-6 ml-1" />
               </div>
-            </li>
-          </ul>
-        ) : (
-          <ul className="flex flex-col gap-5 p-4 w-80 bg-base-100">
-            <li>
-              <Link href="/signin" className="btn p-4 w-full">
-                <div className="flex items-center  h-full">Sign In</div>
-              </Link>
-            </li>
-            <li>
-              <Link href="/signup" className="btn p-4 w-full btn-primary">
-                <div className="flex items-center  h-full">Sign Up</div>
-              </Link>
-            </li>
-          </ul>
-        )}
+            </Link>
+          </li>
+          <li>
+            <Link href="/manageStore" className="btn p-4 w-full">
+              <div className="flex items-center h-full">
+                Manage Store
+                <Icon icon="mdi:store-edit" className="w-6 h-6 ml-1" />
+              </div>
+            </Link>
+          </li>
+          <li className="btn p-4" onClick={signOut}>
+            <div className="flex items-center h-full">
+              Sign Out
+              <Icon icon="mdi:sign-out" className="w-6 h-6 ml-1" />
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   );
