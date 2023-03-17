@@ -9,8 +9,6 @@ const Home = () => {
   const [searchReturn, setSearchReturn] = useState([]);
   const [isStoreRet, setIsStoreRet] = useState(false);
 
-  console.log("test");
-
   const getStores = async () => {
     try {
       const { data, error } = await supabase.from("stores").select("*");
