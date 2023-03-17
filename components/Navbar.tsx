@@ -101,10 +101,10 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
                       <a>Profile</a>
                     </li>
                     <li>
-                      <Link href="/orders">Orders</Link>
+                      <a>Recived Orders</a>
                     </li>
                     <li>
-                      <Link href="/manageStore">Orders</Link>
+                      <a>Manage Store</a>
                     </li>
                     <li onClick={signOut}>
                       <a>Sign Out</a>
@@ -144,32 +144,26 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
               </div>
             </div>
           </li>
-          <li>
-            <Link href="/recivedOrders" className="btn p-4 w-full">
-              <div className="flex items-center  h-full">
-                Recived Orders
-                <Icon
-                  icon="mdi:clipboard-check-multiple-outline"
-                  className="w-6 h-6 ml-1"
-                />
-              </div>
-            </Link>
+          <li className="btn p-4 ">
+            <div className="flex items-center  h-full">
+              Recived Orders
+              <Icon
+                icon="mdi:clipboard-check-multiple-outline"
+                className="w-6 h-6 ml-1"
+              />
+            </div>
           </li>
-          <li>
-            <Link href="/orders" className="btn p-4 w-full">
-              <div className="flex items-center h-full">
-                Orders
-                <Icon icon="heroicons:arrow-path" className="w-6 h-6 ml-1" />
-              </div>
-            </Link>
+          <li className="btn p-4">
+            <div className="flex items-center h-full">
+              Orders
+              <Icon icon="heroicons:arrow-path" className="w-6 h-6 ml-1" />
+            </div>
           </li>
-          <li>
-            <Link href="/manageStore" className="btn p-4 w-full">
-              <div className="flex items-center h-full">
-                Manage Store
-                <Icon icon="mdi:store-edit" className="w-6 h-6 ml-1" />
-              </div>
-            </Link>
+          <li className="btn p-4">
+            <div className="flex items-center h-full">
+              Manage Store
+              <Icon icon="mdi:store-edit" className="w-6 h-6 ml-1" />
+            </div>
           </li>
           <li className="btn p-4" onClick={signOut}>
             <div className="flex items-center h-full">
