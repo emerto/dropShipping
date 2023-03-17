@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 
 import supabase from "../config/supaBaseClient";
 import { useLocation } from "react-router-dom";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import TestProdCard from "../components/TestProdCard";
 import AddProductPopup from "../components/AddProductPopup";
@@ -16,43 +16,17 @@ import Lottie from "lottie-web";
 import notFound from "../animations/notFound.json";
 
 const ManageStore = () => {
-  const [storeInfo, setStoreInfo] = useState({});
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
   const animRef = useRef(null);
+  const storeInfo = location.state;
 
-  const { name } = useParams();
-
+  const { id, owner, store_name, store_description, store_image } = storeInfo;
   const user = supabase.auth.user();
   const navigate = useNavigate();
 
-  const getStoreInfo = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("stores")
-        .select("*")
-        .eq("store_name", name)
-        .single();
-
-      if (error) {
-        throw error;
-      }
-
-      if (data) {
-        setStoreInfo(data);
-
-        if (user.id !== data.owner) {
-          navigate("/");
-        }
-
-        getProducts(data.id);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getProducts = async (id) => {
+  const getProducts = async () => {
     try {
       const { data, error } = await supabase
         .from("products")
@@ -87,11 +61,17 @@ const ManageStore = () => {
   }, [loading]);
 
   useEffect(() => {
+    getProducts();
+  }, []);
+
+  useEffect(() => {
     if (!user) {
-      navigate("/login");
+      navigate("/");
     }
 
-    getStoreInfo();
+    if (user.id != owner) {
+      navigate("/");
+    }
   }, []);
 
   return (
@@ -102,10 +82,10 @@ const ManageStore = () => {
           <div className="flex flex-col">
             <div className="flex justify-between">
               <h1 className="text-5xl text-white tracking-wider">
-                {storeInfo.store_name}
+                {store_name}
               </h1>
               <div className="mt-5 w-[200px]">
-                <AddProductPopup storeId={storeInfo.id} />
+                <AddProductPopup storeId={id} />
               </div>
             </div>
             <div className="w-full h-1 bg-primary rounded-xl mt-3" />

@@ -44,7 +44,7 @@ const StoreWithProducts = ({ store }) => {
               <div
                 className="flex-col justify-center items-center flex w-[230px] px-2 cursor-pointer "
                 onClick={() =>
-                  navigate(`/store/${store_name}`, { state: store.name })
+                  navigate(`/store/${store_name}`, { state: store })
                 }
               >
                 <div className=" bg-gray-800 my-3 rounded-2xl flex justify-center mx-6 py-3 h-fill w-[150px] ">
