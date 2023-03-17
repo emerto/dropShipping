@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .input-form {
+    @apply ring-1 ring-primary bg-lightSecond text-gray-400 focus:text-white sm:text-sm rounded-lg block w-full p-2.5 outline-none focus:ring-2 focus:ring-primary;
+  }
+
+  .btn-primary {
+    @apply w-full text-black bg-primary hover:bg-primary/90 font-medium transition-all duration-200 ease-in-out rounded-lg text-lg px-5 py-2.5 text-center;
+  }
+  .btn-secondary {
+    @apply w-[120px] text-black bg-primary hover:bg-primary/90 font-medium transition-all duration-200 ease-in-out rounded-lg text-sm px-5 py-2.5 text-center;
+  }
+}
+
+.ui.dropdown .menu {
+  background-color: #1a1a1a !important;
+  border-color: #ff9000 !important;
+}
+.ui.dropdown {
+  background-color: #1a1a1a !important;
+  border-color: #ff9000 !important;
+  color: #a5a3af !important;
+}
+.ui.modal > .header {
+  background-color: #111827 !important;
+  border-top: solid !important;
+  border-left: solid !important;
+  border-right: solid !important;
+  border-top-color: #ff9000 !important;
+  border-left-color: #ff9000 !important;
+  border-right-color: #ff9000 !important;
+  border-width: 1px !important;
+}
+.ui.modal > .content {
+  background-color: #111827 !important;
+  border-left: solid !important;
+  border-right: solid !important;
+  border-bottom: solid !important;
+  border-left-color: #ff9000 !important;
+  border-right-color: #ff9000 !important;
+  border-bottom-color: #ff9000 !important;
+  border-left-width: 1px !important;
+  border-right-width: 1px !important;
+  border-bottom-width: 1px !important;
+}
