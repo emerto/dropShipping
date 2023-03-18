@@ -5,6 +5,14 @@ import toast from "react-hot-toast";
 import Image from "next/image";
 import { useState } from "react";
 
+interface Inputs {
+  first_name: string;
+  last_name: string;
+  username: string;
+  address: string;
+  phone_number: string;
+}
+
 const Profile = () => {
   const [loading, setLoading] = useState(false);
   const { userStore } = useAuthStore();
@@ -13,7 +21,7 @@ const Profile = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<Inputs>();
 
   const onSubmit = async (data) => {
     const filterEmpty = Object.keys(data).reduce((acc, key) => {
@@ -50,7 +58,6 @@ const Profile = () => {
     }
   };
 
-  //ts upload file
   const uploadFile = async (e) => {
     setLoading(true);
     const file = e.target?.files[0];
