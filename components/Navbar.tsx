@@ -5,9 +5,11 @@ import { useAuthStore } from "../stores/useAuthStore";
 import { supabaseClient } from "../utils/supabaseBrowserClient";
 
 import { useUser } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/navigation";
 
 const Navbar = ({ children }: { children: React.ReactNode }) => {
   const { userStore } = useAuthStore();
+  const router = useRouter();
   const user = useUser();
 
   const signOut = async () => {
@@ -26,6 +28,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
         updated_at: "",
       },
     });
+    router.push("/");
   };
 
   return (
@@ -163,7 +166,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
               </div>
             </li>
             <li>
-              <Link href="/recivedOrders" className="btn p-4 w-full">
+              <Link href="/profile" className="btn p-4 w-full">
                 <div className="flex items-center  h-full">
                   Profile
                   <Icon icon="carbon:user-avatar" className="w-6 h-6 ml-1" />

@@ -2,7 +2,6 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { supabaseClient } from "../../utils/supabaseBrowserClient";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 interface Inputs {
   email: string;
@@ -20,6 +19,33 @@ const SignUp = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (inputs) => {
     const { email, password } = inputs;
+    const { data, error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+    });
+
+    if (data) {
+      const { data: userData, error } = await supabaseClient
+        .from("profiles")
+        .select("*")
+        .eq("id", data.user?.id)
+        .single();
+
+      if (userData) {
+        useAuthStore.setState({
+          userStore: userData,
+        });
+        router.push("/profile");
+      }
+
+      if (error) {
+        alert(error.message);
+      }
+    }
+
+    if (error) {
+      alert(error.message);
+    }
   };
 
   return (

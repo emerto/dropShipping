@@ -11,6 +11,8 @@ import { supabaseClient } from "../utils/supabaseBrowserClient";
 import { useUser } from "@supabase/auth-helpers-react";
 import { useAuthStore } from "../stores/useAuthStore";
 
+import { Toaster } from "react-hot-toast";
+
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const user = useUser();
 
@@ -72,6 +74,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       initialSession={pageProps.initialSession}
     >
       <Layout>
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+          toastOptions={{
+            duration: 3000,
+          }}
+        />
         <Component {...pageProps} />
       </Layout>
     </SessionContextProvider>
