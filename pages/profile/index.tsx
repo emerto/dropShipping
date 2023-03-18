@@ -1,7 +1,7 @@
-import React from "react";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { useForm } from "react-hook-form";
-import toast, { Toaster } from "react-hot-toast";
+import { supabase } from "../../utils/supabaseClient";
+import toast from "react-hot-toast";
 
 const Profile = () => {
   const { userStore } = useAuthStore();
@@ -11,6 +11,7 @@ const Profile = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const onSubmit = async (data) => {
     const filterEmpty = Object.keys(data).reduce((acc, key) => {
       if (data[key] !== "") {
@@ -45,6 +46,48 @@ const Profile = () => {
       toast.error("Something went wrong!");
     }
   };
+
+  //ts upload file
+  const uploadFile = async (e) => {
+    const file = e.target?.files[0];
+
+    if (!file) {
+      toast.error("Please select a file!");
+      return;
+    }
+
+    const { data, error } = await supabase.storage
+      .from("avatars")
+      .upload(`${Date.now()}_avatar-${userStore.id}`, file);
+
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+
+    const { data: publicURL } = supabase.storage
+      .from("avatars")
+      .getPublicUrl(data.path);
+
+    const { error: updateUrlError } = await supabase
+      .from("profiles")
+      .update({ avatar_url: publicURL.publicUrl })
+      .eq("id", userStore.id);
+
+    if (updateUrlError) {
+      toast.error(updateUrlError.message);
+      return;
+    }
+
+    useAuthStore.setState({
+      userStore: {
+        ...userStore,
+        avatar_url: publicURL.publicUrl,
+      },
+    });
+
+    toast.success("Avatar updated successfully!");
+  };
   return (
     <>
       <h1 className="text-3xl font-bold text-base-content">Profile</h1>
@@ -56,9 +99,7 @@ const Profile = () => {
           <div className="avatar">
             <div className="w-24 rounded-xl">
               {userStore.avatar_url ? (
-                <img
-                  src={`https://tcvbahslxgfxsxqidkyy.supabase.co/storage/v1/object/public/${userStore.avatar_url}`}
-                />
+                <img src={`${userStore.avatar_url}`} />
               ) : (
                 <img src="https://i.imgur.com/6S4ZQYg.png" />
               )}
@@ -150,6 +191,7 @@ const Profile = () => {
                 type="file"
                 name="avatar_url"
                 className="file-input file-input-primary w-full max-w-2xl"
+                onChange={(e) => uploadFile(e)}
               />
             </div>
             <div className="form-control w-full max-w-2xl">

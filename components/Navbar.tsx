@@ -95,9 +95,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
                       className="btn btn-ghost btn-circle avatar"
                     >
                       <div className="w-10 rounded-full">
-                        <img
-                          src={`https://tcvbahslxgfxsxqidkyy.supabase.co/storage/v1/object/public/${userStore?.avatar_url}`}
-                        />
+                        <img src={`${userStore?.avatar_url}`} />
                       </div>
                     </label>
                     <ul
@@ -147,9 +145,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
             <li className="flex flex-row py-2 border-b-2 border-primary gap-3 items-center">
               <label tabIndex={0} className="avatar">
                 <div className="w-12 rounded-full">
-                  <img
-                    src={`https://tcvbahslxgfxsxqidkyy.supabase.co/storage/v1/object/public/${userStore?.avatar_url}`}
-                  />
+                  <img src={`${userStore?.avatar_url}`} />
                 </div>
               </label>
               <div className="flex flex-col">
