@@ -1,3 +1,4 @@
+import { NextPage } from "next";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { useForm } from "react-hook-form";
 import { supabase } from "../../utils/supabaseClient";
@@ -13,7 +14,7 @@ interface Inputs {
   phone_number: string;
 }
 
-const Profile = () => {
+const Profile: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const { userStore } = useAuthStore();
 

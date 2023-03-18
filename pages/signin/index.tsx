@@ -1,3 +1,4 @@
+import { NextPage } from "next";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { supabaseClient } from "../../utils/supabaseBrowserClient";
 import { useAuthStore } from "../../stores/useAuthStore";
@@ -8,7 +9,7 @@ interface Inputs {
   password: string;
 }
 
-const SignIn = () => {
+const SignIn: NextPage = () => {
   const router = useRouter();
   const {
     register,

@@ -1,6 +1,6 @@
-import React from "react";
+import { NextPage } from "next";
 
-const Orders = () => {
+const Orders: NextPage = () => {
   return <div>Orders</div>;
 };
 

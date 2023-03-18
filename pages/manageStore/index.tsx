@@ -1,6 +1,6 @@
-import React from "react";
+import { NextPage } from "next";
 
-const ManageStore = () => {
+const ManageStore: NextPage = () => {
   return <div>ManageStore</div>;
 };
 
