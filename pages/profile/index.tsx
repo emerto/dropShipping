@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import { supabase } from "../../utils/supabaseClient";
 import toast from "react-hot-toast";
 import Image from "next/image";
+import { useState } from "react";
 
 const Profile = () => {
+  const [loading, setLoading] = useState(false);
   const { userStore } = useAuthStore();
 
   const {
@@ -50,6 +52,7 @@ const Profile = () => {
 
   //ts upload file
   const uploadFile = async (e) => {
+    setLoading(true);
     const file = e.target?.files[0];
 
     if (!file) {
@@ -88,6 +91,7 @@ const Profile = () => {
     });
 
     toast.success("Avatar updated successfully!");
+    setLoading(false);
   };
   return (
     <>
@@ -196,6 +200,7 @@ const Profile = () => {
               <input
                 type="file"
                 name="avatar_url"
+                disabled={loading}
                 className="file-input file-input-primary w-full max-w-2xl"
                 onChange={(e) => uploadFile(e)}
               />
