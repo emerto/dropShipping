@@ -2,6 +2,7 @@ import { useAuthStore } from "../../stores/useAuthStore";
 import { useForm } from "react-hook-form";
 import { supabase } from "../../utils/supabaseClient";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 const Profile = () => {
   const { userStore } = useAuthStore();
@@ -99,7 +100,12 @@ const Profile = () => {
           <div className="avatar">
             <div className="w-24 rounded-xl">
               {userStore.avatar_url ? (
-                <img src={`${userStore.avatar_url}`} />
+                <Image
+                  src={`${userStore.avatar_url}`}
+                  alt="Profile Avatar"
+                  width={300}
+                  height={300}
+                />
               ) : (
                 <img src="https://i.imgur.com/6S4ZQYg.png" />
               )}
