@@ -20,7 +20,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     const { data: userData, error } = await supabaseClient
       .from("profiles")
       .select("*")
-      .eq("id", user.id)
+      .eq("id", user?.id)
       .single();
 
     if (userData) {
@@ -42,30 +42,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 };
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // useEffect(() => {
-  //   const getUser = async () => {
-  //     const { data: user } = await supabase.auth.getUser();
-
-  //     const userCreds = user.user;
-
-  //     if (userCreds) {
-  //       const { data: userData, error } = await supabase
-  //         .from("profiles")
-  //         .select("*")
-  //         .eq("id", userCreds.id)
-  //         .single();
-
-  //       if (userData) {
-  //         useAuthStore.setState({
-  //           userStore: userData,
-  //         });
-  //       }
-  //     }
-  //   };
-
-  //   getUser();
-  // }, []);
-
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
 
   return (
