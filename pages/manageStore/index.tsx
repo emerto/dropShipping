@@ -1,5 +1,13 @@
-import { NextPage } from "next";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import type { Database } from "../../types/supabase";
+
+type store = Database["public"]["Tables"]["stores"]["Row"];
+type products = Database["public"]["Tables"]["products"]["Row"];
+
+type Props = {
+  store: store;
+  products: products[];
+};
 
 export const getServerSideProps = async (ctx) => {
   const supabase = createServerSupabaseClient(ctx);
@@ -57,7 +65,7 @@ export const getServerSideProps = async (ctx) => {
   };
 };
 
-const ManageStore: NextPage = ({ store, products }) => {
+const ManageStore = ({ store, products }: Props) => {
   return (
     <>
       <pre>{JSON.stringify(store, null, 2)}</pre>
