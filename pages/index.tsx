@@ -1,19 +1,20 @@
 import { NextPage } from "next";
 import Hero from "../components/Hero";
 
-// import { supabase } from "../utils/supabaseClient";
+import { supabase } from "../utils/supabaseClient";
 
-// export async function getServerSideProps() {
-//   let { data } = await supabase.from("stores").select();
+export async function getServerSideProps() {
+  let { data } = await supabase.from("stores").select();
 
-//   return {
-//     props: {
-//       stores: data,
-//     },
-//   };
-// }
+  return {
+    props: {
+      stores: data,
+    },
+  };
+}
 
-const Home: NextPage = () => {
+const Home: NextPage = ({ stores }) => {
+  console.log(stores);
   return <Hero />;
 };
 

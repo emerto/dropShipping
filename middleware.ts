@@ -16,6 +16,7 @@ export async function middleware(req: NextRequest) {
   // Check auth condition
   if (user) {
     return NextResponse.next();
+    console.log();
   }
 
   // Auth condition not met, redirect to home page.
