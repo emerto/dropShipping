@@ -100,16 +100,6 @@ const SignIn: NextPage = () => {
                   This field is required
                 </span>
               )}
-              {errors.password?.type === "min" && (
-                <span className="mt-1 text-sm text-red-600">
-                  Password must be at least 3 characters
-                </span>
-              )}
-              {errors.password?.type === "maxLength" && (
-                <span className="mt-1 text-sm text-red-600">
-                  Password must be less than 40 characters
-                </span>
-              )}
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary" type="submit">

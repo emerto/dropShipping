@@ -95,7 +95,7 @@ const SignUp: NextPage = () => {
                 placeholder="Password"
                 {...register("password", {
                   required: true,
-                  min: 3,
+                  minLength: 3,
                   maxLength: 40,
                 })}
                 className="input input-bordered w-full max-w-xs"
@@ -105,7 +105,7 @@ const SignUp: NextPage = () => {
                   This field is required
                 </span>
               )}
-              {errors.password?.type === "min" && (
+              {errors.password?.type === "minLength" && (
                 <span className="mt-1 text-sm text-red-600">
                   Password must be at least 3 characters
                 </span>

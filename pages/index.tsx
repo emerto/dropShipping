@@ -14,7 +14,7 @@ export async function getServerSideProps() {
 }
 
 const Home: NextPage = ({ stores }) => {
-  console.log(stores);
+  // console.log(stores);
   return <Hero />;
 };
 
