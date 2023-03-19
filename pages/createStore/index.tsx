@@ -25,8 +25,6 @@ const CreateStore = () => {
   } = useForm<Inputs>();
 
   const onSubmit = async (data: Inputs) => {
-    console.log(data);
-
     if (!hasFile) {
       toast.error("Please upload a store image!");
       return;
