@@ -7,11 +7,15 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const body = req.body;
+  const id = body.id;
+
+  //id removed from body
+  delete body.id;
+
   const supabaseServerClient = createServerSupabaseClient<Database>({
     req,
     res,
   });
-
   const {
     data: { user },
   } = await supabaseServerClient.auth.getUser();
@@ -21,19 +25,10 @@ export default async function handler(
     return;
   }
 
-  if (!body) {
-    return res.status(400).json({ error: "Missing body" });
-  }
-
-  const { data: insertedProduct, error } = await supabaseServerClient
+  const { data: updatedProduct, error } = await supabaseServerClient
     .from("products")
-    .insert({
-      name: body.productName,
-      price: body.price,
-      store_id: body.storeId,
-      supplier_product_id: body.supplierProductId,
-      supplier_prod_image: body.supplierProductImage,
-    })
+    .update(body)
+    .eq("id", id)
     .select("*")
     .single();
 
@@ -43,5 +38,5 @@ export default async function handler(
     return;
   }
 
-  res.status(200).json({ data: insertedProduct });
+  res.status(200).json({ data: updatedProduct });
 }

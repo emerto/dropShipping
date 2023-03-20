@@ -3,8 +3,8 @@ import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import type { Database } from "../../types/supabase";
 import { Icon } from "@iconify/react";
 import { useForm } from "react-hook-form";
-import { supabase } from "../../utils/supabaseClient";
 import toast from "react-hot-toast";
+import ProductCard from "../../components/ProductCard";
 
 import ProductDropdown from "../../components/ProductDropdown";
 import {
@@ -254,9 +254,11 @@ const ManageStore = ({ store, products, supplierProducts }: Props) => {
       </div>
       <div className="divider h-fit bg-primary" />
       {/* {Products} */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mt-10 lg:mt-5">
         {clientProducts?.map((product) => (
-          <pre key={product.id}>{JSON.stringify(product, null, 2)}</pre>
+          <div key={product.id}>
+            <ProductCard product={product} edit={true} />
+          </div>
         ))}
       </div>
     </section>
