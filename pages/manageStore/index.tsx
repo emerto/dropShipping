@@ -7,6 +7,13 @@ import { supabase } from "../../utils/supabaseClient";
 import toast from "react-hot-toast";
 
 import ProductDropdown from "../../components/ProductDropdown";
+import {
+  GetServerSidePropsContext,
+  PreviewData,
+  NextApiRequest,
+  NextApiResponse,
+} from "next";
+import { ParsedUrlQuery } from "querystring";
 
 type store = Database["public"]["Tables"]["stores"]["Row"];
 type products = Database["public"]["Tables"]["products"]["Row"];
@@ -32,7 +39,11 @@ type selectedProduct = {
   data: supplierProducts;
 };
 
-export const getServerSideProps = async (ctx) => {
+export const getServerSideProps = async (
+  ctx:
+    | GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
+    | { req: NextApiRequest; res: NextApiResponse<any> }
+) => {
   const supabase = createServerSupabaseClient(ctx);
   const {
     data: { session },
@@ -98,6 +109,7 @@ export const getServerSideProps = async (ctx) => {
 
 const ManageStore = ({ store, products, supplierProducts }: Props) => {
   const [selectedProduct, setSelectedProduct] = useState<selectedProduct>();
+  const [clientProducts, setClientProducts] = useState<products[]>(products);
   const {
     register,
     handleSubmit,
@@ -114,18 +126,33 @@ const ManageStore = ({ store, products, supplierProducts }: Props) => {
     const suppId = selectedProduct?.data?.id;
     const suppImage = selectedProduct?.data?.image;
 
-    const { error } = await supabase.from("products").insert({
-      name: data.productName,
-      price: data.price,
-      store_id: store.id,
-      supplier_product_id: suppId,
-      supplier_prod_image: suppImage,
+    const res = await fetch("/api/addProduct", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        productName: data.productName,
+        price: data.price,
+        storeId: store.id,
+        supplierProductId: suppId,
+        supplierProductImage: suppImage,
+      }),
     });
 
-    if (error) {
-      toast.error(error.message);
+    if (!res.ok) {
+      toast.error("Something went wrong!");
       return;
     }
+
+    const json = await res.json();
+
+    if (!json) {
+      toast.error("Something went wrong!");
+      return;
+    }
+
+    setClientProducts((prev) => [...prev, json.data]);
 
     toast.success("Product added successfully!");
 
@@ -228,8 +255,8 @@ const ManageStore = ({ store, products, supplierProducts }: Props) => {
       <div className="divider h-fit bg-primary" />
       {/* {Products} */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {products?.map((product) => (
-          <h1 key={product.id}>{product.name}</h1>
+        {clientProducts?.map((product) => (
+          <pre key={product.id}>{JSON.stringify(product, null, 2)}</pre>
         ))}
       </div>
     </section>
