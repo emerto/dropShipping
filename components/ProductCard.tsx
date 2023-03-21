@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Database } from "../types/supabase";
 import { useForm } from "react-hook-form";
+import Image from "next/image";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 type product = Database["public"]["Tables"]["products"]["Row"];
 
@@ -23,6 +25,8 @@ const ProductCard = ({ product, edit }: Props) => {
     formState: { errors },
     reset,
   } = useForm<Inputs>();
+
+  const router = useRouter();
 
   const onSubmit = async (data: Inputs) => {
     const filterEmpty = Object.keys(data).reduce((acc, key) => {
@@ -66,13 +70,37 @@ const ProductCard = ({ product, edit }: Props) => {
     reset();
   };
 
+  const deleteProduct = async (id: number) => {
+    const res = await fetch("/api/deleteProduct", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+      }),
+    });
+
+    const json = await res.json();
+
+    if (!res.ok) {
+      toast.error(json.error.message);
+      return;
+    }
+
+    toast.success("Product deleted successfully!");
+    router.reload();
+  };
+
   return (
     <div className="card w-full bg-base-100 shadow-xl">
       <figure>
-        <img
+        <Image
           src={clientProduct.supplier_prod_image}
           alt={clientProduct.name}
           className="w-full h-64 object-cover"
+          width={500}
+          height={500}
         />
       </figure>
       <div className="card-body">
@@ -151,11 +179,21 @@ const ProductCard = ({ product, edit }: Props) => {
                     )}
                   </div>
                   <div className="modal-action">
+                    <button
+                      className="btn btn-error"
+                      onClick={() => {
+                        deleteProduct(clientProduct.id);
+                      }}
+                      type="button"
+                    >
+                      Delete{" "}
+                    </button>
                     <button className="btn btn-primary" type="submit">
                       Submit
                     </button>
                   </div>
                 </form>
+                <div></div>
               </div>
             </div>
           </div>
