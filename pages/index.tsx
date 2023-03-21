@@ -1,21 +1,28 @@
 import { NextPage } from "next";
 import Hero from "../components/Hero";
+import ProductCard from "../components/ProductCard";
 
 import { supabase } from "../utils/supabaseClient";
 
 export async function getServerSideProps() {
-  let { data } = await supabase.from("stores").select();
+  let { data } = await supabase.from("products").select().limit(5);
 
   return {
     props: {
-      stores: data,
+      products: data,
     },
   };
 }
 
-const Home: NextPage = ({ stores }) => {
-  // console.log(stores);
-  return <Hero />;
+const Home: NextPage = ({ products }) => {
+  return (
+    <>
+      <Hero />
+      {products.map((product) => (
+        <ProductCard product={product} key={product.id} edit={false} />
+      ))}
+    </>
+  );
 };
 
 export default Home;

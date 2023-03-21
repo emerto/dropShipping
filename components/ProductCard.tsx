@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
+import { useCartStore } from "../stores/useCartStore";
 
 type product = Database["public"]["Tables"]["products"]["Row"];
 
@@ -19,6 +20,7 @@ type Inputs = {
 
 const ProductCard = ({ product, edit }: Props) => {
   const [clientProduct, setClientProduct] = useState<product>(product);
+  const { addToCart } = useCartStore();
   const {
     register,
     handleSubmit,
@@ -199,7 +201,12 @@ const ProductCard = ({ product, edit }: Props) => {
           </div>
         )}
         {!edit && (
-          <div className="card-actions justify-end">
+          <div
+            className="card-actions justify-end"
+            onClick={() => {
+              addToCart(clientProduct);
+            }}
+          >
             <button className="btn btn-primary">A Now</button>
           </div>
         )}

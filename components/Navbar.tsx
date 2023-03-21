@@ -6,11 +6,17 @@ import { supabaseClient } from "../utils/supabaseBrowserClient";
 
 import { useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
+import { useCartStore } from "../stores/useCartStore";
 
 const Navbar = ({ children }: { children: React.ReactNode }) => {
   const { userStore } = useAuthStore();
+  const { cart, total } = useCartStore();
   const router = useRouter();
   const user = useUser();
+
+  const navToCart = () => {
+    router.push("/cart");
+  };
 
   const signOut = async () => {
     await supabaseClient.auth.signOut();
@@ -68,7 +74,11 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
                         icon="ic:baseline-shopping-cart"
                         className="w-6 h-6"
                       />
-                      <span className="badge badge-sm indicator-item">8</span>
+                      {cart.length === 0 ? null : (
+                        <span className="badge badge-sm indicator-item">
+                          {cart.length}
+                        </span>
+                      )}
                     </div>
                   </label>
                   <div
@@ -76,10 +86,15 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
                     className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
                   >
                     <div className="card-body">
-                      <span className="font-bold text-lg">8 Items</span>
-                      <span className="text-info">Subtotal: $999</span>
+                      <span className="font-bold text-lg">
+                        {cart.length} Items
+                      </span>
+                      <span className="text-info">Subtotal: ${total}</span>
                       <div className="card-actions">
-                        <button className="btn btn-primary btn-block">
+                        <button
+                          className="btn btn-primary btn-block"
+                          onClick={navToCart}
+                        >
                           View cart
                         </button>
                       </div>
