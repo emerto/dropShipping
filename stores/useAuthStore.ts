@@ -13,6 +13,7 @@ export interface UserStore {
     updated_at: string | null;
     username: string | null;
   };
+  storeId: number | null;
 }
 
 export const useAuthStore = create<UserStore>((set) => ({
@@ -28,4 +29,5 @@ export const useAuthStore = create<UserStore>((set) => ({
     updated_at: null,
     username: null,
   },
+  storeId: null,
 }));

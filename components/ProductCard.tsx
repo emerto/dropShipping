@@ -5,6 +5,7 @@ import Image from "next/image";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 import { useCartStore } from "../stores/useCartStore";
+import { useAuthStore } from "../stores/useAuthStore";
 
 type product = Database["public"]["Tables"]["products"]["Row"];
 
@@ -20,7 +21,9 @@ type Inputs = {
 
 const ProductCard = ({ product, edit }: Props) => {
   const [clientProduct, setClientProduct] = useState<product>(product);
-  const { addToCart } = useCartStore();
+  const { addToCart, cart } = useCartStore();
+  const { userStore, storeId } = useAuthStore();
+
   const {
     register,
     handleSubmit,
@@ -92,6 +95,29 @@ const ProductCard = ({ product, edit }: Props) => {
 
     toast.success("Product deleted successfully!");
     router.reload();
+  };
+
+  const addToCartHandlerUser = () => {
+    if (clientProduct.store_id === storeId) {
+      toast.error("You can't add your own product to cart");
+    } else if (
+      cart.length === 0 ||
+      cart[0].store_id === clientProduct.store_id
+    ) {
+      addToCart(clientProduct);
+      toast.success("Product added to cart!");
+    } else {
+      toast.error("You can only add products from one store at a time!");
+    }
+  };
+
+  const addToCartHandler = () => {
+    if (cart.length === 0 || cart[0].store_id === clientProduct.store_id) {
+      addToCart(clientProduct);
+      toast.success("Product added to cart!");
+    } else {
+      toast.error("You can only add products from one store at a time!");
+    }
   };
 
   return (
@@ -188,26 +214,28 @@ const ProductCard = ({ product, edit }: Props) => {
                       }}
                       type="button"
                     >
-                      Delete{" "}
+                      Delete
                     </button>
                     <button className="btn btn-primary" type="submit">
                       Submit
                     </button>
                   </div>
                 </form>
-                <div></div>
               </div>
             </div>
           </div>
         )}
-        {!edit && (
+        {!edit && userStore.id && (
           <div
             className="card-actions justify-end"
-            onClick={() => {
-              addToCart(clientProduct);
-            }}
+            onClick={addToCartHandlerUser}
           >
-            <button className="btn btn-primary">A Now</button>
+            <button className="btn btn-primary">Add to Cart</button>
+          </div>
+        )}
+        {!edit && !userStore.id && (
+          <div className="card-actions justify-end" onClick={addToCartHandler}>
+            <button className="btn btn-primary">Add to Cart</button>
           </div>
         )}
       </div>

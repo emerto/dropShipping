@@ -28,6 +28,37 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         userStore: userData,
       });
     }
+
+    try {
+      const { data: dropShipper, error: dropShipperError } =
+        await supabaseClient
+          .from("dropshippers")
+          .select("*")
+          .eq("dropshipper_id", user?.id)
+          .single();
+
+      if (dropShipperError) {
+        throw new Error("Not a dropshipper!");
+      }
+
+      if (dropShipper) {
+        const { data: storeInfo, error: storeInfoError } = await supabaseClient
+          .from("stores")
+          .select("*")
+          .eq("owner", user?.id)
+          .single();
+
+        if (storeInfoError) {
+          throw new Error("Something store!");
+        }
+
+        if (storeInfo) {
+          useAuthStore.setState({
+            storeId: storeInfo.id,
+          });
+        }
+      }
+    } catch (error) {}
   }
 
   if (user) {

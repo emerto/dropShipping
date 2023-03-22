@@ -33,6 +33,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
         balance: 0,
         updated_at: "",
       },
+      storeId: null,
     });
     router.push("/");
   };
