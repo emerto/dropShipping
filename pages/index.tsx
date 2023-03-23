@@ -1,26 +1,56 @@
 import { NextPage } from "next";
 import Hero from "../components/Hero";
-import ProductCard from "../components/ProductCard";
+import StoreWithProducts from "../components/StoreWithProducts";
 
 import { supabase } from "../utils/supabaseClient";
 
 export async function getServerSideProps() {
-  let { data } = await supabase.from("products").select("*");
+  //limit the products to 3
+  const { data, error } = await supabase
+    .from("stores")
+    .select(
+      `
+    *,
+    products (
+      *
+    )
+  `
+    )
+    .limit(3);
+
+  if (data) {
+    const products = data.map((store) => {
+      return {
+        ...store,
+        products: store.products?.slice(0, 3),
+      };
+    });
+
+    data.map((store, index) => {
+      store.products = products[index].products;
+    });
+  }
+
+  if (error) {
+    console.log(error.message);
+  }
 
   return {
     props: {
-      products: data,
+      stores: data,
     },
   };
 }
 
-const Home: NextPage = ({ products }) => {
+const Home: NextPage = ({ stores }) => {
   return (
     <>
       <Hero />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
-        {products.map((product) => (
-          <ProductCard product={product} key={product.id} edit={false} />
+      <div className="flex flex-col w-full px-4 py-8 gap-5">
+        {stores?.map((store) => (
+          <div key={store.id}>
+            <StoreWithProducts storeWithProducts={store} />
+          </div>
         ))}
       </div>
     </>

@@ -126,7 +126,7 @@ const ProductCard = ({ product, edit }: Props) => {
         <Image
           src={clientProduct.supplier_prod_image}
           alt={clientProduct.name}
-          className="w-full h-64 object-cover"
+          className="h-64 object-cover"
           width={500}
           height={500}
         />

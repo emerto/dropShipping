@@ -75,11 +75,9 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
                         icon="ic:baseline-shopping-cart"
                         className="w-6 h-6"
                       />
-                      {cart.length === 0 ? null : (
-                        <span className="badge badge-sm indicator-item">
-                          {cart.length}
-                        </span>
-                      )}
+                      <span className="badge badge-sm indicator-item">
+                        {cart.length}
+                      </span>
                     </div>
                   </label>
                   <div
