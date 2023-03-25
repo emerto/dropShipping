@@ -4,8 +4,8 @@ import { useCartStore } from "../../stores/useCartStore";
 type Props = {};
 
 const Cart = (props: Props) => {
-  const { cart, total, removeFromCart } = useCartStore();
-
+  const { cart, total, removeFromCart, increaseQuantity, decreaseQuantity } =
+    useCartStore();
   return (
     <div>
       <p>Total: {total}</p>
@@ -15,12 +15,27 @@ const Cart = (props: Props) => {
             <p>{product.name}</p>
             <p>${product.price}</p>
           </div>
+          <p>{product.quantity}</p>
+          <button
+            onClick={() => {
+              increaseQuantity(product);
+            }}
+          >
+            +
+          </button>
+          <button
+            onClick={() => {
+              decreaseQuantity(product);
+            }}
+          >
+            -
+          </button>
           <button
             onClick={() => {
               removeFromCart(product);
             }}
           >
-            Remove
+            Remove The Item
           </button>
         </div>
       ))}
