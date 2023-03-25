@@ -48,7 +48,7 @@ type Props = {
   products: products[];
 };
 
-const index = ({ store, products }: Props) => {
+const Store = ({ store, products }: Props) => {
   return (
     <main className="flex flex-col">
       <div className="flex flex-col lg:flex-row items-center w-full p-8 bg-gray-300/10 rounded-xl">
@@ -88,4 +88,4 @@ const index = ({ store, products }: Props) => {
   );
 };
 
-export default index;
+export default Store;
