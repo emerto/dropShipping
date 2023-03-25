@@ -82,7 +82,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     >
       <Layout>
         <Toaster
-          position="top-right"
+          position="bottom-right"
           reverseOrder={false}
           toastOptions={{
             duration: 3000,

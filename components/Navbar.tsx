@@ -202,6 +202,20 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
               </Link>
             </li>
             <li>
+              <div
+                className="btn flex items-center justify-center h-full"
+                onClick={() => {
+                  router.push("/cart");
+                }}
+              >
+                Cart
+                <Icon
+                  icon="ic:baseline-shopping-cart"
+                  className="w-6 h-6 ml-1"
+                />
+              </div>
+            </li>
+            <li>
               <Link href="/recivedOrders" className="btn p-4 w-full">
                 <div className="flex items-center  h-full">
                   Recived Orders
