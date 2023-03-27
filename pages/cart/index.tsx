@@ -1,21 +1,75 @@
 import Image from "next/image";
 import { useCartStore } from "../../stores/useCartStore";
 import { Icon } from "@iconify/react";
+import Link from "next/link";
+import { useAuthStore } from "../../stores/useAuthStore";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 type Props = {};
 
 const Cart = (props: Props) => {
-  const { cart, total, removeFromCart, increaseQuantity, decreaseQuantity } =
-    useCartStore();
+  const {
+    cart,
+    total,
+    removeFromCart,
+    increaseQuantity,
+    decreaseQuantity,
+    clearCart,
+  } = useCartStore();
+  const { userStore } = useAuthStore();
+  const router = useRouter();
 
   if (cart.length === 0)
     return <p className="text-2xl font-bold">Your cart is empty</p>;
 
+  const handleConfirmOrder = async () => {
+    const res = await fetch("/api/createOrder", {
+      method: "POST",
+      body: JSON.stringify({
+        products: cart,
+        total,
+        address: userStore.address,
+      }),
+    });
+
+    if (!res.ok) {
+      toast.error("Something went wrong!");
+      return;
+    }
+
+    clearCart();
+    toast.success("Order placed successfully!");
+    router.push("/orders");
+  };
+
   return (
     <div>
-      <p>Total: {total}</p>
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-bold">
+          Total: <span className="text-primary">${total}</span>
+        </h1>
+        {userStore.id === "" && (
+          <Link href="/signin">
+            <button className="btn btn-error btn-outline">
+              Login to confirm order
+            </button>
+          </Link>
+        )}
+        {userStore.id != "" && (
+          <button
+            className="btn btn-success btn-outline"
+            disabled={total > userStore.balance!}
+            onClick={handleConfirmOrder}
+          >
+            {total > userStore.balance!
+              ? "Insufficient balance"
+              : "Confirm Order"}
+          </button>
+        )}
+      </div>
 
-      <main className="bg-base-300 rounded-xl p-5 flex flex-col gap-10">
+      <main className="bg-base-300 rounded-xl p-5 flex flex-col gap-10 mt-5">
         {cart.map((product) => (
           <div
             key={product.id}

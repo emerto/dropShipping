@@ -17,6 +17,7 @@ export interface CartStore {
   removeFromCart: (item: product) => void;
   increaseQuantity: (item: product) => void;
   decreaseQuantity: (item: product) => void;
+  clearCart: () => void;
 }
 
 export const useCartStore = create<CartStore>((set) => ({
@@ -88,4 +89,5 @@ export const useCartStore = create<CartStore>((set) => ({
         total: state.total - cartItem.price,
       };
     }),
+  clearCart: () => set({ cart: [], total: 0 }),
 }));
