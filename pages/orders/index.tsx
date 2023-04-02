@@ -5,10 +5,10 @@ import {
   PreviewData,
 } from "next";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import type { Database } from "../../types/supabase";
 import Image from "next/image";
 import { ParsedUrlQuery } from "querystring";
 import { Icon } from "@iconify/react";
+import { useState } from "react";
 
 type Order = {
   id: number;
@@ -75,15 +75,48 @@ export const getServerSideProps = async (
 };
 
 const Orders = ({ orders }: Props) => {
+  const [clientOrders, setClientOrders] = useState<Order[]>(orders);
+
+  const orderByDate = () => {
+    const newOrders = [...clientOrders].sort(
+      (a, b) =>
+        new Date(b.order_date).getTime() - new Date(a.order_date).getTime()
+    );
+    setClientOrders(newOrders);
+  };
+
+  const orderByTotal = () => {
+    const newOrders = [...clientOrders].sort((a, b) => b.total - a.total);
+    setClientOrders(newOrders);
+  };
+
   return (
     <main>
-      <h1 className="text-xl lg:text-3xl font-semibold lg:font-bold text-base-content">
-        Orders
-      </h1>
+      <div className="flex flex-col lg:flex-row justify-between lg:items-center">
+        <h1 className="text-xl lg:text-3xl font-semibold lg:font-bold text-base-content">
+          Orders
+        </h1>
+        <div className="lg:flex gap-3 hidden">
+          <button className="btn" onClick={orderByDate}>
+            Order by date
+          </button>
+          <button className="btn btn-primary" onClick={orderByTotal}>
+            Order by total
+          </button>
+        </div>
+      </div>
       <div className="divider h-fit bg-primary" />
+      <div className="flex lg:hidden gap-3">
+        <button className="btn" onClick={orderByDate}>
+          Order by date
+        </button>
+        <button className="btn btn-primary" onClick={orderByTotal}>
+          Order by total
+        </button>
+      </div>
       <div className="flex justify-center items-center">
         <section className="flex flex-col lg:w-1/2 w-full mt-5 gap-5">
-          {orders.map((order) => {
+          {clientOrders.map((order) => {
             return (
               <div
                 key={order.id}
