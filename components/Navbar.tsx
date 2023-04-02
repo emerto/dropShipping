@@ -7,6 +7,7 @@ import { supabaseClient } from "../utils/supabaseBrowserClient";
 import { useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { useCartStore } from "../stores/useCartStore";
+import Footer from "./Footer";
 
 const Navbar = ({ children }: { children: React.ReactNode }) => {
   const { userStore } = useAuthStore();
@@ -168,8 +169,11 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
         {/* Content */}
-        <main className="h-full w-full xl:container mx-auto mt-8 px-4">
-          {children}
+        <main>
+          <div className="h-full w-full xl:container mx-auto mt-8 px-4">
+            {children}
+          </div>
+          <Footer />
         </main>
       </div>
       <div className="drawer-side">
