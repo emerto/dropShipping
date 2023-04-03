@@ -2,9 +2,7 @@ import { Icon } from "@iconify/react";
 import Image from "next/image";
 import React from "react";
 
-type Props = {};
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <footer className="footer items-center bg-base-300 p-8 bottom-0">
       <div className="items-center grid-flow-col">
@@ -15,7 +13,7 @@ const Footer = (props: Props) => {
           height={200}
           className="object-contain"
         />
-        <p>Copyright © 2023 - All right reserved</p>
+        <p>Copyright © 2023 - Hiçbir hakkkı yok aw.</p>
       </div>
       <div className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
         <a href="https://github.com/emerto/dropShipping" target="_blank">
