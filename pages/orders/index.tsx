@@ -10,7 +10,7 @@ import { ParsedUrlQuery } from "querystring";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 
-type Order = {
+export type Order = {
   id: number;
   status: string;
   order_date: string;
