@@ -95,6 +95,20 @@ type Props = {
 };
 
 const RecivedOrders = ({ orders, countData }: Props) => {
+  const rejectOrder = async (orderId: number) => {
+    const res = await fetch("/api/rejectOrder", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ orderId }),
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+  };
+
   return (
     <main className="min-h-screen">
       <div className="flex flex-col lg:flex-row justify-between lg:items-center">
@@ -194,7 +208,12 @@ const RecivedOrders = ({ orders, countData }: Props) => {
                   {order.status === "pending" ? (
                     <div className="flex mt-3 gap-3">
                       <button className="btn btn-success">Accept</button>
-                      <button className="btn btn-error">Reject</button>
+                      <button
+                        className="btn btn-error"
+                        onClick={() => rejectOrder(order.id)}
+                      >
+                        Reject
+                      </button>
                     </div>
                   ) : order.status === "accepted" ? (
                     <div className="flex items-center">
