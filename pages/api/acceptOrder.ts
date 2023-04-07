@@ -62,15 +62,14 @@ export default async function handler(
 
   let productArr = [];
 
-  const calculateProfit = async () => {
-    order.carts.forEach((cart) => {
-      productArr.push({
-        product_id: cart.product_id,
-        supplier_product_id: cart.products.supplier_product_id,
-        amount: cart.amount,
-      });
+  order.carts.forEach((cart) => {
+    productArr.push({
+      product_id: cart.product_id,
+      supplier_product_id: cart.products.supplier_product_id,
+      amount: cart.amount,
     });
-
+  });
+  const calculateProfit = async () => {
     let profitArr = [];
 
     for (let i = 0; i < productArr.length; i++) {
@@ -106,6 +105,7 @@ export default async function handler(
 
   const confirmOrder = async () => {
     let stockArr = [];
+    let allProductsAvailable = true;
 
     for (let i = 0; i < productArr.length; i++) {
       const product = productArr[i];
@@ -122,55 +122,53 @@ export default async function handler(
           amount: product.amount,
           supplierProductId: product.supplier_product_id,
         });
+
+        if (stock.stock < product.amount) {
+          allProductsAvailable = false;
+        }
+      } else {
+        allProductsAvailable = false;
       }
     }
+
+    if (!allProductsAvailable) {
+      await supabaseServerClient.rpc("reject_order", {
+        customer_id: order.customer_id,
+        amount: order.total,
+        order_id: orderId,
+      });
+
+      res.status(400).json({ error: "Not enough stock" });
+      return;
+    }
+
+    const profit = await calculateProfit();
 
     for (let i = 0; i < stockArr.length; i++) {
       const stock = stockArr[i];
 
       const calculatedStock = stock.supplierStock - stock.amount;
 
-      if (calculatedStock < 0) {
-        await supabaseServerClient.rpc("reject_order", {
-          customer_id: order.customer_id,
-          amount: order.total,
-          order_id: orderId,
-        });
+      await supabaseServerClient
+        .from("supplier_products")
+        .update({ stock: calculatedStock })
+        .eq("id", stock.supplierProductId);
+    }
 
-        res.status(400).json({ error: "Not enough stock" });
-        return;
-      }
+    const { data, error } = await supabaseServerClient.rpc("accept_order", {
+      store_id: order.store_id,
+      amount: profit,
+      order_id: orderId,
+    });
 
-      const { data: updatedStock, error: updateStockError } =
-        await supabaseServerClient
-          .from("supplier_products")
-          .update({ stock: calculatedStock })
-          .eq("id", stock.supplierProductId)
-          .select();
+    if (error) {
+      res.status(400).json({ error: "Error updating order" });
+      return;
+    }
 
-      if (updateStockError) {
-        res.status(400).json({ error: "Error updating stock" });
-        return;
-      }
-
-      const profit = await calculateProfit();
-
-      if (updatedStock) {
-        const { data, error } = await supabaseServerClient.rpc("accept_order", {
-          store_id: order.store_id,
-          amount: profit,
-          order_id: orderId,
-        });
-
-        if (error) {
-          res.status(400).json({ error: "Error updating order" });
-          return;
-        }
-
-        if (data) {
-          res.status(200).json({ message: "Order accepted" });
-        }
-      }
+    if (data) {
+      res.status(200).json({ message: "Order accepted" });
+      return;
     }
   };
 

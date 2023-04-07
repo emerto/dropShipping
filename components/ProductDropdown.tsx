@@ -53,8 +53,8 @@ const Dropdown = ({ setSelectedProduct, suppProds }: Props) => {
         </div>
         <div className="hidden lg:flex gap-2">
           <p>
-            Price: ${data.price} <span className="text-primary">|</span> Stock:{" "}
-            {data.stock}
+            Price: ${product.price} <span className="text-primary">|</span>{" "}
+            Stock: {product.stock}
           </p>
         </div>
       </div>

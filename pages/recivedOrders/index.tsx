@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
+import { useState } from "react";
 import type { Order } from "../orders";
 
 export const getServerSideProps = async (ctx) => {
@@ -95,6 +96,7 @@ type Props = {
 };
 
 const RecivedOrders = ({ orders, countData }: Props) => {
+  const [isLoading, setIsLoading] = useState(false);
   const rejectOrder = async (orderId: number) => {
     const res = await fetch("/api/rejectOrder", {
       method: "POST",
@@ -110,6 +112,7 @@ const RecivedOrders = ({ orders, countData }: Props) => {
   };
 
   const acceptOrder = async (orderId: number) => {
+    setIsLoading(true);
     const res = await fetch("/api/acceptOrder", {
       method: "POST",
       headers: {
@@ -119,6 +122,10 @@ const RecivedOrders = ({ orders, countData }: Props) => {
     });
 
     const data = await res.json();
+
+    if (data) {
+      setIsLoading(false);
+    }
 
     console.log(data);
   };
@@ -223,6 +230,7 @@ const RecivedOrders = ({ orders, countData }: Props) => {
                     <div className="flex mt-3 gap-3">
                       <button
                         className="btn btn-success"
+                        disabled={isLoading}
                         onClick={() => acceptOrder(order.id)}
                       >
                         Accept
