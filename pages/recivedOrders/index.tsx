@@ -3,6 +3,7 @@ import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
 import { useState } from "react";
 import type { Order } from "../orders";
+import toast from "react-hot-toast";
 
 export const getServerSideProps = async (ctx) => {
   const supabase = createServerSupabaseClient(ctx);
@@ -97,7 +98,9 @@ type Props = {
 
 const RecivedOrders = ({ orders, countData }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
+
   const rejectOrder = async (orderId: number) => {
+    setIsLoading(true);
     const res = await fetch("/api/rejectOrder", {
       method: "POST",
       headers: {
@@ -108,7 +111,13 @@ const RecivedOrders = ({ orders, countData }: Props) => {
 
     const data = await res.json();
 
-    console.log(data);
+    if (res.status === 200) {
+      toast.success(`${data.message}`);
+    } else {
+      toast.error(`${data.error}`);
+    }
+
+    setIsLoading(false);
   };
 
   const acceptOrder = async (orderId: number) => {
@@ -123,11 +132,13 @@ const RecivedOrders = ({ orders, countData }: Props) => {
 
     const data = await res.json();
 
-    if (data) {
-      setIsLoading(false);
+    if (res.status === 200) {
+      toast.success(`${data.message}`);
+    } else {
+      toast.error(`${data.error}`);
     }
 
-    console.log(data);
+    setIsLoading(false);
   };
 
   return (

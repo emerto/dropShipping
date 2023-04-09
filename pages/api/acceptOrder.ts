@@ -138,7 +138,7 @@ export default async function handler(
         order_id: orderId,
       });
 
-      res.status(400).json({ error: "Not enough stock" });
+      res.status(400).json({ error: "Not enough stock, Rejecting order..." });
       return;
     }
 
