@@ -8,6 +8,7 @@ import { useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { useCartStore } from "../stores/useCartStore";
 import Footer from "./Footer";
+import Search from "./Search";
 
 const Navbar = ({ children }: { children: React.ReactNode }) => {
   const { userStore } = useAuthStore();
@@ -60,12 +61,8 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
           <div className="flex-none hidden lg:block">
             <ul className="flex flex-row gap-3 items-center">
               <li>
-                <div className="form-control">
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    className="input input-bordered"
-                  />
+                <div className="min-w-[300px]">
+                  <Search />
                 </div>
               </li>
               <li>

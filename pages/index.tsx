@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import Hero from "../components/Hero";
+import Search from "../components/Search";
 import StoreWithProducts from "../components/StoreWithProducts";
 
 import { supabase } from "../utils/supabaseClient";
@@ -45,6 +46,9 @@ export async function getServerSideProps() {
 const Home: NextPage = ({ stores }) => {
   return (
     <>
+      <div className="flex lg:hidden w-full">
+        <Search />
+      </div>
       <Hero />
       <div className="flex flex-col w-full px-4 py-8 gap-5">
         {stores?.map((store) => (
