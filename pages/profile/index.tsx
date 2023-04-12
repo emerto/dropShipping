@@ -5,6 +5,7 @@ import { supabase } from "../../utils/supabaseClient";
 import toast from "react-hot-toast";
 import Image from "next/image";
 import { useState } from "react";
+import Head from "next/head";
 
 interface Inputs {
   first_name: string;
@@ -103,6 +104,9 @@ const Profile: NextPage = () => {
   };
   return (
     <>
+      <Head>
+        <title>Profile</title>
+      </Head>
       <h1 className="text-3xl font-bold text-base-content">Profile</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}

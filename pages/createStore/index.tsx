@@ -4,6 +4,7 @@ import { useAuthStore } from "../../stores/useAuthStore";
 import toast from "react-hot-toast";
 import { supabase } from "../../utils/supabaseClient";
 import { useRouter } from "next/navigation";
+import Head from "next/head";
 
 interface Inputs {
   storename: string;
@@ -88,6 +89,9 @@ const CreateStore = () => {
 
   return (
     <>
+      <Head>
+        <title>Create Store</title>
+      </Head>
       <h1 className="text-3xl font-bold text-base-content">
         Create Your Store
       </h1>

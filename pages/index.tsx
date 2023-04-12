@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Head from "next/head";
 import Hero from "../components/Hero";
 import Search from "../components/Search";
 import StoreWithProducts from "../components/StoreWithProducts";
@@ -46,6 +47,9 @@ export async function getServerSideProps() {
 const Home: NextPage = ({ stores }) => {
   return (
     <>
+      <Head>
+        <title>DropShoop - Your Ultimate Dropshipping Destination</title>
+      </Head>
       <div className="flex lg:hidden w-full">
         <Search />
       </div>

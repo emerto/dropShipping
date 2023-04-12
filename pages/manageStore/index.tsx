@@ -14,6 +14,7 @@ import {
   NextApiResponse,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
+import Head from "next/head";
 
 type store = Database["public"]["Tables"]["stores"]["Row"];
 type products = Database["public"]["Tables"]["products"]["Row"];
@@ -160,108 +161,115 @@ const ManageStore = ({ store, products, supplierProducts }: Props) => {
   };
 
   return (
-    <section className="flex flex-col w-full">
-      <div className="flex justify-between items-center">
-        <h1 className="text-xl lg:text-3xl font-semibold lg:font-bold text-base-content">
-          {store.store_name}
-        </h1>
-        {/* {Modal} */}
-        <label htmlFor="my-modal" className="btn btn-primary">
-          Add Product
-        </label>
-        <input type="checkbox" id="my-modal" className="modal-toggle" />
-        <div className="modal">
-          <div className="modal-box max-w-5xl">
-            <div className="flex justify-between items-center">
-              <h3 className="font-bold text-lg">Add Product</h3>
-              <label htmlFor="my-modal" className="btn">
-                <Icon icon="ic:baseline-close" className="w-[16px] h-[16px]" />
-              </label>
+    <>
+      <Head>
+        <title>Manage Store</title>
+      </Head>
+      <section className="flex flex-col w-full">
+        <div className="flex justify-between items-center">
+          <h1 className="text-xl lg:text-3xl font-semibold lg:font-bold text-base-content">
+            {store.store_name}
+          </h1>
+          {/* {Modal} */}
+          <label htmlFor="my-modal" className="btn btn-primary">
+            Add Product
+          </label>
+          <input type="checkbox" id="my-modal" className="modal-toggle" />
+          <div className="modal">
+            <div className="modal-box max-w-5xl">
+              <div className="flex justify-between items-center">
+                <h3 className="font-bold text-lg">Add Product</h3>
+                <label htmlFor="my-modal" className="btn">
+                  <Icon
+                    icon="ic:baseline-close"
+                    className="w-[16px] h-[16px]"
+                  />
+                </label>
+              </div>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="form-control w-full">
+                  <label className="label">
+                    <span className="label-text">Product Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Cool Product"
+                    {...register("productName", {
+                      required: true,
+                      minLength: 2,
+                      maxLength: 40,
+                    })}
+                    className="input input-bordered w-full "
+                  />
+                  {errors.productName?.type === "required" && (
+                    <span className="mt-1 text-sm text-red-600">
+                      This field is required
+                    </span>
+                  )}
+                  {errors.productName?.type === "minLength" && (
+                    <span className="mt-1 text-sm text-red-600">
+                      This field must be at least 2 characters
+                    </span>
+                  )}
+                  {errors.productName?.type === "maxLength" && (
+                    <span className="mt-1 text-sm text-red-600">
+                      This field must be at most 40 characters
+                    </span>
+                  )}
+                </div>
+                <div className="form-control w-full">
+                  <label className="label">
+                    <span className="label-text">Product Price</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="420.69$"
+                    {...register("price", {
+                      required: true,
+                      min: 0.01,
+                    })}
+                    className="input input-bordered w-full "
+                  />
+                  {errors.price?.type === "required" && (
+                    <span className="mt-1 text-sm text-red-600">
+                      This field is required
+                    </span>
+                  )}
+                  {errors.price?.type === "min" && (
+                    <span className="mt-1 text-sm text-red-600">
+                      Price must be greater than 0
+                    </span>
+                  )}
+                </div>
+                <div className="form-control w-full">
+                  <label className="label">
+                    <span className="label-text">Select Product</span>
+                  </label>
+                  <ProductDropdown
+                    setSelectedProduct={setSelectedProduct}
+                    suppProds={supplierProducts}
+                  />
+                </div>
+                <div className="modal-action">
+                  <button className="btn btn-primary" type="submit">
+                    Submit
+                  </button>
+                </div>
+              </form>
             </div>
-
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text">Product Name</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Cool Product"
-                  {...register("productName", {
-                    required: true,
-                    minLength: 2,
-                    maxLength: 40,
-                  })}
-                  className="input input-bordered w-full "
-                />
-                {errors.productName?.type === "required" && (
-                  <span className="mt-1 text-sm text-red-600">
-                    This field is required
-                  </span>
-                )}
-                {errors.productName?.type === "minLength" && (
-                  <span className="mt-1 text-sm text-red-600">
-                    This field must be at least 2 characters
-                  </span>
-                )}
-                {errors.productName?.type === "maxLength" && (
-                  <span className="mt-1 text-sm text-red-600">
-                    This field must be at most 40 characters
-                  </span>
-                )}
-              </div>
-              <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text">Product Price</span>
-                </label>
-                <input
-                  type="number"
-                  placeholder="420.69$"
-                  {...register("price", {
-                    required: true,
-                    min: 0.01,
-                  })}
-                  className="input input-bordered w-full "
-                />
-                {errors.price?.type === "required" && (
-                  <span className="mt-1 text-sm text-red-600">
-                    This field is required
-                  </span>
-                )}
-                {errors.price?.type === "min" && (
-                  <span className="mt-1 text-sm text-red-600">
-                    Price must be greater than 0
-                  </span>
-                )}
-              </div>
-              <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text">Select Product</span>
-                </label>
-                <ProductDropdown
-                  setSelectedProduct={setSelectedProduct}
-                  suppProds={supplierProducts}
-                />
-              </div>
-              <div className="modal-action">
-                <button className="btn btn-primary" type="submit">
-                  Submit
-                </button>
-              </div>
-            </form>
           </div>
         </div>
-      </div>
-      <div className="divider h-fit bg-primary" />
-      {/* {Products} */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mt-10 lg:mt-5">
-        {clientProducts?.map((product) => (
-          <div key={product.id}>
-            <ProductCard product={product} edit={true} />
-          </div>
-        ))}
-      </div>
-    </section>
+        <div className="divider h-fit bg-primary" />
+        {/* {Products} */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mt-10 lg:mt-5">
+          {clientProducts?.map((product) => (
+            <div key={product.id}>
+              <ProductCard product={product} edit={true} />
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 };
 
