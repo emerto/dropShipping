@@ -12,7 +12,7 @@ type Props = {
 
 const StoreWithProducts = ({ storeWithProducts }: Props) => {
   return (
-    <div className="flex items-center bg-base-300 p-5 rounded-xl shadow-2xl">
+    <div className="flex items-center bg-base-300 p-5 rounded-xl shadow-2xl justify-center">
       {/* Left */}
       <Link href={`/store/${storeWithProducts.store_name}`} scroll={true}>
         <div className="flex min-w-[300px] flex-col">

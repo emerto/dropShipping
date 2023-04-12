@@ -15,6 +15,9 @@ export type Order = {
   status: string;
   order_date: string;
   total: number;
+  storeName: {
+    store_name: string;
+  };
   carts: Array<{
     order_id: number;
     product_id: number;
@@ -52,11 +55,13 @@ export const getServerSideProps = async (
       status,
       order_date,
       total,
+      storeName:store_id(
+        store_name
+      ),
       carts(
         *,
         products(
-          *
-        )
+          *)
         )
       `
     )
@@ -130,6 +135,12 @@ const Orders = ({ orders }: Props) => {
                     Order Date:{" "}
                     <span className="text-primary">
                       {new Date(order.order_date).toLocaleDateString()}
+                    </span>
+                  </h1>
+                  <h1 className="text-xl lg:text-3xl">
+                    Seller:{" "}
+                    <span className="text-primary">
+                      {order.storeName.store_name}
                     </span>
                   </h1>
                 </div>
