@@ -55,17 +55,17 @@ const SignUp: NextPage = () => {
       <Head>
         <title>DropShoop - Sign up</title>
       </Head>
-      <div className="hero">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+      <div className="hero w-full">
+        <div className="hero-content flex-col w-full">
           <div className="text-center">
             <h1 className="text-5xl font-bold">Sign up!</h1>
           </div>
           <form
-            className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
+            className="card flex-shrink-0 w-full max-w-xl shadow-2xl bg-base-100"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="card-body">
-              <div className="form-control w-full max-w-xs">
+              <div className="form-control w-full max-w-xl">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
@@ -78,7 +78,7 @@ const SignUp: NextPage = () => {
                     maxLength: 100,
                     pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i,
                   })}
-                  className="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full max-w-xl"
                 />
                 {errors.email?.type === "required" && (
                   <span className="mt-1 text-sm text-red-600">
@@ -91,7 +91,7 @@ const SignUp: NextPage = () => {
                   </span>
                 )}
               </div>
-              <div className="form-control w-full max-w-xs">
+              <div className="form-control w-full max-w-xl">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
@@ -103,7 +103,7 @@ const SignUp: NextPage = () => {
                     minLength: 3,
                     maxLength: 40,
                   })}
-                  className="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full max-w-xl"
                 />
                 {errors.password?.type === "required" && (
                   <span className="mt-1 text-sm text-red-600">
@@ -121,7 +121,7 @@ const SignUp: NextPage = () => {
                   </span>
                 )}
               </div>
-              <div className="flex flex-col w-full gap-2">
+              <div className="flex flex-col w-full gap-2 mt-2">
                 <div className="flex gap-2 items-center">
                   <input
                     type="checkbox"

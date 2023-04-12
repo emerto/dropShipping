@@ -50,17 +50,17 @@ const SignIn: NextPage = () => {
       <Head>
         <title>DropShoop - Login</title>
       </Head>
-      <div className="hero">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+      <div className="hero w-full">
+        <div className="hero-content flex-col w-full">
           <div className="text-center">
             <h1 className="text-5xl font-bold">Login now!</h1>
           </div>
           <form
-            className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
+            className="card flex-shrink-0 w-full max-w-lg shadow-2xl bg-base-100"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="card-body">
-              <div className="form-control w-full max-w-xs">
+              <div className="form-control w-full max-w-lg">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
@@ -73,7 +73,7 @@ const SignIn: NextPage = () => {
                     maxLength: 100,
                     pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i,
                   })}
-                  className="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full max-w-lg"
                 />
                 {errors.email?.type === "required" && (
                   <span className="mt-1 text-sm text-red-600">
@@ -86,7 +86,7 @@ const SignIn: NextPage = () => {
                   </span>
                 )}
               </div>
-              <div className="form-control w-full max-w-xs">
+              <div className="form-control w-full max-w-lg">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
@@ -98,7 +98,7 @@ const SignIn: NextPage = () => {
                     min: 3,
                     maxLength: 40,
                   })}
-                  className="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full max-w-lg"
                 />
                 {errors.password?.type === "required" && (
                   <span className="mt-1 text-sm text-red-600">
