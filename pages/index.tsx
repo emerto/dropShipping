@@ -46,7 +46,7 @@ export async function getServerSideProps() {
 
 const Home: NextPage = ({ stores }) => {
   return (
-    <>
+    <div>
       <Head>
         <title>DropShoop - Your Ultimate Dropshipping Destination</title>
       </Head>
@@ -54,14 +54,14 @@ const Home: NextPage = ({ stores }) => {
         <Search />
       </div>
       <Hero />
-      <div className="flex flex-col w-full px-4 py-8 gap-5">
+      <div className="h-full flex flex-col w-full px-4 py-8 gap-5">
         {stores?.map((store) => (
           <div key={store.id}>
             <StoreWithProducts storeWithProducts={store} />
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

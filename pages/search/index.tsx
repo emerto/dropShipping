@@ -54,28 +54,32 @@ const SearchPage = ({ stores, products }: Props) => {
 
   return (
     <main>
-      <h1 className="text-3xl font-bold">Search Results for {query}</h1>
-      {category === "products" ? (
-        <>
-          <p className="text-gray-500 text-sm">
-            Found {products.length} results
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} edit={false} />
-            ))}
-          </div>
-        </>
-      ) : (
-        <>
-          <p className="text-gray-500 text-sm">Found {stores.length} results</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-            {stores.map((store) => (
-              <StoreCard key={store.id} store={store} />
-            ))}
-          </div>
-        </>
-      )}
+      <div className="justify-center items-center flex text-center h-full min-h-[531px] flex-col">
+        <h1 className="text-3xl font-bold">Search Results for {query}</h1>
+        {category === "products" ? (
+          <>
+            <p className="text-gray-500 text-sm">
+              Found {products.length} results
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} edit={false} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <>
+            <p className="text-gray-500 text-sm">
+              Found {stores.length} results
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+              {stores.map((store) => (
+                <StoreCard key={store.id} store={store} />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
     </main>
   );
 };
