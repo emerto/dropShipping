@@ -23,7 +23,7 @@ export async function getServerSideProps(context) {
     const { data: products, error } = await supabase
       .from("products")
       .select()
-      .ilike("name", `%${query}%`);
+      .textSearch("name", query);
 
     return {
       props: {
@@ -36,7 +36,7 @@ export async function getServerSideProps(context) {
     const { data: stores, error } = await supabase
       .from("stores")
       .select()
-      .ilike("store_name", `%${query}%`);
+      .textSearch("store_name", query);
 
     return {
       props: {
@@ -54,7 +54,7 @@ const SearchPage = ({ stores, products }: Props) => {
 
   return (
     <main>
-      <div className="justify-center items-center flex text-center h-full min-h-[531px] flex-col">
+      <div className="flex h-full min-h-[531px] flex-col">
         <h1 className="text-3xl font-bold">Search Results for {query}</h1>
         {category === "products" ? (
           <>
