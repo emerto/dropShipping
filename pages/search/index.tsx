@@ -23,7 +23,7 @@ export async function getServerSideProps(context) {
     const { data: products, error } = await supabase
       .from("products")
       .select()
-      .textSearch("name", query);
+      .ilike("name", `%${query}%`);
 
     return {
       props: {
@@ -36,7 +36,7 @@ export async function getServerSideProps(context) {
     const { data: stores, error } = await supabase
       .from("stores")
       .select()
-      .textSearch("store_name", query);
+      .ilike("store_name", `%${query}%`);
 
     return {
       props: {
