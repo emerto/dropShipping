@@ -12,6 +12,7 @@ import { useUser } from "@supabase/auth-helpers-react";
 import { useAuthStore } from "../stores/useAuthStore";
 
 import { Toaster } from "react-hot-toast";
+import Head from "next/head";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const user = useUser();
@@ -88,6 +89,9 @@ function MyApp({ Component, pageProps }: AppProps) {
             duration: 3000,
           }}
         />
+        <Head>
+          <link rel="icon" href="/logo.png" />
+        </Head>
         <Component {...pageProps} />
       </Layout>
     </SessionContextProvider>
