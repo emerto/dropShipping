@@ -22,7 +22,11 @@ const Cart = (props: Props) => {
   const router = useRouter();
 
   if (cart.length === 0)
-    return <p className="text-2xl font-bold">Your cart is empty</p>;
+    return (
+      <div className="h-full min-h-[521px]">
+        <p className="text-2xl font-bold">Your cart is empty</p>
+      </div>
+    );
 
   const handleConfirmOrder = async () => {
     const res = await fetch("/api/createOrder", {
@@ -45,7 +49,7 @@ const Cart = (props: Props) => {
   };
 
   return (
-    <>
+    <main>
       <Head>
         <title>Cart</title>
       </Head>
@@ -65,8 +69,7 @@ const Cart = (props: Props) => {
             <button
               className="btn btn-success btn-outline"
               disabled={total > userStore.balance!}
-              onClick={handleConfirmOrder}
-            >
+              onClick={handleConfirmOrder}>
               {total > userStore.balance!
                 ? "Insufficient balance"
                 : "Confirm Order"}
@@ -77,8 +80,7 @@ const Cart = (props: Props) => {
           {cart.map((product) => (
             <div
               key={product.id}
-              className="flex flex-col lg:flex-row justify-between items-center"
-            >
+              className="flex flex-col lg:flex-row justify-between items-center">
               <div className="flex flex-col lg:flex-row gap-3 lg:items-center justify-center">
                 <Image
                   src={product.supplier_prod_image}
@@ -97,8 +99,7 @@ const Cart = (props: Props) => {
                   <button
                     onClick={() => {
                       increaseQuantity(product);
-                    }}
-                  >
+                    }}>
                     <Icon
                       icon="material-symbols:add"
                       className="w-8 h-8 hover:text-primary cursor-pointer transition duration-300 ease-in-out"
@@ -108,8 +109,7 @@ const Cart = (props: Props) => {
                   <button
                     onClick={() => {
                       decreaseQuantity(product);
-                    }}
-                  >
+                    }}>
                     <Icon
                       icon="material-symbols:remove"
                       className="w-8 h-8 hover:text-primary cursor-pointer transition duration-300 ease-in-out"
@@ -120,8 +120,7 @@ const Cart = (props: Props) => {
                   onClick={() => {
                     removeFromCart(product);
                   }}
-                  className="btn btn-primary btn-sm mt-3"
-                >
+                  className="btn btn-primary btn-sm mt-3">
                   Remove from cart
                 </button>
               </div>
@@ -129,7 +128,7 @@ const Cart = (props: Props) => {
           ))}
         </main>
       </div>
-    </>
+    </main>
   );
 };
 

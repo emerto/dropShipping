@@ -48,7 +48,7 @@ const SignIn: NextPage = () => {
   };
 
   return (
-    <>
+    <div className=" h-full min-h-[522px]">
       <Head>
         <title>DropShoop - Login</title>
       </Head>
@@ -59,8 +59,7 @@ const SignIn: NextPage = () => {
           </div>
           <form
             className="card flex-shrink-0 w-full max-w-lg shadow-2xl bg-base-100"
-            onSubmit={handleSubmit(onSubmit)}
-          >
+            onSubmit={handleSubmit(onSubmit)}>
             <div className="card-body">
               <div className="form-control w-full max-w-lg">
                 <label className="label">
@@ -117,7 +116,7 @@ const SignIn: NextPage = () => {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

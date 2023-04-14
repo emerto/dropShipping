@@ -97,7 +97,7 @@ const Orders = ({ orders }: Props) => {
   };
 
   return (
-    <>
+    <div className=" h-full min-h-[531px]">
       <Head>
         <title>Orders</title>
       </Head>
@@ -130,8 +130,7 @@ const Orders = ({ orders }: Props) => {
               return (
                 <div
                   key={order.id}
-                  className="flex flex-col p-5 bg-base-300 rounded-xl"
-                >
+                  className="flex flex-col p-5 bg-base-300 rounded-xl">
                   <div className="flex flex-col">
                     <h1 className="text-xl lg:text-3xl">
                       Order Id: <span className="text-primary">{order.id}</span>
@@ -154,8 +153,7 @@ const Orders = ({ orders }: Props) => {
                       return (
                         <div
                           className="flex lg:flex-row flex-col"
-                          key={cart.product_id}
-                        >
+                          key={cart.product_id}>
                           <Image
                             src={cart.products.supplier_prod_image}
                             width={200}
@@ -232,7 +230,7 @@ const Orders = ({ orders }: Props) => {
           </section>
         </div>
       </main>
-    </>
+    </div>
   );
 };
 

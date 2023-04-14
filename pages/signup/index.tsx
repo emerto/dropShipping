@@ -53,7 +53,7 @@ const SignUp: NextPage = () => {
   };
 
   return (
-    <>
+    <div className="h-full min-h-[522px]">
       <Head>
         <title>DropShoop - Sign up</title>
       </Head>
@@ -64,8 +64,7 @@ const SignUp: NextPage = () => {
           </div>
           <form
             className="card flex-shrink-0 w-full max-w-xl shadow-2xl bg-base-100"
-            onSubmit={handleSubmit(onSubmit)}
-          >
+            onSubmit={handleSubmit(onSubmit)}>
             <div className="card-body">
               <div className="form-control w-full max-w-xl">
                 <label className="label">
@@ -136,8 +135,7 @@ const SignUp: NextPage = () => {
                     <a
                       href="/terms-and-conditions"
                       target="_blank"
-                      className="text-primary hover:underline hover:cursor-pointer"
-                    >
+                      className="text-primary hover:underline hover:cursor-pointer">
                       Terms and Conditions
                     </a>
                   </p>
@@ -157,7 +155,7 @@ const SignUp: NextPage = () => {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
