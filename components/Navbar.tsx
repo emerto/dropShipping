@@ -44,7 +44,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
-        <div className="w-full navbar bg-base-300 lg:px-44 p-5">
+        <div className="w-full navbar h-28 bg-base-300 lg:px-44 p-5">
           <div className="flex-none lg:hidden">
             <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
               <Icon

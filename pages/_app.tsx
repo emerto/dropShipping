@@ -79,8 +79,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionContextProvider
       supabaseClient={supabaseClient}
-      initialSession={pageProps.initialSession}
-    >
+      initialSession={pageProps.initialSession}>
       <Layout>
         <Toaster
           position="bottom-right"
