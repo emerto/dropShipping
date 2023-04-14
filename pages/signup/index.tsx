@@ -4,6 +4,7 @@ import { supabaseClient } from "../../utils/supabaseBrowserClient";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
+import toast from "react-hot-toast";
 
 interface Inputs {
   email: string;
@@ -37,16 +38,17 @@ const SignUp: NextPage = () => {
         useAuthStore.setState({
           userStore: userData,
         });
+        toast.success("Sign up successful!");
         router.push("/profile");
       }
 
       if (error) {
-        alert(error.message);
+        toast.error(error.message);
       }
     }
 
     if (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
   };
 

@@ -4,6 +4,7 @@ import { supabaseClient } from "../../utils/supabaseBrowserClient";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
+import toast from "react-hot-toast";
 
 interface Inputs {
   email: string;
@@ -36,12 +37,13 @@ const SignIn: NextPage = () => {
         useAuthStore.setState({
           userStore: userData,
         });
+        toast.success("Login successful!");
         router.push("/");
       }
     }
 
     if (error) {
-      console.log(error);
+      toast.error(error.message);
     }
   };
 
