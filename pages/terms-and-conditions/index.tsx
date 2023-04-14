@@ -1,6 +1,11 @@
+import Head from "next/head";
+
 const TermsAndConditions = () => {
   return (
     <div>
+      <Head>
+        <title>DropShoop - Terms and Conditions</title>
+      </Head>
       <h1 className="text-3xl font-bold text-base-content">
         Terms and Conditions
       </h1>
@@ -52,7 +57,7 @@ const TermsAndConditions = () => {
               This is a project for{" "}
               <span className="text-primary text-xl font-bold">
                 {" "}
-                CMPE 341 course
+                Database Management Systems course
               </span>
               . We do not take any responsibility for any damages caused by this
               project.
