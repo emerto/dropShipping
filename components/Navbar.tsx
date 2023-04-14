@@ -80,8 +80,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
                   </label>
                   <div
                     tabIndex={0}
-                    className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
-                  >
+                    className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
                     <div className="card-body">
                       <span className="font-bold text-lg">
                         {cart.length} Items
@@ -90,8 +89,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
                       <div className="card-actions">
                         <button
                           className="btn btn-primary btn-block"
-                          onClick={navToCart}
-                        >
+                          onClick={navToCart}>
                           View cart
                         </button>
                       </div>
@@ -105,8 +103,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
                     <div className="dropdown dropdown-end">
                       <label
                         tabIndex={0}
-                        className="btn btn-ghost btn-circle avatar"
-                      >
+                        className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                           {userStore.avatar_url ? (
                             <Image
@@ -122,8 +119,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
                       </label>
                       <ul
                         tabIndex={0}
-                        className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-                      >
+                        className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                         <li>
                           <Link href="/profile">Profile</Link>
                         </li>
@@ -170,7 +166,9 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
           <div className="h-full w-full xl:container mx-auto mt-8 px-4">
             {children}
           </div>
-          <Footer />
+          <div>
+            <Footer />
+          </div>
         </main>
       </div>
       <div className="drawer-side">
@@ -218,8 +216,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
                 className="btn flex items-center justify-center h-full"
                 onClick={() => {
                   router.push("/cart");
-                }}
-              >
+                }}>
                 Cart
                 <Icon
                   icon="ic:baseline-shopping-cart"

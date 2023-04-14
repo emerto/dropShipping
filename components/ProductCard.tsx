@@ -121,7 +121,7 @@ const ProductCard = ({ product, edit }: Props) => {
   };
 
   return (
-    <div className="card w-full bg-base-100 shadow-xl">
+    <div className="card w-full h-[480px] bg-base-100 shadow-xl">
       <figure>
         <Image
           src={clientProduct.supplier_prod_image}
@@ -139,8 +139,7 @@ const ProductCard = ({ product, edit }: Props) => {
           <div className="card-actions justify-end">
             <label
               htmlFor={`modal-${clientProduct.id}`}
-              className="btn btn-primary"
-            >
+              className="btn btn-primary">
               Edit Product
             </label>
 
@@ -154,8 +153,7 @@ const ProductCard = ({ product, edit }: Props) => {
                 <label
                   htmlFor={`modal-${clientProduct.id}`}
                   className="btn btn-sm btn-circle absolute right-2 top-2"
-                  onClick={() => reset()}
-                >
+                  onClick={() => reset()}>
                   ✕
                 </label>
                 <h3 className="text-lg font-bold">
@@ -212,8 +210,7 @@ const ProductCard = ({ product, edit }: Props) => {
                       onClick={() => {
                         deleteProduct(clientProduct.id);
                       }}
-                      type="button"
-                    >
+                      type="button">
                       Delete
                     </button>
                     <button className="btn btn-primary" type="submit">
@@ -228,8 +225,7 @@ const ProductCard = ({ product, edit }: Props) => {
         {!edit && userStore.id && (
           <div
             className="card-actions justify-end"
-            onClick={addToCartHandlerUser}
-          >
+            onClick={addToCartHandlerUser}>
             <button className="btn btn-primary">Add to Cart</button>
           </div>
         )}

@@ -53,7 +53,7 @@ const SearchPage = ({ stores, products }: Props) => {
   const category = router.query.category;
 
   return (
-    <main>
+    <main className="bg-black h-full">
       <h1 className="text-3xl font-bold">Search Results for {query}</h1>
       {category === "products" ? (
         <>
