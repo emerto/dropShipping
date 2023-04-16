@@ -67,7 +67,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <div>
+    <div className="font-exo2">
       <Navbar children={children} />
     </div>
   );
@@ -79,7 +79,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionContextProvider
       supabaseClient={supabaseClient}
-      initialSession={pageProps.initialSession}>
+      initialSession={pageProps.initialSession}
+    >
       <Layout>
         <Toaster
           position="bottom-right"
