@@ -7,41 +7,50 @@ import StoreWithProducts from "../components/StoreWithProducts";
 import { supabase } from "../utils/supabaseClient";
 
 export async function getServerSideProps() {
-  //limit the products to 3
-  const { data, error } = await supabase
-    .from("stores")
-    .select(
+  const { data, error } = await supabase.from("stores").select(
+    `
+      *,
+      products (
+        *
+      )
       `
-    *,
-    products (
-      *
-    )
-  `
-    )
-    .limit(3);
+  );
 
   if (data) {
-    const products = data.map((store) => {
+    // Shuffle the array of stores using a randomizer function
+    const shuffleArray = (array) => {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    };
+    const shuffledStores = shuffleArray(data);
+
+    // Select the first 3 stores from the shuffled array
+    const randomStores = shuffledStores.slice(0, 3);
+
+    const products = randomStores.map((store) => {
       return {
         ...store,
         products: store.products?.slice(0, 3),
       };
     });
 
-    data.map((store, index) => {
+    randomStores.map((store, index) => {
       store.products = products[index].products;
     });
+
+    return {
+      props: {
+        stores: randomStores,
+      },
+    };
   }
 
   if (error) {
     console.log(error.message);
   }
-
-  return {
-    props: {
-      stores: data,
-    },
-  };
 }
 
 const Home: NextPage = ({ stores }) => {
