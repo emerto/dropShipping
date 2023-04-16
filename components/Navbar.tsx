@@ -14,7 +14,6 @@ import Search from "./Search";
 const Navbar = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const isOpenHandler = () => setIsOpen(!isOpen);
-  console.log(isOpen);
   const { userStore } = useAuthStore();
   const { cart, total } = useCartStore();
   const router = useRouter();
