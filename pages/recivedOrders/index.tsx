@@ -5,6 +5,7 @@ import { useState } from "react";
 import type { Order } from "../orders";
 import toast from "react-hot-toast";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 export const getServerSideProps = async (ctx) => {
   const supabase = createServerSupabaseClient(ctx);
@@ -99,6 +100,7 @@ type Props = {
 
 const RecivedOrders = ({ orders, countData }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const rejectOrder = async (orderId: number) => {
     setIsLoading(true);
@@ -119,6 +121,8 @@ const RecivedOrders = ({ orders, countData }: Props) => {
     }
 
     setIsLoading(false);
+
+    router.reload();
   };
 
   const acceptOrder = async (orderId: number) => {
@@ -139,6 +143,7 @@ const RecivedOrders = ({ orders, countData }: Props) => {
       toast.error(`${data.error}`);
     }
 
+    router.reload();
     setIsLoading(false);
   };
 
