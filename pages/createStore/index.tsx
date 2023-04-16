@@ -5,12 +5,38 @@ import toast from "react-hot-toast";
 import { supabase } from "../../utils/supabaseClient";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
+import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 
 interface Inputs {
   storename: string;
   storephone: string;
   storeaddress: string;
 }
+
+export const getServerSideProps = async (ctx) => {
+  const supabase = createServerSupabaseClient(ctx);
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  const { data: isDropShipper, error } = await supabase
+    .from("dropshippers")
+    .select()
+    .eq("dropshipper_id", session?.user?.id);
+
+  if (error) {
+    console.log(error);
+  }
+
+  if (isDropShipper) {
+    return {
+      redirect: {
+        destination: "/manageStore",
+        permanent: false,
+      },
+    };
+  }
+};
 
 const CreateStore = () => {
   const [loading, setLoading] = useState(false);
