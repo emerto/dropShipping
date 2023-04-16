@@ -158,6 +158,7 @@ const CreateStore = () => {
                   disabled={loading}
                   className="file-input file-input-primary w-full max-w-2xl"
                   onChange={(e) => uploadFile(e)}
+                  accept="image/*"
                 />
               </div>
               <div className="form-control w-full max-w-2xl">
