@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useAuthStore } from "../stores/useAuthStore";
 import { supabaseClient } from "../utils/supabaseBrowserClient";
+import { useState } from "react";
 
 import { useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
@@ -11,6 +12,9 @@ import Footer from "./Footer";
 import Search from "./Search";
 
 const Navbar = ({ children }: { children: React.ReactNode }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const isOpenHandler = () => setIsOpen(!isOpen);
+  console.log(isOpen);
   const { userStore } = useAuthStore();
   const { cart, total } = useCartStore();
   const router = useRouter();
@@ -42,14 +46,19 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="drawer">
-      <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+      <input
+        id="my-drawer-3"
+        type="checkbox"
+        className={"drawer-toggle"}
+        onChange={isOpenHandler}
+      />
       <div className="drawer-content flex flex-col">
         <div className="w-full min-h-[100px] navbar bg-base-300 lg:px-44 p-5">
           <div className="flex-none lg:hidden">
             <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
               <Icon
                 icon="heroicons:bars-3-center-left-solid"
-                className="w-6 h-6"
+                className={"w-6 h-6"}
               />
             </label>
           </div>
@@ -173,6 +182,11 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
         <label htmlFor="my-drawer-3" className="drawer-overlay" />
         {user ? (
           <ul className="flex flex-col gap-5 p-4 w-80 bg-base-100">
+            <label
+              htmlFor="my-drawer-3"
+              className="btn btn-square btn-ghost absolute top-7 right-4">
+              <Icon icon="material-symbols:close-rounded" className="w-6 h-6" />
+            </label>
             <li className="flex flex-row py-2 border-b-2 border-primary gap-3 items-center">
               <label tabIndex={0} className="avatar">
                 <div className="w-12 rounded-full">
